@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace TEST_FB_API.Controllers
 {
+    [RequireHttps]
     public class HomeController : Controller
     {
         public ActionResult Index()
