@@ -3,6 +3,7 @@
 }
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
 
 <script>
     function statusChangeCallback(response) {
@@ -80,6 +81,50 @@
             success: function (result) {
                 alert("isSuccess " + result.isSuccess + "<br>Message " + result.errorMsg);
                 console.log(result.data);
+                var nameLabel = [];
+                var ageData = [];
+                var backgroundColorList = [];
+                var borderColorList = [];
+                $(result.data).each(function () {
+
+                    nameLabel.push(this.name);
+                    ageData.push(this.age);
+                    backgroundColorList.push('rgba(255, 99, 132, 0.2)')
+                    borderColorList.push('rgba(255, 99, 132, 1)')
+                })
+                barChart(ageData, nameLabel, backgroundColorList, borderColorList);
+            }
+        });
+    }
+
+    function barChart(data, label, backgroundColorList, borderColorList) {
+        var canvas = $("#dateBarChart");
+        var chart = new Chart(canvas, {
+            type: 'bar',
+            data: {
+                labels: label,
+                datasets: [{
+                    label: 'Age',
+                    data: data,
+                    backgroundColor: backgroundColorList,
+                    borderColor: borderColorList,
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: false,
+                scales: {
+                    xAxes: [{
+                        ticks: {
+                            autoSkip: false
+                        }
+                    }],
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
             }
         });
     }
@@ -92,8 +137,9 @@
     <p><a href="#" onClick="logInWithFacebook();">Log In with JavaScript SDK</a></p>
     @*user_birthday,user_friends*@
     <p><fb:login-button scope="user_birthday" onlogin="checkLoginState();"></fb:login-button></p>
-    <p><input type="button" class="btn btn-primary btn-lg" value="Execute Ajax" onclick="GetTestUsersBirthday()" /></p>
     <p id="status">Stuff here</p>
+    <p><input type="button" class="btn btn-primary btn-lg" value="Execute Ajax" onclick="GetTestUsersBirthday()" /></p>
+    <p><canvas id="dateBarChart" style="width: 500px; height: 500px"></canvas></p>
 </div>
 
 <div class="row">
