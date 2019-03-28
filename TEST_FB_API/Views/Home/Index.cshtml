@@ -2,28 +2,19 @@
     ViewBag.Title = "Home Page";
 }
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 <script>
-    // This is called with the results from from FB.getLoginStatus().
     function statusChangeCallback(response) {
-        console.log('statusChangeCallback');
-        console.log(response);
-        // The response object is returned with a status field that lets the
-        // app know the current login status of the person.
-        // Full docs on the response object can be found in the documentation
-        // for FB.getLoginStatus().
         if (response.status === 'connected') {
-            // Logged into your app and Facebook.
             testAPI();
         } else {
-            // The person is not logged into your app or we are unable to tell.
-            document.getElementById('status').innerHTML = 'Please log ' +
-                'into this app.';
+            document.getElementById('status').innerHTML = 'Please log into this app.';
         }
     }
 
-    // This function is called when someone finishes with the Login
-    // Button.  See the onlogin handler attached to it in the sample
-    // code below.
+    // This function is called when someone finishes with the Login Button.
+    // See the onlogin handler attached to it in the sample code below.
     function checkLoginState() {
         FB.getLoginStatus(function (response) {
             statusChangeCallback(response);
@@ -37,18 +28,6 @@
             xfbml: true,  // parse social plugins on this page
             version: 'v3.2' // The Graph API version to use for the call
         });
-
-        // Now that we've initialized the JavaScript SDK, we call 
-        // FB.getLoginStatus().  This function gets the state of the
-        // person visiting this page and can return one of three states to
-        // the callback you provide.  They can be:
-        //
-        // 1. Logged into your app ('connected')
-        // 2. Logged into Facebook, but not your app ('not_authorized')
-        // 3. Not logged into Facebook and can't tell if they are logged into
-        //    your app or not.
-        //
-        // These three cases are handled in the callback function.
 
         FB.getLoginStatus(function (response) {
             statusChangeCallback(response);
@@ -69,7 +48,7 @@
     // successful.  See statusChangeCallback() for when this call is made.
     function testAPI() {
         alert('Welcome!  Fetching your information.... ');
-        scopeList = 'id,name,birthday';
+        scopeList = 'id,name,birthday,friends';
         FB.api('/me?fields=' + scopeList, function (response) {
             alert('Successful login for: ' + response.name);
             document.getElementById('status').innerHTML =
@@ -88,10 +67,22 @@
                 // a PHP script that grabs the signed request from the cookie.
             } else {
                 alert('User cancelled login or did not fully authorize.');
+                checkLoginState();
             }
-        }, { scope: 'user_birthday' });
+        }, { scope: 'user_birthday'/*, 'user_friends'*/ });
         return false;
     };
+
+    function GetTestUsersBirthday() {
+        $.ajax({
+            method: 'POST',
+            url: '@Url.Action("GetTestUsersBirthdays", "Home")',
+            success: function (result) {
+                alert("isSuccess " + result.isSuccess + "<br>Message " + result.errorMsg);
+                console.log(result.data);
+            }
+        });
+    }
 </script>
 
 <div class="jumbotron">
@@ -99,8 +90,9 @@
     <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
     <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
     <p><a href="#" onClick="logInWithFacebook();">Log In with JavaScript SDK</a></p>
-    <fb:login-button scope="user_birthday" onlogin="checkLoginState();">
-    </fb:login-button>
+    @*user_birthday,user_friends*@
+    <p><fb:login-button scope="user_birthday" onlogin="checkLoginState();"></fb:login-button></p>
+    <p><input type="button" class="btn btn-primary btn-lg" value="Execute Ajax" onclick="GetTestUsersBirthday()" /></p>
     <p id="status">Stuff here</p>
 </div>
 
