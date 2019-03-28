@@ -14,9 +14,17 @@ namespace TEST_FB_API.Controllers
 {
     internal class JsonReturnObj
     {
-        public List<TestUserJSONData> data { get; set; }
+        public List<AgeReturnData> data { get; set; }
+        public int minAge { get; set; }
+        public int maxAge { get; set; }
         public bool isSuccess { get; set; }
         public string errorMsg { get; set; }
+    }
+
+    internal class AgeReturnData
+    {
+        public int age { get; set; }
+        public int count { get; set; }
     }
 
     internal class FBAppToken
@@ -55,13 +63,6 @@ namespace TEST_FB_API.Controllers
 
         [JsonProperty("birthday")]
         public string birthday { get; set; }
-    }
-
-    internal class TestUserJSONData
-    {
-        public string name { get; set; }
-
-        public int age { get; set; }
     }
 
     [RequireHttps]
@@ -106,13 +107,13 @@ namespace TEST_FB_API.Controllers
                 string testUserURL = $"https://graph.facebook.com/v3.2/{APP_ID}/accounts/test-users?access_token={access_token}";
                 string testUsersJson = Get(testUserURL);
                 TestUserQueryResult result = JsonConvert.DeserializeObject<TestUserQueryResult>(testUsersJson);
-                if (result.error != null) throw new Exception("Can't get list of test users");
+                if (result.error != null) throw new Exception(result.error);
 
                 //Get birthday of each user
-                List<TestUserJSONData> userJsonList = new List<TestUserJSONData>();
+                List<AgeReturnData> ageDataList = new List<AgeReturnData>();
                 foreach (TestUser user in result.testUserList)
                 {
-                    TestUserJSONData userJSON = new TestUserJSONData();
+                    AgeReturnData ageData = new AgeReturnData();
 
                     string birthdayURL = $"https://graph.facebook.com/v3.2/{user.id}/?fields=id,name,birthday&access_token={user.access_token}";
                     TestUserProfile userProfile = JsonConvert.DeserializeObject<TestUserProfile>(Get(birthdayURL));
@@ -120,10 +121,17 @@ namespace TEST_FB_API.Controllers
                     int age = today.Year - birthday.Year;
                     if (birthday.AddYears(age) > today) age--;
 
-                    userJSON.name = userProfile.name;
-                    userJSON.age = age;
-
-                    userJsonList.Add(userJSON);
+                    AgeReturnData obj = ageDataList.FirstOrDefault(item => item.age == age);
+                    if (obj == null)
+                    {
+                        ageData.age = age;
+                        ageData.count = 1;
+                        ageDataList.Add(ageData);
+                    }
+                    else
+                    {
+                        obj.count += 1;
+                    }
                 }
                 //  Return:
                 //      age: X, count: Y
@@ -132,7 +140,13 @@ namespace TEST_FB_API.Controllers
                 //  Later:
                 //      gender: M, age: X, count: Y
                 //      gender: F, age: X, count: Y
-                jsonReturn.data = userJsonList;
+                int minAge = ageDataList.Min(item => item.age);
+                int maxAge = ageDataList.Max(item => item.age);
+
+                ageDataList = ageDataList.OrderBy(item => item.age).ToList();
+                jsonReturn.data = ageDataList;
+                jsonReturn.minAge = minAge;
+                jsonReturn.maxAge = maxAge;
                 jsonReturn.isSuccess = true;
             }
             catch (Exception ex)
@@ -140,7 +154,6 @@ namespace TEST_FB_API.Controllers
                 jsonReturn.isSuccess = false;
                 jsonReturn.errorMsg = ex.Message;
             }
-
             return Json(jsonReturn, "application/json");
         }
 

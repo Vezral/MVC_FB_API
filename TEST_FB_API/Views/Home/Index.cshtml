@@ -81,18 +81,23 @@
             success: function (result) {
                 alert("isSuccess " + result.isSuccess + "<br>Message " + result.errorMsg);
                 console.log(result.data);
-                var nameLabel = [];
-                var ageData = [];
+                var ageLabel = [];
+                var countData = [];
                 var backgroundColorList = [];
                 var borderColorList = [];
-                $(result.data).each(function () {
-
-                    nameLabel.push(this.name);
-                    ageData.push(this.age);
-                    backgroundColorList.push('rgba(255, 99, 132, 0.2)')
-                    borderColorList.push('rgba(255, 99, 132, 1)')
-                })
-                barChart(ageData, nameLabel, backgroundColorList, borderColorList);
+                for (var i = result.minAge; i < result.maxAge + 1; i++) {
+                    ageLabel.push(i);
+                    var random = result.data.findIndex(x => x.age === i)
+                    if (random >= 0) {
+                        countData.push(result.data[random].age);
+                    } else {
+                        countData.push(0);
+                    }
+                    // age in result.data.age ? count = result.data.count : 0;
+                    backgroundColorList.push('rgba(255, 99, 132, 0.2)');
+                    borderColorList.push('rgba(255, 99, 132, 1)');
+                }
+                barChart(countData, ageLabel, backgroundColorList, borderColorList);
             }
         });
     }
