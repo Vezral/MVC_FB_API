@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -13,9 +14,17 @@ namespace TEST_FB_API.Controllers
 {
     internal class JsonReturnObj
     {
-        public string[] data { get; set; }
+        public List<TestUserJSONData> data { get; set; }
         public bool isSuccess { get; set; }
         public string errorMsg { get; set; }
+    }
+
+    internal class FBAppToken
+    {
+        [JsonProperty("access_token")]
+        public string access_token { get; set; }
+        [JsonProperty("token_type")]
+        public string token_type { get; set; }
     }
 
     internal class TestUserQueryResult
@@ -48,12 +57,11 @@ namespace TEST_FB_API.Controllers
         public string birthday { get; set; }
     }
 
-    internal class FBAppToken
+    internal class TestUserJSONData
     {
-        [JsonProperty("access_token")]
-        public string access_token { get; set; }
-        [JsonProperty("token_type")]
-        public string token_type { get; set; }
+        public string name { get; set; }
+
+        public int age { get; set; }
     }
 
     [RequireHttps]
@@ -85,6 +93,7 @@ namespace TEST_FB_API.Controllers
         public ActionResult GetTestUsersBirthdays()
         {
             JsonReturnObj jsonReturn = new JsonReturnObj();
+            DateTime today = DateTime.Today;
 
             try
             {
@@ -100,15 +109,30 @@ namespace TEST_FB_API.Controllers
                 if (result.error != null) throw new Exception("Can't get list of test users");
 
                 //Get birthday of each user
-                string[] birthday_list = new string[result.testUserList.Count];
-                int i = 0;
+                List<TestUserJSONData> userJsonList = new List<TestUserJSONData>();
                 foreach (TestUser user in result.testUserList)
                 {
+                    TestUserJSONData userJSON = new TestUserJSONData();
+
                     string birthdayURL = $"https://graph.facebook.com/v3.2/{user.id}/?fields=id,name,birthday&access_token={user.access_token}";
                     TestUserProfile userProfile = JsonConvert.DeserializeObject<TestUserProfile>(Get(birthdayURL));
-                    birthday_list[i++] = userProfile.birthday;
+                    DateTime birthday = DateTime.ParseExact(userProfile.birthday, "MM/dd/yyyy", CultureInfo.InvariantCulture);
+                    int age = today.Year - birthday.Year;
+                    if (birthday.AddYears(age) > today) age--;
+
+                    userJSON.name = userProfile.name;
+                    userJSON.age = age;
+
+                    userJsonList.Add(userJSON);
                 }
-                jsonReturn.data = birthday_list;
+                //  Return:
+                //      age: X, count: Y
+                //      minAge: Floor(X)
+                //      maxAge: Ceiling(X)
+                //  Later:
+                //      gender: M, age: X, count: Y
+                //      gender: F, age: X, count: Y
+                jsonReturn.data = userJsonList;
                 jsonReturn.isSuccess = true;
             }
             catch (Exception ex)
