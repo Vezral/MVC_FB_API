@@ -144,15 +144,27 @@
             },
             options: {
                 responsive: false,
+                title: {
+                    display: true,
+                    text: "Distribution of Test Users' Age By Gender"
+                },
                 scales: {
                     xAxes: [{
                         stacked: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Age'
+                        },
                         ticks: {
                             autoSkip: false
                         }
                     }],
                     yAxes: [{
                         stacked: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: '# of people'
+                        },
                         ticks: {
                             stepSize: 1,
                             beginAtZero: true
@@ -169,7 +181,6 @@
     <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
     <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
     <p><a href="#" onClick="logInWithFacebook();">Log In with JavaScript SDK</a></p>
-    @*user_birthday,user_friends*@
     <p><fb:login-button scope="user_birthday" onlogin="checkLoginState();"></fb:login-button></p>
     <p id="status">Stuff here</p>
     <p><input type="button" class="btn btn-primary btn-lg" value="Execute Ajax" onclick="GetTestUsersBirthday()" /></p>
