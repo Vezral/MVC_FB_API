@@ -12,59 +12,6 @@ using System.Web.Mvc;
 
 namespace TEST_FB_API.Controllers
 {
-    internal class JsonReturnObj
-    {
-        public List<AgeReturnData> data { get; set; }
-        public int minAge { get; set; }
-        public int maxAge { get; set; }
-        public bool isSuccess { get; set; }
-        public string errorMsg { get; set; }
-    }
-
-    internal class AgeReturnData
-    {
-        public int age { get; set; }
-        public int count { get; set; }
-    }
-
-    internal class FBAppToken
-    {
-        [JsonProperty("access_token")]
-        public string access_token { get; set; }
-        [JsonProperty("token_type")]
-        public string token_type { get; set; }
-    }
-
-    internal class TestUserQueryResult
-    {
-        [JsonProperty("data")]
-        public List<TestUser> testUserList { get; set; }
-
-        [JsonProperty("error")]
-        public string error { get; set; }
-    }
-
-    internal class TestUser
-    {
-        [JsonProperty("id")]
-        public string id { get; set; }
-
-        [JsonProperty("access_token")]
-        public string access_token { get; set; }
-    }
-
-    internal class TestUserProfile
-    {
-        [JsonProperty("id")]
-        public string id { get; set; }
-
-        [JsonProperty("name")]
-        public string name { get; set; }
-
-        [JsonProperty("birthday")]
-        public string birthday { get; set; }
-    }
-
     [RequireHttps]
     public class HomeController : Controller
     {
@@ -91,10 +38,29 @@ namespace TEST_FB_API.Controllers
         }
 
         [HttpPost]
-        public ActionResult GetTestUsersBirthdays()
+        public ActionResult GetChartData()
         {
-            JsonReturnObj jsonReturn = new JsonReturnObj();
             DateTime today = DateTime.Today;
+            JsonReturnObj jsonReturn = new JsonReturnObj();
+            List<string> hometownList = new List<string>()
+            {
+                "Johor",
+                "Kedah",
+                "Kelantan",
+                "Kuala Lumpur",
+                "Labuan",
+                "Melaka",
+                "Negeri Sembilan",
+                "Pahang",
+                "Penang",
+                "Perak",
+                "Perlis",
+                "Putrajaya",
+                "Sabah",
+                "Sarawak",
+                "Selangor",
+                "Terengganu"
+            };
 
             try
             {
@@ -109,44 +75,27 @@ namespace TEST_FB_API.Controllers
                 TestUserQueryResult result = JsonConvert.DeserializeObject<TestUserQueryResult>(testUsersJson);
                 if (result.error != null) throw new Exception(result.error);
 
-                //Get birthday of each user
-                List<AgeReturnData> ageDataList = new List<AgeReturnData>();
+                //Get list of test users profile
+                Random rnd = new Random();
+                List<TestUserProfile> userProfileList = new List<TestUserProfile>();
                 foreach (TestUser user in result.testUserList)
                 {
-                    AgeReturnData ageData = new AgeReturnData();
-
-                    string birthdayURL = $"https://graph.facebook.com/v3.2/{user.id}/?fields=id,name,birthday&access_token={user.access_token}";
-                    TestUserProfile userProfile = JsonConvert.DeserializeObject<TestUserProfile>(Get(birthdayURL));
-                    DateTime birthday = DateTime.ParseExact(userProfile.birthday, "MM/dd/yyyy", CultureInfo.InvariantCulture);
-                    int age = today.Year - birthday.Year;
-                    if (birthday.AddYears(age) > today) age--;
-
-                    AgeReturnData obj = ageDataList.FirstOrDefault(item => item.age == age);
-                    if (obj == null)
-                    {
-                        ageData.age = age;
-                        ageData.count = 1;
-                        ageDataList.Add(ageData);
-                    }
-                    else
-                    {
-                        obj.count += 1;
-                    }
+                    string profileURL = $"https://graph.facebook.com/v3.2/{user.id}/?fields=id,name,birthday,gender,hometown&access_token={user.access_token}";
+                    TestUserProfile userProfile = JsonConvert.DeserializeObject<TestUserProfile>(Get(profileURL));
+                    userProfile.hometown = hometownList[rnd.Next(hometownList.Count)];
+                    userProfileList.Add(userProfile);
                 }
-                //  Return:
-                //      age: X, count: Y
-                //      minAge: Floor(X)
-                //      maxAge: Ceiling(X)
-                //  Later:
-                //      gender: M, age: X, count: Y
-                //      gender: F, age: X, count: Y
-                int minAge = ageDataList.Min(item => item.age);
-                int maxAge = ageDataList.Max(item => item.age);
 
-                ageDataList = ageDataList.OrderBy(item => item.age).ToList();
-                jsonReturn.data = ageDataList;
-                jsonReturn.minAge = minAge;
-                jsonReturn.maxAge = maxAge;
+                //Populate JSON data for barchart
+                BarChartData barChartData = getBarChartDataFromUserProfileList(userProfileList,today);
+
+                //List<string> userHometownList = new List<string>();
+                //foreach(TestUserProfile userProfile in userProfileList)
+                //{
+                //    userHometownList.Add(userProfile.hometown);
+                //}
+
+                jsonReturn.barChartData = barChartData;
                 jsonReturn.isSuccess = true;
             }
             catch (Exception ex)
@@ -155,6 +104,161 @@ namespace TEST_FB_API.Controllers
                 jsonReturn.errorMsg = ex.Message;
             }
             return Json(jsonReturn, "application/json");
+        }
+
+        private BarChartData getBarChartDataFromUserProfileList(List<TestUserProfile> userProfileList, DateTime today)
+        {
+            BarChartData barChartData = new BarChartData();
+            List<BarChartUserData> userDataList = new List<BarChartUserData>();
+
+            foreach (TestUserProfile userProfile in userProfileList)
+            {
+                BarChartUserData userData = new BarChartUserData();
+
+                char[] genderCharArray = userProfile.gender.ToCharArray();
+                genderCharArray[0] = char.ToUpper(genderCharArray[0]);
+                string gender = new string(genderCharArray);
+
+                DateTime birthday = DateTime.ParseExact(userProfile.birthday, "MM/dd/yyyy", CultureInfo.InvariantCulture);
+                int age = today.Year - birthday.Year;
+                if (birthday.AddYears(age) > today) age--;
+
+                // Check if gender already in list
+                BarChartUserData obj = userDataList.FirstOrDefault(item => item.gender == gender);
+                if (obj == null)
+                {
+                    userData.gender = gender;
+                    userData.innerData = new List<InnerData>
+                        {
+                            new InnerData
+                            {
+                                count = 1,
+                                age = age
+                            }
+                        };
+                    userDataList.Add(userData);
+                }
+                else
+                {
+                    // Check if age already in list
+                    InnerData innerObj = obj.innerData.FirstOrDefault(item => item.age == age);
+                    if (innerObj == null)
+                    {
+                        obj.innerData.Add(new InnerData
+                        {
+                            count = 1,
+                            age = age
+                        });
+                    }
+                    else
+                    {
+                        innerObj.count += 1;
+                    }
+                }
+            }
+
+            int minAge = userDataList.Min(item => item.innerData.Min(innerData => innerData.age));
+            int maxAge = userDataList.Max(item => item.innerData.Max(innerData => innerData.age));
+            foreach (BarChartUserData returnData in userDataList)
+            {
+                for (int i = minAge; i < maxAge + 1; i++)
+                {
+                    if (returnData.innerData.FirstOrDefault(item => item.age == i) == null)
+                    {
+                        returnData.innerData.Add(new InnerData
+                        {
+                            age = i,
+                            count = 0
+                        });
+                    }
+                    returnData.innerData = returnData.innerData.OrderBy(item => item.age).ToList();
+                }
+            }
+            userDataList = userDataList.OrderByDescending(item => item.gender).ToList();
+
+            barChartData.minAge = minAge;
+            barChartData.maxAge = maxAge;
+            barChartData.userList = userDataList;
+
+            return barChartData;
+        }
+        
+        private class JsonReturnObj
+        {
+            public BarChartData barChartData { get; set; }
+
+            public bool isSuccess { get; set; }
+
+            public string errorMsg { get; set; }
+        }
+
+        private class BarChartData
+        {
+            public int minAge { get; set; }
+
+            public int maxAge { get; set; }
+
+            public List<BarChartUserData> userList { get; set; }
+
+        }
+
+        private class BarChartUserData
+        {
+            public string gender { get; set; }
+
+            public List<InnerData> innerData { get; set; }
+        }
+
+        private class InnerData
+        {
+            public int age { get; set; }
+
+            public int count { get; set; }
+        }
+
+        private class FBAppToken
+        {
+            [JsonProperty("access_token")]
+            public string access_token { get; set; }
+
+            [JsonProperty("token_type")]
+            public string token_type { get; set; }
+        }
+
+        private class TestUserQueryResult
+        {
+            [JsonProperty("data")]
+            public List<TestUser> testUserList { get; set; }
+
+            [JsonProperty("error")]
+            public string error { get; set; }
+        }
+
+        private class TestUser
+        {
+            [JsonProperty("id")]
+            public string id { get; set; }
+
+            [JsonProperty("access_token")]
+            public string access_token { get; set; }
+        }
+
+        private class TestUserProfile
+        {
+            [JsonProperty("id")]
+            public string id { get; set; }
+
+            [JsonProperty("name")]
+            public string name { get; set; }
+
+            [JsonProperty("birthday")]
+            public string birthday { get; set; }
+
+            [JsonProperty("gender")]
+            public string gender { get; set; }
+
+            [JsonProperty("hometown")]
+            public string hometown { get; set; }
         }
 
         public string Get(string uri)

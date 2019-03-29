@@ -30,10 +30,9 @@
             version: 'v3.2' // The Graph API version to use for the call
         });
 
-        FB.getLoginStatus(function (response) {
-            statusChangeCallback(response);
-        });
-
+        //FB.getLoginStatus(function (response) {
+        //    statusChangeCallback(response);
+        //});
     };
 
     // Load the SDK asynchronously
@@ -77,55 +76,85 @@
     function GetTestUsersBirthday() {
         $.ajax({
             method: 'POST',
-            url: '@Url.Action("GetTestUsersBirthdays", "Home")',
+            url: '@Url.Action("GetChartData", "Home")',
             success: function (result) {
                 alert("isSuccess " + result.isSuccess + "<br>Message " + result.errorMsg);
-                console.log(result.data);
-                var ageLabel = [];
-                var countData = [];
-                var backgroundColorList = [];
-                var borderColorList = [];
-                for (var i = result.minAge; i < result.maxAge + 1; i++) {
-                    ageLabel.push(i);
-                    var random = result.data.findIndex(x => x.age === i)
-                    if (random >= 0) {
-                        countData.push(result.data[random].age);
-                    } else {
-                        countData.push(0);
-                    }
-                    // age in result.data.age ? count = result.data.count : 0;
-                    backgroundColorList.push('rgba(255, 99, 132, 0.2)');
-                    borderColorList.push('rgba(255, 99, 132, 1)');
-                }
-                barChart(countData, ageLabel, backgroundColorList, borderColorList);
+
+                var barChartData = prepareBarChartData(result.barChartData);
+                barChart(barChartData.label, barChartData.datasets);
             }
         });
     }
 
-    function barChart(data, label, backgroundColorList, borderColorList) {
+    function prepareBarChartData(barChartData) {
+        var label = [];
+        var datasets = [];
+        var backgroundColorList = [
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(255, 205, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(255, 159, 64, 0.2)'
+        ]
+        var borderColorList = [
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 99, 132, 1)',
+            'rgba(255, 205, 86, 1)',
+            'rgba(75, 192, 192, 1)',
+            'rgba(255, 159, 64, 1)'
+        ]
+
+        for (var i = barChartData.minAge; i < barChartData.maxAge + 1; i++) {
+            label.push(i);
+        }
+
+        var bgColorIndex = 0;
+        $(barChartData.userList).each(function () {
+            var data = [];
+
+            $(this.innerData).each(function () {
+                data.push(this.count);
+            })
+
+            datasets.push({
+                label: this.gender,
+                data: data,
+                backgroundColor: backgroundColorList[bgColorIndex],
+                borderColor: borderColorList[bgColorIndex],
+                borderWidth: 1
+            })
+            bgColorIndex += 1;
+        })
+
+        var barChart = {
+            label: label,
+            datasets: datasets
+        }
+
+        return barChart;
+    }
+
+    function barChart(label, dataset) {
         var canvas = $("#dateBarChart");
         var chart = new Chart(canvas, {
             type: 'bar',
             data: {
                 labels: label,
-                datasets: [{
-                    label: 'Age',
-                    data: data,
-                    backgroundColor: backgroundColorList,
-                    borderColor: borderColorList,
-                    borderWidth: 1
-                }]
+                datasets: dataset
             },
             options: {
                 responsive: false,
                 scales: {
                     xAxes: [{
+                        stacked: true,
                         ticks: {
                             autoSkip: false
                         }
                     }],
                     yAxes: [{
+                        stacked: true,
                         ticks: {
+                            stepSize: 1,
                             beginAtZero: true
                         }
                     }]
