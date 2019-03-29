@@ -44,22 +44,22 @@ namespace TEST_FB_API.Controllers
             JsonReturnObj jsonReturn = new JsonReturnObj();
             List<string> hometownList = new List<string>()
             {
-                "Johor",
-                "Kedah",
-                "Kelantan",
+                //"Johor",
+                //"Kedah",
+                //"Kelantan",
                 "Kuala Lumpur",
                 "Labuan",
-                "Melaka",
-                "Negeri Sembilan",
-                "Pahang",
-                "Penang",
-                "Perak",
-                "Perlis",
+                //"Melaka",
+                //"Negeri Sembilan",
+                //"Pahang",
+                //"Penang",
+                //"Perak",
+                //"Perlis",
                 "Putrajaya",
                 "Sabah",
                 "Sarawak",
-                "Selangor",
-                "Terengganu"
+                //"Selangor",
+                //"Terengganu"
             };
 
             try
@@ -82,20 +82,19 @@ namespace TEST_FB_API.Controllers
                 {
                     string profileURL = $"https://graph.facebook.com/v3.2/{user.id}/?fields=id,name,birthday,gender,hometown&access_token={user.access_token}";
                     TestUserProfile userProfile = JsonConvert.DeserializeObject<TestUserProfile>(Get(profileURL));
+                    DateTime birthday = DateTime.ParseExact(userProfile.birthday, "MM/dd/yyyy", CultureInfo.InvariantCulture);
+                    userProfile.birthdayMYFormat = birthday.ToString("dd/MM/yyyy");
                     userProfile.hometown = hometownList[rnd.Next(hometownList.Count)];
                     userProfileList.Add(userProfile);
                 }
 
                 //Populate JSON data for barchart
                 BarChartData barChartData = getBarChartDataFromUserProfileList(userProfileList,today);
-
-                //List<string> userHometownList = new List<string>();
-                //foreach(TestUserProfile userProfile in userProfileList)
-                //{
-                //    userHometownList.Add(userProfile.hometown);
-                //}
+                RadarChartData radarChartData = getRadarChartDataFromUserProfileList(userProfileList, hometownList);
 
                 jsonReturn.barChartData = barChartData;
+                jsonReturn.radarChartData = radarChartData;
+
                 jsonReturn.isSuccess = true;
             }
             catch (Exception ex)
@@ -182,14 +181,59 @@ namespace TEST_FB_API.Controllers
 
             return barChartData;
         }
-        
+
+        private RadarChartData getRadarChartDataFromUserProfileList(List<TestUserProfile> userProfileList, List<string> hometownList)
+        {
+            RadarChartData radarChartData = new RadarChartData();
+            List<RadarChartUserData> userDataList = new List<RadarChartUserData>();
+
+            foreach(string hometown in hometownList)
+            {
+                RadarChartUserData userData = new RadarChartUserData();
+
+                List<TestUserProfile> residentList = userProfileList.Where(user => user.hometown == hometown).ToList();
+                userData.hometown = hometown;
+                userData.count = residentList.Count;
+                userData.profileList = new List<TestUserProfile>();
+                foreach(TestUserProfile resident in residentList)
+                {
+                    userData.profileList.Add(resident);
+                }
+
+                userDataList.Add(userData);
+            }
+
+            radarChartData.hometownList = hometownList;
+            radarChartData.userData = userDataList;
+
+            return radarChartData;
+        }
+
         private class JsonReturnObj
         {
             public BarChartData barChartData { get; set; }
 
+            public RadarChartData radarChartData { get; set; }
+
             public bool isSuccess { get; set; }
 
             public string errorMsg { get; set; }
+        }
+
+        private class RadarChartData
+        {
+            public List<string> hometownList { get; set; }
+
+            public List<RadarChartUserData> userData { get; set; }
+        }
+
+        private class RadarChartUserData
+        {
+            public string hometown { get; set; }
+
+            public int count { get; set; }
+
+            public List<TestUserProfile> profileList { get; set; }
         }
 
         private class BarChartData
@@ -253,6 +297,8 @@ namespace TEST_FB_API.Controllers
 
             [JsonProperty("birthday")]
             public string birthday { get; set; }
+
+            public string birthdayMYFormat { get; set; }
 
             [JsonProperty("gender")]
             public string gender { get; set; }

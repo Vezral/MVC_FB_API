@@ -82,6 +82,9 @@
 
                 var barChartData = prepareBarChartData(result.barChartData);
                 barChart(barChartData.label, barChartData.datasets);
+
+                var radarChartData = prepareRadarChartData(result.radarChartData);
+                radarChart(radarChartData.label, radarChartData.datasets);
             }
         });
     }
@@ -134,6 +137,53 @@
         return barChart;
     }
 
+    function prepareRadarChartData(radarChartData) {
+        var label = [];
+        var datasets = [];
+        var backgroundColorList = [
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(255, 205, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(255, 159, 64, 0.2)'
+        ]
+        var borderColorList = [
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 99, 132, 1)',
+            'rgba(255, 205, 86, 1)',
+            'rgba(75, 192, 192, 1)',
+            'rgba(255, 159, 64, 1)'
+        ]
+
+        $(radarChartData.hometownList).each(function () {
+            label.push(this);
+        });
+
+        var bgColorIndex = 0;
+        var data = [];
+
+        $(radarChartData.userData).each(function () {
+            data.push(this.count);
+        });
+        datasets.push({
+            label: "Test User",
+            data: data,
+            backgroundColor: backgroundColorList[bgColorIndex],
+            borderColor: borderColorList[bgColorIndex],
+            borderWidth: 1
+        })
+        bgColorIndex += 1;
+
+        var radarChart = {
+            label: label,
+            datasets: datasets
+        }
+
+        console.log(datasets);
+
+        return radarChart;
+    }
+    
     function barChart(label, dataset) {
         var canvas = $("#dateBarChart");
         var chart = new Chart(canvas, {
@@ -174,6 +224,39 @@
             }
         });
     }
+
+    function radarChart(label, dataset) {
+        var canvas = $("#hometownRadarChart");
+        var chart = new Chart(canvas, {
+            type: 'radar',
+            data: {
+                labels: label,
+                datasets: dataset
+            },
+            options: {
+                maintainAspectRatio: true,
+                spanGaps: false,
+                elements: {
+                    line: {
+                        tension: 0.000001
+                    }
+                },
+                plugins: {
+                    filler: {
+                        propagate: false
+                    },
+                    'samples-filler-analyser': {
+                        target: 'chart-analyser'
+                    }
+                },
+                scales: {
+                    ticks: {
+                        stepSize: 1
+                    }
+                }
+            }
+        });
+    }
 </script>
 
 <div class="jumbotron">
@@ -185,6 +268,7 @@
     <p id="status">Stuff here</p>
     <p><input type="button" class="btn btn-primary btn-lg" value="Execute Ajax" onclick="GetTestUsersBirthday()" /></p>
     <p><canvas id="dateBarChart" style="width: 500px; height: 500px"></canvas></p>
+    <p><canvas id="hometownRadarChart" style="width: 500px; height: 500px"></canvas></p>
 </div>
 
 <div class="row">
