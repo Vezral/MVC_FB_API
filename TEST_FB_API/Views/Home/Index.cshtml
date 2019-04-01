@@ -5,12 +5,52 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
 
+<style>
+    .modal-chart-table {
+        padding: 0 0 0 0;
+        margin: 0 0 0 0;
+        border-collapse: collapse;
+        border: 1px solid #000000;
+    }
+
+        .modal-chart-table th {
+            text-align: center;
+        }
+
+        .modal-chart-table th, .modal-chart-table td {
+            border: 1px solid #000000;
+        }
+
+        .modal-chart-table td span {
+            margin-left: 5px;
+            margin-right: 5px;
+        }
+
+    .txtCenter {
+        text-align: center;
+    }
+
+    .txtLeft {
+        text-align: left;
+    }
+
+    .txtRight {
+        text-align: right;
+    }
+</style>
+
 <script>
+    var barChartUserData = [];
+    var radarChartUserData = [];
+
     function statusChangeCallback(response) {
+        console.log(response);
         if (response.status === 'connected') {
-            testAPI();
+            checkFBPermission(testAPI);
         } else {
-            document.getElementById('status').innerHTML = 'Please log into this app.';
+            $('#profilePic').hide();
+            $('#profilePic').removeAttr('src');
+            $('#status').html('Please log into this app.');
         }
     }
 
@@ -44,24 +84,47 @@
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
 
+    function checkFBPermission(callback) {
+        var retObj = {};
+        FB.api('/me/permissions', function (response) {
+            retObj = response.data.reduce(function (permissionList, permission) {
+                var name = permission.permission;
+                var status = permission.status === 'granted' ? true : false;
+                permissionList[name] = status;
+                return permissionList;
+            }, {});
+            return callback(retObj);
+        });
+    }
+
     // Here we run a very simple test of the Graph API after login is
     // successful.  See statusChangeCallback() for when this call is made.
-    function testAPI() {
+    function testAPI(permissionList) {
         alert('Welcome!  Fetching your information.... ');
-        scopeList = 'id,name,birthday,friends';
+        scopeList = 'id,name,birthday,hometown';
+
         FB.api('/me?fields=' + scopeList, function (response) {
             alert('Successful login for: ' + response.name);
-            document.getElementById('status').innerHTML =
-                'Thanks for logging in, ' + response.id + '!' + '<br>' +
-                'BDay : ' + response.birthday;
-            console.log(response);
+
+            var profilePicLink = 'https://graph.facebook.com/v3.2/' + response.id + '/picture?type=large';
+            var statusText = 'Thanks for logging in, ' + response.name + '!';
+
+            if (permissionList.user_birthday && response.birthday) {
+                statusText += '<br>' + 'BDay : ' + response.birthday;
+            };
+            if (permissionList.user_hometown && response.hometown) {
+                statusText += '<br>' + 'Hometown : ' + response.hometown.name;
+            };
+            $('#profilePic').attr('src', profilePicLink);
+            $('#profilePic').show();
+            $('#status').html(statusText);
         });
     }
 
     logInWithFacebook = function () {
         FB.login(function (response) {
             if (response.authResponse) {
-                alert('You are logged in &amp; cookie set!');
+                alert('You are logged in!\nCookie set!');
                 checkLoginState();
                 // Now you can redirect the user or do an AJAX request to
                 // a PHP script that grabs the signed request from the cookie.
@@ -69,16 +132,48 @@
                 alert('User cancelled login or did not fully authorize.');
                 checkLoginState();
             }
-        }, { scope: 'user_birthday'/*, 'user_friends'*/ });
+        }, { scope: 'user_birthday,user_hometown' });
         return false;
     };
 
-    function GetTestUsersBirthday() {
+    function logoutFB() {
+        FB.getLoginStatus(function (response) {
+            if (response.status === 'connected') {
+                FB.logout(function (response) {
+                    // user is now logged out
+                    alert("Logged out!");
+                    checkLoginState();
+                });
+            } else {
+                alert("You're not logged in!");
+            }
+        });
+    }
+
+    function GenerateCharts() {
         $.ajax({
             method: 'POST',
             url: '@Url.Action("GetChartData", "Home")',
             success: function (result) {
-                alert("isSuccess " + result.isSuccess + "<br>Message " + result.errorMsg);
+                alert("isSuccess " + result.isSuccess + "\nMessage " + result.errorMsg);
+                console.log(result.barChartData);
+                console.log(result.radarChartData);
+
+                // Store bar chart data for modal
+                if (barChartUserData.length != 0) {
+                    barChartUserData = [];
+                }
+                $(result.barChartData.userList).each(function () {
+                    barChartUserData.push(this);
+                })
+
+                // Store radar chart data for modal
+                if (radarChartUserData.length != 0) {
+                    radarChartUserData = [];
+                }
+                $(result.radarChartData.userData).each(function () {
+                    radarChartUserData.push(this);
+                })
 
                 var barChartData = prepareBarChartData(result.barChartData);
                 barChart(barChartData.label, barChartData.datasets);
@@ -179,14 +274,12 @@
             datasets: datasets
         }
 
-        console.log(datasets);
-
         return radarChart;
     }
-    
+
     function barChart(label, dataset) {
-        var canvas = $("#dateBarChart");
-        var chart = new Chart(canvas, {
+        var $canvas = $("#ageBarChart");
+        var chart = new Chart($canvas, {
             type: 'bar',
             data: {
                 labels: label,
@@ -196,7 +289,7 @@
                 responsive: false,
                 title: {
                     display: true,
-                    text: "Distribution of Test Users' Age By Gender"
+                    text: "Distribution of Test Users' Age by Gender"
                 },
                 scales: {
                     xAxes: [{
@@ -223,52 +316,231 @@
                 }
             }
         });
+        
+        // Set onclick
+        $canvas.off("click");
+        $canvas.click(function (event) {
+            var activePoint = chart.getElementsAtEvent(event)[0];
+            if (typeof activePoint !== 'undefined' && activePoint !== null) {
+                var _index = activePoint._index;
+                var _datasetIndex = chart.getDatasetAtEvent(event)[0]._datasetIndex;
+                prepareBarModal(_index, _datasetIndex);
+                $('#barChartModal').modal('show');
+            }
+        });
+
+        $canvas.show();
     }
 
     function radarChart(label, dataset) {
-        var canvas = $("#hometownRadarChart");
-        var chart = new Chart(canvas, {
+        var $canvas = $("#hometownRadarChart");
+        var chart = new Chart($canvas, {
             type: 'radar',
             data: {
                 labels: label,
                 datasets: dataset
             },
             options: {
+                responsive: false,
                 maintainAspectRatio: true,
-                spanGaps: false,
-                elements: {
-                    line: {
-                        tension: 0.000001
-                    }
+                title: {
+                    display: true,
+                    text: "Distribution of Test Users by Hometown States"
                 },
-                plugins: {
-                    filler: {
-                        propagate: false
-                    },
-                    'samples-filler-analyser': {
-                        target: 'chart-analyser'
-                    }
-                },
-                scales: {
+                scale: {
                     ticks: {
+                        beginAtZero: true,
                         stepSize: 1
                     }
                 }
             }
         });
+
+        // Set onclick
+        $canvas.off("click");
+        $canvas.click(function (event) {
+            var activePoint = chart.getElementsAtEvent(event)[0];
+            if (typeof activePoint !== 'undefined' && activePoint !== null) {
+                prepareRadarModal(activePoint._index);
+                $('#radarChartModal').modal('show');
+            }
+        });
+
+        $canvas.show();
+    }
+    
+    function prepareBarModal(_index, _datasetIndex) {
+        $headerText = $('#bar-modal-age-header-text');
+        $barModalTable = $("#bar-modal-age-table");
+
+        var gender = barChartUserData[_datasetIndex].gender;
+        var age = barChartUserData[_datasetIndex].innerData[_index].age;
+        var headerText = gender + ' (Age ' + age + ')';
+
+        $headerText.text(headerText);
+
+        $barModalTable.children('tbody').html('');
+        $(barChartUserData[_datasetIndex].innerData[_index].profileList).each(function (index) {
+            var rowNum = index + 1;
+            var name = this.name;
+            var hometown = this.hometown;
+            var birthday = this.birthdayMYFormat;
+
+            var rowNumColumn = $('<td>')
+                .attr('class', 'txtRight')
+                .append($('<span>')
+                    .text(rowNum)
+                );
+
+            var nameColumn = $('<td>')
+                .attr('class', 'txtLeft')
+                .append($('<span>')
+                    .text(name)
+                );
+
+            var hometownColumn = $('<td>')
+                .attr('class', 'txtLeft')
+                .append($('<span>')
+                    .text(hometown)
+                );
+
+            var birthdayColumn = $('<td>')
+                .attr('class', 'txtCenter')
+                .append($('<span>')
+                    .text(birthday)
+                );
+
+            $barModalTable.children('tbody').append($('<tr>')
+                .append(rowNumColumn)
+                .append(nameColumn)
+                .append(hometownColumn)
+                .append(birthdayColumn)
+            );
+        })
+    }
+
+    function prepareRadarModal(_index) {
+        $headerText = $('#radar-modal-hometown-header-text');
+        $radarModalTable = $("#radar-modal-hometown-table");
+
+        var hometown = radarChartUserData[_index].hometown;
+        $headerText.text(hometown);
+
+        $radarModalTable.children('tbody').html('');
+        $(radarChartUserData[_index].profileList).each(function (index) {
+            var rowNum = index + 1;
+            var name = this.name;
+            var gender = this.gender;
+            var birthday = this.birthdayMYFormat;
+            
+            var rowNumColumn = $('<td>')
+                .attr('class', 'txtRight')
+                .append($('<span>')
+                    .text(rowNum)
+            );
+
+            var nameColumn = $('<td>')
+                .attr('class', 'txtLeft')
+                .append($('<span>')
+                    .text(name)
+            );
+
+            var genderColumn = $('<td>')
+                .attr('class', 'txtCenter')
+                .append($('<span>')
+                    .text(gender)
+            );
+            
+            var birthdayColumn = $('<td>')
+                .attr('class', 'txtCenter')
+                .append($('<span>')
+                    .text(birthday)
+            );
+            
+            $radarModalTable.children('tbody').append($('<tr>')
+                .append(rowNumColumn)
+                .append(nameColumn)
+                .append(genderColumn)
+                .append(birthdayColumn)
+            );
+        })
     }
 </script>
+
+<div id="barChartModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Bar Chart Details</h4>
+            </div>
+            <div class="modal-body">
+                <div style="text-align: center;">
+                    <span id="bar-modal-age-header-text" style="font-weight: bold"></span>
+                </div>
+                <table id="bar-modal-age-table" class="modal-chart-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 50px"><span>No.</span></th>
+                            <th style="width: 250px"><span>Name</span></th>
+                            <th style="width: 100px"><span>Hometown</span></th>
+                            <th style="width: 150px"><span>Birthday</span></th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div id="radarChartModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Radar Chart Details</h4>
+            </div>
+            <div class="modal-body">
+                <div style="text-align: center;">
+                    <span id="radar-modal-hometown-header-text" style="font-weight: bold"></span>
+                </div>
+                <table id="radar-modal-hometown-table" class="modal-chart-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 50px"><span>No.</span></th>
+                            <th style="width: 250px"><span>Name</span></th>
+                            <th style="width: 100px"><span>Gender</span></th>
+                            <th style="width: 150px"><span>Birthday</span></th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
 
 <div class="jumbotron">
     <h1>ASP.NET</h1>
     <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
     <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
     <p><a href="#" onClick="logInWithFacebook();">Log In with JavaScript SDK</a></p>
-    <p><fb:login-button scope="user_birthday" onlogin="checkLoginState();"></fb:login-button></p>
+    <p><fb:login-button scope="user_birthday,user_hometown" onlogin="checkLoginState();"></fb:login-button></p>
+    <p><input type="button" class="btn btn-primary btn-sm" value="logout from facebook" onclick="logoutFB()" /></p>
+    <p><img id="profilePic" style="display: none;"></p>
     <p id="status">Stuff here</p>
-    <p><input type="button" class="btn btn-primary btn-lg" value="Execute Ajax" onclick="GetTestUsersBirthday()" /></p>
-    <p><canvas id="dateBarChart" style="width: 500px; height: 500px"></canvas></p>
-    <p><canvas id="hometownRadarChart" style="width: 500px; height: 500px"></canvas></p>
+    <p><input type="button" class="btn btn-primary btn-lg" value="Execute Ajax" onclick="GenerateCharts()" /></p>
+    <p><canvas id="ageBarChart" style="width: 500px; height: 500px; display: none;"></canvas></p>
+    <p><canvas id="hometownRadarChart" style="width: 500px; height: 500px; display: none;"></canvas></p>
 </div>
 
 <div class="row">

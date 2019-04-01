@@ -82,6 +82,11 @@ namespace TEST_FB_API.Controllers
                 {
                     string profileURL = $"https://graph.facebook.com/v3.2/{user.id}/?fields=id,name,birthday,gender,hometown&access_token={user.access_token}";
                     TestUserProfile userProfile = JsonConvert.DeserializeObject<TestUserProfile>(Get(profileURL));
+
+                    char[] genderCharArray = userProfile.gender.ToCharArray();
+                    genderCharArray[0] = char.ToUpper(genderCharArray[0]);
+                    userProfile.gender = new string(genderCharArray);
+
                     DateTime birthday = DateTime.ParseExact(userProfile.birthday, "MM/dd/yyyy", CultureInfo.InvariantCulture);
                     userProfile.birthdayMYFormat = birthday.ToString("dd/MM/yyyy");
                     userProfile.hometown = hometownList[rnd.Next(hometownList.Count)];
@@ -114,25 +119,27 @@ namespace TEST_FB_API.Controllers
             {
                 BarChartUserData userData = new BarChartUserData();
 
-                char[] genderCharArray = userProfile.gender.ToCharArray();
-                genderCharArray[0] = char.ToUpper(genderCharArray[0]);
-                string gender = new string(genderCharArray);
-
                 DateTime birthday = DateTime.ParseExact(userProfile.birthday, "MM/dd/yyyy", CultureInfo.InvariantCulture);
                 int age = today.Year - birthday.Year;
                 if (birthday.AddYears(age) > today) age--;
+
+                string gender = userProfile.gender;
 
                 // Check if gender already in list
                 BarChartUserData obj = userDataList.FirstOrDefault(item => item.gender == gender);
                 if (obj == null)
                 {
                     userData.gender = gender;
-                    userData.innerData = new List<InnerData>
+                    List<TestUserProfile> innerUserProfileList = new List<TestUserProfile>();
+                    innerUserProfileList.Add(userProfile);
+
+                    userData.innerData = new List<BarChartInnerData>
                         {
-                            new InnerData
+                            new BarChartInnerData
                             {
                                 count = 1,
-                                age = age
+                                age = age,
+                                profileList = innerUserProfileList
                             }
                         };
                     userDataList.Add(userData);
@@ -140,18 +147,23 @@ namespace TEST_FB_API.Controllers
                 else
                 {
                     // Check if age already in list
-                    InnerData innerObj = obj.innerData.FirstOrDefault(item => item.age == age);
+                    BarChartInnerData innerObj = obj.innerData.FirstOrDefault(item => item.age == age);
                     if (innerObj == null)
                     {
-                        obj.innerData.Add(new InnerData
+                        List<TestUserProfile> innerUserProfileList = new List<TestUserProfile>();
+                        innerUserProfileList.Add(userProfile);
+
+                        obj.innerData.Add(new BarChartInnerData
                         {
                             count = 1,
-                            age = age
+                            age = age,
+                            profileList = innerUserProfileList
                         });
                     }
                     else
                     {
                         innerObj.count += 1;
+                        innerObj.profileList.Add(userProfile);
                     }
                 }
             }
@@ -164,7 +176,7 @@ namespace TEST_FB_API.Controllers
                 {
                     if (returnData.innerData.FirstOrDefault(item => item.age == i) == null)
                     {
-                        returnData.innerData.Add(new InnerData
+                        returnData.innerData.Add(new BarChartInnerData
                         {
                             age = i,
                             count = 0
@@ -250,14 +262,16 @@ namespace TEST_FB_API.Controllers
         {
             public string gender { get; set; }
 
-            public List<InnerData> innerData { get; set; }
+            public List<BarChartInnerData> innerData { get; set; }
         }
 
-        private class InnerData
+        private class BarChartInnerData
         {
             public int age { get; set; }
 
             public int count { get; set; }
+
+            public List<TestUserProfile> profileList { get; set; }
         }
 
         private class FBAppToken
