@@ -155,31 +155,21 @@
             method: 'POST',
             url: '@Url.Action("GetChartData", "Home")',
             success: function (result) {
-                alert("isSuccess " + result.isSuccess + "\nMessage " + result.errorMsg);
-                console.log(result.barChartData);
-                console.log(result.radarChartData);
+                if (result.IsSuccess) {
+                    alert("isSuccess " + result.IsSuccess);
+                    console.log(result.BarChartData);
+                    console.log(result.RadarChartData);
 
-                // Store bar chart data for modal
-                if (barChartUserData.length != 0) {
-                    barChartUserData = [];
+                    // Generate charts
+                    var barChartData = prepareBarChartData(result.BarChartData);
+                    barChart(barChartData.label, barChartData.datasets);
+
+                    var radarChartData = prepareRadarChartData(result.RadarChartData);
+                    radarChart(radarChartData.label, radarChartData.datasets);
                 }
-                $(result.barChartData.userList).each(function () {
-                    barChartUserData.push(this);
-                })
-
-                // Store radar chart data for modal
-                if (radarChartUserData.length != 0) {
-                    radarChartUserData = [];
+                else {
+                    alert("isSuccess " + result.IsSuccess + "\nMessage " + result.ErrorMsg);
                 }
-                $(result.radarChartData.userData).each(function () {
-                    radarChartUserData.push(this);
-                })
-
-                var barChartData = prepareBarChartData(result.barChartData);
-                barChart(barChartData.label, barChartData.datasets);
-
-                var radarChartData = prepareRadarChartData(result.radarChartData);
-                radarChart(radarChartData.label, radarChartData.datasets);
             }
         });
     }
@@ -202,20 +192,28 @@
             'rgba(255, 159, 64, 1)'
         ]
 
-        for (var i = barChartData.minAge; i < barChartData.maxAge + 1; i++) {
+        // Store bar chart data for modal
+        if (barChartUserData.length != 0) {
+            barChartUserData = [];
+        }
+        $(barChartData.UserList).each(function () {
+            barChartUserData.push(this);
+        })
+
+        for (var i = barChartData.MinAge; i < barChartData.MaxAge + 1; i++) {
             label.push(i);
         }
 
         var bgColorIndex = 0;
-        $(barChartData.userList).each(function () {
+        $(barChartData.UserList).each(function () {
             var data = [];
 
-            $(this.innerData).each(function () {
-                data.push(this.count);
+            $(this.InnerData).each(function () {
+                data.push(this.Count);
             })
 
             datasets.push({
-                label: this.gender,
+                label: this.Gender,
                 data: data,
                 backgroundColor: backgroundColorList[bgColorIndex],
                 borderColor: borderColorList[bgColorIndex],
@@ -250,15 +248,23 @@
             'rgba(255, 159, 64, 1)'
         ]
 
-        $(radarChartData.hometownList).each(function () {
+        // Store radar chart data for modal
+        if (radarChartUserData.length != 0) {
+            radarChartUserData = [];
+        }
+        $(radarChartData.UserData).each(function () {
+            radarChartUserData.push(this);
+        })
+
+        $(radarChartData.HometownList).each(function () {
             label.push(this);
         });
 
         var bgColorIndex = 0;
         var data = [];
 
-        $(radarChartData.userData).each(function () {
-            data.push(this.count);
+        $(radarChartData.UserData).each(function () {
+            data.push(this.Count);
         });
         datasets.push({
             label: "Test User",
@@ -373,18 +379,18 @@
         $headerText = $('#bar-modal-age-header-text');
         $barModalTable = $("#bar-modal-age-table");
 
-        var gender = barChartUserData[_datasetIndex].gender;
-        var age = barChartUserData[_datasetIndex].innerData[_index].age;
+        var gender = barChartUserData[_datasetIndex].Gender;
+        var age = barChartUserData[_datasetIndex].InnerData[_index].Age;
         var headerText = gender + ' (Age ' + age + ')';
 
         $headerText.text(headerText);
 
         $barModalTable.children('tbody').html('');
-        $(barChartUserData[_datasetIndex].innerData[_index].profileList).each(function (index) {
+        $(barChartUserData[_datasetIndex].InnerData[_index].ProfileList).each(function (index) {
             var rowNum = index + 1;
-            var name = this.name;
-            var hometown = this.hometown;
-            var birthday = this.birthdayMYFormat;
+            var name = this.Name;
+            var hometown = this.Hometown;
+            var birthday = this.BirthdayMYFormat;
 
             var rowNumColumn = $('<td>')
                 .attr('class', 'txtRight')
@@ -417,21 +423,23 @@
                 .append(birthdayColumn)
             );
         })
+
+        appendJSONLD(barChartUserData[_datasetIndex].InnerData[_index].UserProfileSchema);
     }
 
     function prepareRadarModal(_index) {
         $headerText = $('#radar-modal-hometown-header-text');
         $radarModalTable = $("#radar-modal-hometown-table");
 
-        var hometown = radarChartUserData[_index].hometown;
+        var hometown = radarChartUserData[_index].Hometown;
         $headerText.text(hometown);
 
         $radarModalTable.children('tbody').html('');
-        $(radarChartUserData[_index].profileList).each(function (index) {
+        $(radarChartUserData[_index].ProfileList).each(function (index) {
             var rowNum = index + 1;
-            var name = this.name;
-            var gender = this.gender;
-            var birthday = this.birthdayMYFormat;
+            var name = this.Name;
+            var gender = this.Gender;
+            var birthday = this.BirthdayMYFormat;
             
             var rowNumColumn = $('<td>')
                 .attr('class', 'txtRight')
@@ -464,14 +472,28 @@
                 .append(birthdayColumn)
             );
         })
+
+        appendJSONLD(radarChartUserData[_index].UserProfileSchema);
+    }
+
+    function appendJSONLD(jsonLD) {
+        var script = document.createElement('script');
+        script.id = "userJSONLD";
+        script.type = "application/ld+json";
+        script.innerHTML = jsonLD;
+        document.getElementsByTagName('head')[0].appendChild(script);
+    }
+
+    function removeJSONLD() {
+        $('#userJSONLD').remove();
     }
 </script>
 
-<div id="barChartModal" class="modal fade" role="dialog">
+<div id="barChartModal" class="modal fade" data-backdrop="static" data-keyboard="false" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <button type="button" class="close" data-dismiss="modal" onclick="removeJSONLD()">&times;</button>
                 <h4 class="modal-title">Bar Chart Details</h4>
             </div>
             <div class="modal-body">
@@ -491,7 +513,7 @@
                 </table>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" onclick="removeJSONLD()">Close</button>
             </div>
         </div>
 
