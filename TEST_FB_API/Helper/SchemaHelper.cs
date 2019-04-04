@@ -45,7 +45,7 @@ namespace TEST_FB_API.Helper
             }
 
             var request = HttpContext.Current.Request;
-            var userPageURL = string.Format("{0}://{1}/Users?id={2}", request.Url.Scheme, request.Url.Authority,userProfile.Id);
+            var userPageURL = string.Format("{0}://{1}/User?id={2}", request.Url.Scheme, request.Url.Authority,userProfile.Id);
 
             return new Person()
             {

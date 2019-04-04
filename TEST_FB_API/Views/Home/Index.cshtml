@@ -477,11 +477,13 @@
     }
 
     function appendJSONLD(jsonLD) {
-        var script = document.createElement('script');
-        script.id = "userJSONLD";
-        script.type = "application/ld+json";
-        script.innerHTML = jsonLD;
-        document.getElementsByTagName('head')[0].appendChild(script);
+        if (typeof jsonLD !== 'undefined' && jsonLD !== null && jsonLD !== '') {
+            var script = document.createElement('script');
+            script.id = "userJSONLD";
+            script.type = "application/ld+json";
+            script.innerHTML = jsonLD;
+            document.getElementsByTagName('head')[0].appendChild(script);
+        }
     }
 
     function removeJSONLD() {
@@ -524,7 +526,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <button type="button" class="close" data-dismiss="modal" onclick="removeJSONLD()">&times;</button>
                 <h4 class="modal-title">Radar Chart Details</h4>
             </div>
             <div class="modal-body">
@@ -544,7 +546,7 @@
                 </table>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" onclick="removeJSONLD()">Close</button>
             </div>
         </div>
 
@@ -563,26 +565,4 @@
     <p><input type="button" class="btn btn-primary btn-lg" value="Execute Ajax" onclick="GenerateCharts()" /></p>
     <p><canvas id="ageBarChart" style="width: 500px; height: 500px; display: none;"></canvas></p>
     <p><canvas id="hometownRadarChart" style="width: 500px; height: 500px; display: none;"></canvas></p>
-</div>
-
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
 </div>
