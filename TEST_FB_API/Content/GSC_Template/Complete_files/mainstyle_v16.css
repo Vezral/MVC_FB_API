@@ -1,0 +1,1631 @@
+/* PROJECT : GSC V2 Rewamp	*/
+/* DATE : 21/10/2015		*/
+/* UPDATE : 10/01/2017 	*/
+/* CREATOR : ALFRED TEOH	*/
+/* Added : Vertical Modal	
+			Added White Quick filter 
+			Added Styling for Captcha*/
+/* .MovieLoaderBG - ADDED - 28/12/2016 */
+/* #HomeTabPanelSec - ADDED IMAGE THUMB - 10/01/2017 */
+/* .BuyNowBtn - ADDED BUY NOW BUTTON - 21/03/2018 */
+
+
+* { margin:0; }
+body, html { font-family:'robotoregular', Arial, Helvetica, sans-serif; background:#fff; }
+
+a { color:#FDA711; outline:none;}
+a:hover,
+a:active,
+a:focus  { color:#FDA711; text-decoration:none; }
+
+
+* option[selected] { background: #FDA711; color:#fff; }
+
+
+/* BOOTSTRAP OVERIDE & ADD-ONS*/
+.navbar-default .navbar-toggle,
+.navbar-default .navbar-toggle:focus, 
+.navbar-default .navbar-toggle:hover { background:none; border:none; }
+.navbar-header { background:#FFD200; }
+.navbar { margin-bottom:0px; min-height:auto; }
+.navbar-collapse { border:none; padding:0px; }
+.navbar-default .navbar-toggle .icon-bar { background-color:#fff; }
+.nav .open>a, .nav .open>a:focus, .nav .open>a:hover { background-color:transparent; }
+.form-control { border:1px solid #FFF; border-radius:0px;padding:7px 14px; height:44px; margin-bottom:8px; }
+.form-control:focus { border-color:rgb(253, 167, 17); -webkit-box-shadow:none; box-shadow:none; }
+.nav>li>a:focus, .nav>li>a:hover { background:none; }
+
+/* Modal Vertically Center */
+.modal {text-align: center;padding: 0!important;}
+.modal:before {content: ''; display: inline-block;  height: 100%;  vertical-align: middle;  margin-right: -4px;}
+.modal-dialog {display: inline-block;text-align: left; vertical-align: middle;}
+.modal-content { border-radius: 0px; border: none;}
+
+/* ADDED 5 COLUMNS */
+.col-xs-5ths,
+.col-sm-5ths,
+.col-md-5ths,
+.col-lg-5ths { position:relative; min-height:1px; padding-right:10px; padding-left:10px; }
+.col-xs-5ths { width:20%; float:left; }
+@media (min-width:768px) {
+.col-sm-5ths { width:20%; float:left; }
+}
+
+@media (min-width:992px) {
+.col-md-5ths { width:20%; float:left; }
+}
+
+@media (min-width:1200px) {
+.col-lg-5ths { width:20%; float:left; }
+}
+
+
+a.btn-orange, input.btn-orange { margin:0px; padding:10px 30px;  text-align:center;  background:#FDA711;  display:inline-block; color:#fff; border: none; }
+a:hover.btn-orange, input:hover.btn-orange { color:#000; }
+
+.SuccessLabel { color:#0F9415; padding: 0px 0px 30px 0px; display:block; clear:both;}
+.SuccessLabel i.fa { margin-right:10px; float:left; font-size: 22px;}
+
+/**/
+
+.noselect {
+  -webkit-touch-callout:none;
+  -webkit-user-select:none;
+  -khtml-user-select:none;
+  -moz-user-select:none;
+  -ms-user-select:none;
+  user-select:none;
+}
+.Rounded_Round {
+-webkit-border-radius:50%;
+-moz-border-radius:50%;
+-o-border-radius:50%;
+border-radius:50%;	
+}
+.Rounded_5 {
+-webkit-border-radius:5px;
+-moz-border-radius:5px;
+-o-border-radius:5px;
+border-radius:5px;	
+}
+.Rounded_10 {
+-webkit-border-radius:10px;
+-moz-border-radius:10px;
+-o-border-radius:10px;
+border-radius:10px;	
+}
+
+.Transition02 {
+  -webkit-transition:all 0.2s ease;
+  -moz-transition:all 0.2s ease;
+  -ms-transition:all 0.2s ease;
+  -o-transition:all 0.2s ease;
+  transition:all 0.2s ease;	
+}
+.Transition02a {
+  -webkit-transition:all 0.2s ease-in-out;
+  -moz-transition:all 0.2s ease;
+  -ms-transition:all 0.2s ease;
+  -o-transition:all 0.2s ease;
+  transition:all 0.2s ease 0.2s;	
+}
+.Transition02b {
+  -webkit-transition:all 0.2s ease;
+  -moz-transition:all 0.2s ease;
+  -ms-transition:all 0.2s ease;
+  -o-transition:all 0.2s ease;
+  transition:all 0.2s ease 0.3s;
+}
+
+.Transition03 {
+  -webkit-transition:all 500ms ease 0.7s;
+  -moz-transition:all 500ms ease 0.7s;
+  -ms-transition:all 500ms ease 0.7s;
+  -o-transition:all 500ms ease 0.7s;
+  transition:all 500ms ease 0.7s;
+}
+.Transition03Delay {
+  -webkit-transition:all 500ms ease 1s;
+  -moz-transition:all 500ms ease 1s;
+  -ms-transition:all 500ms ease 1s;
+  -o-transition:all 500ms ease 1s;
+  transition:all 500ms ease 1s;
+}
+
+h1 { font-family:"robotoregular", Arial, Helvetica, sans-serif; }
+h2 { font-family:"robotoblack", Arial, Helvetica, sans-serif; font-size:19px; }
+h3 { font-family:"robotoblack", Arial, Helvetica, sans-serif; }
+
+
+.ArrowUp { width:0; height:0; border-left:5px solid transparent; border-right:5px solid transparent; border-bottom:5px solid black; }
+
+.BlackGradientVertical { background:#0e0e0e;
+background:url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSI4JSIgc3RvcC1jb2xvcj0iIzBlMGUwZSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMxZjFmMWYiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlMastHeadBannersbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+background:-moz-linear-gradient(top,  #0e0e0e 8%, #1f1f1f 100%);
+background:-webkit-gradient(linear, left top, left bottom, color-stop(8%,#0e0e0e), color-stop(100%,#1f1f1f));
+background:-webkit-linear-gradient(top,  #0e0e0e 8%,#1f1f1f 100%);
+background:-o-linear-gradient(top,  #0e0e0e 8%,#1f1f1f 100%);
+background:-ms-linear-gradient(top,  #0e0e0e 8%,#1f1f1f 100%);
+background:linear-gradient(to bottom,  #0e0e0e 8%,#1f1f1f 100%);
+filter:progid:DXImageTransform.Microsoft.gradient( startColorstr='#0e0e0e', endColorstr='#1f1f1f',GradientType=0 ); }
+
+/**/
+.NotActive {pointer-events: none; cursor: default;}
+.truncate { white-space:nowrap;overflow:hidden; text-overflow:ellipsis; }
+
+/* Ajax Loader */
+.AjaxLoaderWrap #RadAjaxLoadingPanel1,
+.AjaxLoaderWrap #RadAjaxLoadingPanel_Registration,
+.AjaxLoaderWrap,
+#RadAjaxLoadingPanel1,
+#RadAjaxLoadingPanel_Registration { position:fixed; width:100%; height:100%; background: rgba(0, 0, 0, 0.76); z-index:1000;}
+#RadAjaxLoadingPanel1 .Loading,
+#RadAjaxLoadingPanel_Registration .Loading,
+.AjaxLoaderWrap .Loading { top:50%; margin-top:-29px; position: absolute; left: 50%; margin-left: -29px;}
+
+
+
+/* Load More */
+.LoadMoreWrap { background:#000;}
+.LoadMoreWrap input.LoadMore { background:#fda811; padding:10px 20px; display:block; width:200px; text-align:center; margin:0 auto; font-size:16px; font-family:"robotobold"; text-transform:uppercase; color:#fff; font-style:italic; margin-bottom: 20px; border:none; background-repeat: no-repeat;}
+.LoadMoreWrap input.LoadMore:focus {padding:10px 55px 10px 20px; background: url(/assets/images/ellipsis.gif) #fda811; background-position:140px 11px; background-repeat: no-repeat; border:none; outline:none; background-size: 20px;} 
+
+
+.Loading { margin:30px auto; display:block; overflow:hidden; padding:14px; height:58px; width:58px; border-radius:50%; background:#FDA711; }
+.Loading img { width:100%; }
+
+
+/* Yi Yong added */
+.AbsoluteCenter {  margin: auto;  position: absolute;  top: 0; left: 0; bottom: 0; right: 0; }
+.mobile { display:none; }
+.row-eq-height {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex; }
+.NoPadding { padding:0; }
+.alignLeft { text-align:left; }
+.alignRight { text-align: right; }
+.AddThisWrap { margin-top:20px; }
+.RedText { color:red; }
+.FloatColSameHeight { display:inline-block; float:none; margin-right:-4px; vertical-align:top; }
+  
+/* CINE ADS SETTINGS */
+#CineAdMobile {position: absolute; z-index:80; top: 128px; width: 728px; left: 50%; margin-left: -364px;}
+body.SmartBannerMobile #CineAdMobile { top: 208px;} 
+
+
+/*============================================================================================*/
+/* SITE STRUCTURE */
+/*============================================================================================*/
+
+
+/* HEADER AREA */ 
+#HeaderSec { background:#000000; color:#ccc; }
+#HeaderSec .TopBar { display:block; clear:both; overflow:hidden; height:46px; margin-right:-10px; }
+#HeaderSec .TopBar .SearchWrap { text-align:right; background:#fff; width:0px; float:right; position:relative; z-index: 900;}
+#HeaderSec .TopBar .SearchWrap a.SearchBtnIcon .CloseBtn { display:none;} 
+#HeaderSec .TopBar .SearchWrap.Expaned { width:380px; }
+#HeaderSec .TopBar .SearchWrap.Expaned a.SearchBtnIcon .CloseBtn { display:block; font-size: 23px; padding: 0px 10px;} 
+#HeaderSec .TopBar .SearchWrap.Expaned a.SearchBtnIcon svg { display:none;} 
+#HeaderSec .TopBar .SearchWrap a svg g path { fill:#464646; }
+#HeaderSec .TopBar .SearchWrap input { width:100%; display:inline-block; border:none!important; padding:12px!important; padding-right:50px!important; font-size:16px!important; color:#000; background:#fff!important; }
+#HeaderSec .TopBar .SearchWrap a { display:inline-block; cursor:hand; cursor:pointer;color:#464646; padding:4px; position:absolute; top:3px; right:3px; }
+#HeaderSec .TopBar .SearchWrap a svg g path { fill:#ffffff; /*fill:#464646;*//*fill:#ececec;*/ }
+
+
+	/* GOOGLE OVERIDE */
+	#HeaderSec .TopBar .SearchWrap table.gsc-search-box td { padding:0px!important;}
+	#HeaderSec .TopBar .SearchWrap .gsc-input-box { height:auto!important; padding:0px!important; margin:0px!important; border:none!important;}
+	#HeaderSec .TopBar .SearchWrap .gsc-search-button,
+	#HeaderSec .TopBar .SearchWrap .gsc-clear-button,
+	#HeaderSec .TopBar .SearchWrap .gsib_b { display:none!important;}
+	
+
+
+#HeaderSec .HeaderWrap { display:table; margin-left:-15px; margin-right:-15px; }
+#HeaderSec .HeaderWrap .Logo { width:190px; display:table-cell; }
+#HeaderSec .HeaderWrap .Logo img { margin-bottom:15px; margin-left:-5px; padding-right:10px; }
+#HeaderSec .HeaderWrap .Leaderboard { width:728px; display:table-cell; }
+#HeaderSec .HeaderWrap .RightBoxWrap { width:252px; display:table-cell; position:relative; /*float:right;*/ vertical-align: top;}
+
+#HeaderSec .HeaderWrap .RightBoxWrap .Group { width:200px; display:block;  padding:12px; }
+#HeaderSec .HeaderWrap .RightBoxWrap .Group table { width:100%;}/* ADDED */
+#HeaderSec .HeaderWrap .RightBoxWrap .Group .SocialIcons ul { margin:0px; padding:0px; list-style:none; display:table; }
+#HeaderSec .HeaderWrap .RightBoxWrap .Group .SocialIcons ul li { margin:0px; padding:0px; display:table-cell; width:30px; }
+#HeaderSec .HeaderWrap .RightBoxWrap .Group .SocialIcons ul li a { padding:0px; color:#BBBBBB; font-size:16px; display:block; text-align:center; } 
+#HeaderSec .HeaderWrap .RightBoxWrap .Group .SocialIcons ul li a:hover { color:#fff; }
+
+#HeaderSec .HeaderWrap .RightBoxWrap .Group .LoginWrap { display:table; width:100%; margin-top:5px; font-family:'robotomedium'; }
+#HeaderSec .HeaderWrap .RightBoxWrap .Group .LoginWrap .LoginToggleBtn a,
+#HeaderSec .HeaderWrap .RightBoxWrap .Group .LoginWrap .SignUpBtn a { display:table-cell; text-align:center; padding:4px 10px; width:50%; color:#fff; }
+#HeaderSec .HeaderWrap .RightBoxWrap .Group .LoginWrap .LoginToggleBtn { background:#FDA711; }
+#HeaderSec .HeaderWrap .RightBoxWrap .Group .LoginWrap .SignUpBtn { display:table-cell; }
+#HeaderSec .HeaderWrap .RightBoxWrap .Group .LoginWrap .LoginToggleBtn a:hover { color:#000; }
+#HeaderSec .HeaderWrap .RightBoxWrap .Group .LoginWrap .SignUpBtn a:hover { color:#ccc; }
+
+
+
+
+#HeaderSec .HeaderWrap .RightBoxWrap .Group .LoginWrap .LoginPanelCollapse { position:absolute; z-index:100; background:#FDA711; }
+#HeaderSec .HeaderWrap .RightBoxWrap .Group .LoginWrap .LoginPanelCollapse .LoginPanel { padding:14px; width:250px; }
+#HeaderSec .HeaderWrap .RightBoxWrap .Group .LoginWrap .LoginPanelCollapse .LoginPanel a { color:#000; }
+#HeaderSec .HeaderWrap .RightBoxWrap .Group .LoginWrap .LoginPanelCollapse .LoginPanel a:hover { color:#333; }
+#HeaderSec .HeaderWrap .RightBoxWrap .Group .LoginWrap .LoginPanelCollapse .LoginPanel input,
+#HeaderSec .HeaderWrap .RightBoxWrap .Group .LoginWrap .LoginPanelCollapse .LoginPanel a.LoginBtn { border-radius:0px; border:none; font-family:'robotoregular'; font-size:12px; }
+#HeaderSec .HeaderWrap .RightBoxWrap .Group .LoginWrap .LoginPanelCollapse .LoginPanel a.LoginBtn { padding:12px;font-size:14px; background:#000; color:#fff; font-family:'robotomedium'; }
+#HeaderSec .HeaderWrap .RightBoxWrap .Group .LoginWrap .LoginPanelCollapse .LoginPanel a:hover.LoginBtn { background:#333; } 
+
+#HeaderSec .HeaderWrap .RightBoxWrap .Group .LoginWrap .LoginPanelCollapse .LoginPanel input[type="submit"] { padding:12px; font-size:14px; font-family:'robotomedium'; text-align:center; background:#000; display:inline-block; color:#fff; border:none; text-transform:uppercase; }
+#HeaderSec .HeaderWrap .RightBoxWrap .Group .LoginWrap .LoginPanelCollapse .LoginPanel input[type="submit"]:hover { color:#000; background:#FFF; }
+
+
+
+#HeaderSec .HeaderWrap .RightBoxWrap .Group .LoginWrap .LoginPanelCollapse .LoginPanel .BtnSubmit { padding:12px;font-size:14px; background:#000; color:#fff; font-family:'robotomedium'; }
+#HeaderSec .HeaderWrap .RightBoxWrap .Group .LoginWrap .LoginPanelCollapse .LoginPanel .Error { color:#ED1C24; margin-top:10px; display:block; }
+
+#HeaderSec .HeaderWrap .RightBoxWrap .Group .LoginWrap .BellWrap { display: inline-block; vertical-align: top;  font-size: 20px;  margin-left: 10px; }
+#HeaderSec .HeaderWrap .RightBoxWrap .Group .LoginWrap .BellWrap.BeforeLogin { margin-left: 0px; margin-top: -5px; }
+#HeaderSec .HeaderWrap .RightBoxWrap .Group .LoginWrap .BellWrap a.BellIcon { position: relative; }
+#HeaderSec .HeaderWrap .RightBoxWrap .Group .LoginWrap .BellWrap a.BellIcon .fa.fa-bell { }
+#HeaderSec .HeaderWrap .RightBoxWrap .Group .LoginWrap .BellWrap a.BellIcon .NotifNum { position: absolute; top: 10px; left: 12px; display: block; background-color: #ff0000;  padding-bottom: 5px;  color: #fff;  font-size: 10px; }
+
+#HeaderSec .HeaderWrap .RightBoxWrap .Group .LoginWrap .LoginProfileBtn { display: inline-block; width: 80%; background:#FDA711; }
+#HeaderSec .HeaderWrap .RightBoxWrap .Group .LoginWrap .LoginProfileBtn a { display:table-cell; text-align:left; padding:4px 14px; width:50%; color:#fff; background:url(../images/LoginWrap/arrow_LoginProfileBtn.png) right top no-repeat; }
+
+#HeaderSec .HeaderWrap .RightBoxWrap .Group .LoginWrap .LoginPanelCollapse .ProfilePanel { padding:14px; width:250px; color:#000; }
+#HeaderSec .HeaderWrap .RightBoxWrap .Group .LoginWrap .LoginPanelCollapse .ProfilePanel .ProfleEmail { color:#FFF; font-size:13px; }
+#HeaderSec .HeaderWrap .RightBoxWrap .Group .LoginWrap .LoginPanelCollapse .ProfilePanel i.fa { margin-right:5px; color:#000; font-size:24px; }
+
+#HeaderSec .HeaderWrap .RightBoxWrap .Group .LoginWrap .LoginPanelCollapse .ProfilePanel a { display:block; padding:10px 19px 8px 19px; color:#000; font-size:12px; text-decoration:none; text-transform:uppercase; border-bottom: 1px solid #fdbb40; }
+#HeaderSec .HeaderWrap .RightBoxWrap .Group .LoginWrap .LoginPanelCollapse .ProfilePanel a:hover { color:#FFF; text-decoration:none; }
+
+
+/* MENU */ 
+#HeaderSec .HeaderWrap .RightBoxWrap .BtnMenu { position:absolute; top:15px; right:10px; }
+#HeaderSec .HeaderWrap .RightBoxWrap .BtnMenu a em { position:absolute; bottom:-18px; color:#fff; font-style:normal; font-size:10px; text-align:center; width:100%; }
+#HeaderSec .HeaderWrap .RightBoxWrap .BtnMenuToggle { display:block; width:34px; height:28px; cursor:pointer; }
+#HeaderSec .HeaderWrap .RightBoxWrap .BtnMenuToggle span { position:absolute; top:50%; left:0; display:block; width:100%; height:4px; margin-top:-2px; background-color:#fff; font-size:0px; -webkit-touch-callout:none; -webkit-user-select:none; -khtml-user-select:none; -moz-user-select:none; -ms-user-select:none; user-select:none; -webkit-transition:background-color 0.3s; transition:background-color 0.3s; }
+#HeaderSec .HeaderWrap .RightBoxWrap .BtnMenuToggle span:before,
+#HeaderSec .HeaderWrap .RightBoxWrap .BtnMenuToggle span:after { position:absolute; left:0; width:100%; height:100%; background:#fff; content:''; -webkit-transition:-webkit-transform 0.3s; transition:transform 0.3s; }
+#HeaderSec .HeaderWrap .RightBoxWrap .BtnMenuToggle span:before { -webkit-transform:translateY(0) rotate(45deg); transform:translateY(0) rotate(45deg); }
+#HeaderSec .HeaderWrap .RightBoxWrap .BtnMenuToggle span:after { -webkit-transform:translateY(0) rotate(-45deg); transform:translateY(0) rotate(-45deg); }
+#HeaderSec .HeaderWrap .RightBoxWrap .BtnMenuToggle span { background-color:transparent; }
+#HeaderSec .HeaderWrap .RightBoxWrap .collapsed.BtnMenuToggle span { background-color:#fff; }
+#HeaderSec .HeaderWrap .RightBoxWrap .collapsed.BtnMenuToggle span:before { -webkit-transform:translateY(-250%) rotate(0deg); transform:translateY(-250%) rotate(0deg); }
+#HeaderSec .HeaderWrap .RightBoxWrap .collapsed.BtnMenuToggle span:after { -webkit-transform:translateY(250%) rotate(0deg); transform:translateY(250%) rotate(0deg); }
+
+
+.MenuWrap { position:absolute; z-index:100; display:block; top:79px; right:0px; background:#BCBCBC; }
+.MenuWrap > div >div { background:#fff; display:block; overflow:hidden; }
+.MenuWrap ul.MainNav { width:280px; margin:0px; }
+.MenuWrap ul.MainNav li { display:block; float:none; }
+.MenuWrap ul.MainNav li a { color:#fff; text-transform:uppercase;padding:24px; font-size:15px; font-family:'robotomedium'; }
+.MenuWrap ul.MainNav li a:hover { background:#FDA711}
+.MenuWrap ul.MainNav li a b.caret { border:none!important;    vertical-align: top; width:auto; height:auto; float:right;}
+.MenuWrap ul.MainNav li a b.caret:before { content: "\f105";font-family:'FontAwesome'; font-size:30px; color:#fff; font-weight: normal;}
+.MenuWrap ul.MainNav li.open a b.caret { -webkit-transition:-webkit-transform 0.3s; transition:transform 0.3s;
+-webkit-transform:translateY(0) rotate(90deg); transform:translateY(0) rotate(90deg); }
+
+.MenuWrap ul.MainNav li .dropdown-menu { position:relative; background:none; -webkit-box-shadow:none; box-shadow:none; float:none; border:none; margin-top: 0px; padding-top: 0px; padding-bottom: 20px;}
+.MenuWrap ul.MainNav li .dropdown-menu li { background:none!important; }
+.MenuWrap ul.MainNav li .dropdown-menu li a { padding:4px;padding-left:40px; font-size:12px; font-family:'robotoregular'; }
+.MenuWrap ul.MainNav li .dropdown-menu .dropdown-submenu .dropdown-menu {top: 0px; left:0px;padding-left:0px; padding-bottom: 6px; border:none;}
+.MenuWrap ul.MainNav li .dropdown-menu .dropdown-submenu > div > a:after, 
+.MenuWrap ul.MainNav li .dropdown-menu .dropdown-submenu > a:after { float:none; display: inline-block; margin-left: 8px; vertical-align: middle; border-top: 4px solid; border-right: 4px solid transparent; border-left: 4px solid transparent;
+}
+.MenuWrap ul.MainNav li .dropdown-menu .dropdown-submenu .dropdown-menu li a { padding-left:60px;}
+
+
+
+.MenuWrap ul.MainNav li:nth-child(1) { background:#171717; }
+.MenuWrap ul.MainNav li:nth-child(2) { background:#2E2E2E; }
+.MenuWrap ul.MainNav li:nth-child(3) { background:#4D4D4D; }
+.MenuWrap ul.MainNav li:nth-child(4) { background:#6B6B6B; }
+.MenuWrap ul.MainNav li:nth-child(5) { background:#898989; }
+.MenuWrap ul.MainNav li:nth-child(6) { background:#A5A5A5; }
+.MenuWrap ul.MainNav li:nth-child(7) { background:#BCBCBC; }
+.MenuWrap ul.MainNav li:nth-child(8) { background:#CACACA; }
+
+
+/* MOBILE TOP PANEL - #FDA711 */
+.MobileTopPanelWrap { position:relative; }
+.MobileTopPanelWrap ul { list-style:none; margin:0px; padding:0px; text-align:center; background:#000000; }
+.MobileTopPanelWrap ul li { display:inline-block; }
+.MobileTopPanelWrap ul li a { display:block; padding:10px 16px; font-size:13px; color:#fff; outline:none; }
+.MobileTopPanelWrap ul li a.BellIcon { position: relative; color: #FDA711;  font-size: 18px;  margin-top: -5px; }
+.MobileTopPanelWrap ul li a.BellIcon .fa.fa-bell { }
+.MobileTopPanelWrap ul li a.BellIcon .NotifNum { position: absolute; top: 20px; left: 25px; display: block; background-color: #ff0000;  padding-bottom: 5px;  color: #fff;  font-size: 10px; }
+
+.MobileTopPanelWrap ul li.ui-tabs-active a {background:#FDA711; }
+.MobileTopPanelWrap ul li.ui-tabs-active a:focus { outline:none;}
+.MobileTopPanelWrap .ui-tabs-panel { margin-left:0px; margin-right:0px; padding-top:15px; }
+.MobileTopPanelWrap { display:none; }
+.MobileTopPanelWrap table { width:100%;}
+.MobileTopPanelWrap input.BtnSubmit  { margin:0px; padding:12px; text-align:center; background:#000000; display:block; color:#fff; width: 100%; border: none;}
+.MobileTopPanelWrap input:hover.BtnSubmit  { color:#fff; } 
+.MobileTopPanelWrap input:focus { outline:none; }
+.MobileTopPanelWrap a.ForgotPass { color:#ffffff; font-size:14px; display:block; text-align:center; clear:both; padding-top:10px; padding-bottom: 10px; overflow:hidden; }
+#BuyTicketsTopPanel .ToggleClose,
+#LoginTopPanel .ToggleClose,
+#SearchTopPanel .ToggleClose { font-size:36px; color:#000000; text-align:center; display:block; margin-top:0px; }
+.MobileTopPanelWrap a.BuyTickets { background:#FDA711; }
+.MobileTopPanelWrap .PanelWrap { background:#FDA711; }
+.MobileTopPanelWrap .PanelWrap iframe { height:210px; width:100%;}
+.PanelWrap input.BtnSubmit  { margin:0px; padding:12px; text-align:center; background:#000000; display:block; color:#fff; width: 100%; border: none;}
+.PanelWrap .ErrMsg { text-align:center; color:#FF0004; display:block; padding-top: 4px;}
+#LoginTopPanel .ErrorMsg { text-align:center; padding-top:10px;}
+
+#LoginProfilePanel .ToggleClose { font-size:36px; color:#000000; text-align:center; display:block; margin-top:10px; }
+#LoginProfilePanel .ProfleEmail { margin-bottom:15px; color:#FFF; font-size:13px; }
+#LoginProfilePanel .ProfleEmail i.fa { margin-right:5px; color:#000; font-size:24px; }
+#LoginProfilePanel a.BtnSubmit { margin-bottom:5px; margin:0px; padding:12px; text-align:center; background:#000000; display:block; color:#fff; width: 100%; border: none;}
+
+
+
+
+/* BUY NOW BUTTON */
+#HeaderSec .HeaderWrap .RightBoxWrap .Group .BuyNowBtn { display: none;}
+
+#HeaderSec .TopBar .SearchWrap  { display: none;}
+#HeaderSec .TopBar { display: none;}
+#HeaderSec .HeaderWrap .RightBoxWrap .Group .BuyNowBtn { display: block;}
+#HeaderSec .HeaderWrap .Logo {vertical-align: bottom; padding-bottom: 10px;}
+#HeaderSec .HeaderWrap .RightBoxWrap .Group .BuyNowBtn {height: 36px; margin-bottom: 8px;}
+#HeaderSec .HeaderWrap .RightBoxWrap .Group .BuyNowBtn a {background: #fda711; display: block; padding: 4px 20px; text-align: center; color: #fff; font-size: 20px;}
+#HeaderSec .HeaderWrap .RightBoxWrap .Group .BuyNowBtn a:hover { color: #000;} 
+#HeaderSec .HeaderWrap .RightBoxWrap .BtnMenu { top: 64px;}
+#HeaderSec .HeaderWrap .RightBoxWrap .MenuWrap { top: 123px;}
+
+
+
+
+
+/* GOOGLE OVERIDE */
+.MobileTopPanelWrap input.gsc-search-button-v2 {-webkit-box-sizing: content-box;-moz-box-sizing: content-box;box-sizing: content-box; padding:14px!important;
+border: none; border-radius: 0px; background: #000;}
+.MobileTopPanelWrap input.gsc-search-button-v2, 
+.MobileTopPanelWrap input.gsc-search-button-v2:hover, 
+.MobileTopPanelWrap input.gsc-search-button-v2:focus {background: #000;}
+.MobileTopPanelWrap .gsc-input-box { height:auto;} 
+.MobileTopPanelWrap .gsc-search-box-tools .gsc-search-box input.gsc-input{ padding:8px!important; outline:none; border:none !important; background:none!important;}
+
+
+/* FOOTER AREA */
+Footer { margin-top:0px; background:#fff;}
+Footer .BtmPanel { display:block;text-align:center; font-size:12px; color:#333; }
+Footer .BtmPanel .container { padding-top:10px; padding-bottom:0px; }
+Footer .BtmPanel .Links { text-align:left; }
+Footer .BtmPanel .Links a { color:#000; text-align:left; }
+Footer .BtmPanel .Links a:hover { color:#333; }
+Footer .BtmPanel .CopyText { color:#000; padding:0px 0px 0px 0px; text-align:right; }
+
+
+Footer .SocialIcons { display:block; padding:10px 0px; }
+Footer .SocialIcons ul { margin:0 auto; padding:0px; list-style:none; display:table; }
+Footer .SocialIcons ul li { margin:0px; padding:0px; display:table-cell; width:30px; }
+Footer .SocialIcons ul li a { padding:0px; color:#BBBBBB; font-size:20px; display:block; text-align:center; } 
+Footer .SocialIcons ul li a:hover { color:#333; }
+
+
+
+/* ANNOUNCEMENTS */
+.AnnouncementsSec { display:block; clear:both; background:#000000; padding:26px 0px; }
+.AnnouncementsSec > div > div  { background:#181818; margin:0px; }
+.AnnouncementsSec h2 { font-size:16px; color:#FDA711; margin:0px; padding:0px; margin-top:20px; }
+.AnnouncementsSec .Box { display:block; padding:10px; height: 96px;overflow: hidden; position: relative;}
+.AnnouncementsSec .Box p { color:#fff; text-align:justify; font-size:12px; }
+/*.AnnouncementsSec .Box p:nth-child(n+3) { display:none;}*/
+.AnnouncementsSec .Box p img { display:none;}
+.AnnouncementsSec .Box a { color:#FDA711; float:right; display:block; font-size:12px; position: absolute;right: 0px; z-index: 100; bottom: 0px;}
+.AnnouncementsSec .Box a:hover { text-decoration:underline; }
+.AnnouncementsSec  div[class^="col-md-4"] { padding-bottom:20px; }
+
+
+
+/*============================================================================================*/
+/* HOME PAGE SECTIONS - CAROUSEL - BANNER - TABS */
+/*============================================================================================*/
+
+#ajax-content {	background:#000000; }
+#HomeCarousel .owl-carousel {/* min-height:480px*/ min-height:450px;}
+.HomeBannerLoader { display:none; position:absolute; width:100%; height:100%; background:rgba(0,0,0,0.5); top:0px;}
+.HomeBannerLoader .Loading { margin:30px auto; display:block; overflow:hidden; padding:14px; height:58px; width:58px; border-radius:50%; background:#FDA711; position: absolute;left: 50%;top: 50%; margin-left: -29px; margin-top: -29px;}
+.HomeBannerLoader .Loading img { width:100%; }
+
+#HomeCarousel { position:relative;}
+
+/* HomeCarousel_01 */ 
+.HomeCarousel_01 { background:#000;}
+.HomeCarousel_01 .ImgCanvas { background-size:auto; background-position:center center; background-repeat:repeat-x; }
+.HomeCarousel_01 .ImgCanvas > div { position:relative; padding-left:0px; padding-right:0px; }
+.HomeCarousel_01 .ImgCanvas ul.QuickLink { margin:0px; padding:0px; list-style:none; position:absolute; right:0px; bottom:30px; font-family:'robotomedium'; opacity:0; }
+.HomeCarousel_01 .ImgCanvas ul.QuickLink li { margin:0px; padding:0px; display:inline-block; margin-left:28px; }
+.HomeCarousel_01 .ImgCanvas ul.QuickLink li a { margin:0px; padding:12px; text-align:center; background:#FDA711; width:170px; display:block; color:#fff; }
+.HomeCarousel_01 .ImgCanvas ul.QuickLink li a:hover { color:#000; }  
+.HomeCarousel_01 .owl-item.active .ImgCanvas ul.QuickLink { opacity:1; bottom:50px; }
+.HomeCarousel_01 .owl-controls { bottom:50px;height:0px; position:relative; }
+
+/* HomeCarousel_02 */ 
+.HomeCarousel_02 { background:#000; }
+.HomeCarousel_02 .ImgCanvas { background-size:auto; background-position:center center; background-repeat:repeat-x; }
+.HomeCarousel_02 .ImgCanvas > div { position:relative; }
+.HomeCarousel_02 .ImgCanvas ul.QuickLink { margin:0px; padding:0px; list-style:none; position:absolute; right:0px; bottom:30px; font-family:'robotomedium'; opacity:0; }
+.HomeCarousel_02 .ImgCanvas ul.QuickLink li { margin:0px; padding:0px; display:inline-block; margin-left:28px; }
+.HomeCarousel_02 .ImgCanvas ul.QuickLink li a { margin:0px; padding:12px; text-align:center; background:#FDA711; width:170px; display:block; color:#fff; }
+.HomeCarousel_02 .ImgCanvas ul.QuickLink li a:hover { color:#000; }  
+.HomeCarousel_02 .owl-item.active .ImgCanvas ul.QuickLink { opacity:1; bottom:50px; }
+.HomeCarousel_02 .owl-controls { bottom:50px;height:0px; position:relative; }
+
+
+/* NowShowingCarousel */
+.NowShowingSec { background:#000; }
+.NowShowingSec .BtnLinkWrap { display:block; text-align:center; position: relative; width:100%; height:0px;}
+.NowShowingSec .BtnLinkWrap a { color:#FDA711; padding:5px; display:inline-block; position:absolute; left: 50%; margin-left: -100px; width: 200px; bottom: 10px; }
+.NowShowingSec .BtnLinkWrap a:hover { text-decoration:underline; }
+.NowShowingCarousel { display:block;}
+
+
+.NowShowingCarousel .owl-item { background:#000000;}
+.NowShowingCarousel .item { margin:10px; }
+.NowShowingCarousel .item { display:block; overflow:hidden; position:relative; }
+.NowShowingCarousel .item img {width: 100%;}
+.NowShowingCarousel .item .OverlayPanel { position:absolute; z-index:1; bottom:0px; height:100%; width:100%; display:block; /*background:rgba(0,0,0,0.7);*/ opacity:0; text-align:center; }
+.NowShowingCarousel .item .OverlayPanel .ButtonWrap { display:block; position:absolute; top:50%; margin-top:-10%; padding: 0px 20px; width:100%; }
+.NowShowingCarousel .item .OverlayPanel .BuyTicks { position:relative; bottom:-10px; display:inline-block; opacity:0; width:100%; margin-bottom:10px; }
+.NowShowingCarousel .item .OverlayPanel .WatchTrailer { position:relative; bottom:-10px; display:inline-block; opacity:0; width:100%; }
+.NowShowingCarousel .item:hover .OverlayPanel { opacity:1; }
+.NowShowingCarousel .item:hover .OverlayPanel .BuyTicks { bottom:0px; opacity:1; }
+.NowShowingCarousel .item:hover .OverlayPanel .WatchTrailer { bottom:0px; opacity:1; }
+
+.NowShowingCarousel .item .OverlayPanel .BuyTicks a,
+.NowShowingCarousel .item .OverlayPanel .WatchTrailer a { background:#FDA711; padding:10px 17px; display:block; color:#fff;font-family:'robotomedium'; }
+.NowShowingCarousel .item .OverlayPanel .BuyTicks a:hover,
+.NowShowingCarousel .item .OverlayPanel .WatchTrailer a:hover { color:#000; }
+.NowShowingCarousel .owl-controls .owl-buttons { display:none; }
+.NowShowingCarousel .owl-controls {position: relative; bottom: 40px;}
+
+/*.NowShowingCarousel .owl-wrapper:hover .owl-item .item .OverlayPanel { opacity:1; }*/
+.NowShowingCarousel .owl-wrapper .owl-item .item:hover img { opacity:1!important;}
+.NowShowingCarousel .owl-wrapper:hover .owl-item .item img { opacity:0.3;}
+.NowShowingCarousel .item .SeeAllMoviesBtn {display:block; position:absolute; top:50%; margin-top:-30px; width:100%; }
+.NowShowingCarousel .item .SeeAllMoviesBtn a { text-align:center; display:block; padding:30px 0px;}
+
+/* HomeTabPanelSec */
+#HomeTabPanelSec { background:#000000; }
+#HomeTabPanelSec .HomeTabPanelWrap { display:block; clear:both; }
+#HomeTabPanelSec .HomeTabPanelWrap ul.HomeTabPanel { list-style:none; padding:0px; margin:0px; text-align:center; font-family:'robotobold'; }
+#HomeTabPanelSec .HomeTabPanelWrap ul.HomeTabPanel li { display:block; padding:0px; margin:0px;  float:left; background:#000000; }
+#HomeTabPanelSec .HomeTabPanelWrap ul.HomeTabPanel li a {position:relative;text-align:center; color:#7B7B7B; display:table-cell; vertical-align:middle; height:70px; width:190px; font-size:14px; }
+#HomeTabPanelSec .HomeTabPanelWrap ul.HomeTabPanel li a:hover { color:#fff; } 
+#HomeTabPanelSec .HomeTabPanelWrap ul.HomeTabPanel li a img { margin:0 auto; height: 70px;}
+#HomeTabPanelSec .HomeTabPanelWrap ul.HomeTabPanel li.Active { background:#fff; border-bottom:5px solid #FDA711; } 
+#HomeTabPanelSec .HomeTabPanelWrap ul.HomeTabPanel li.Active a { color:#000; }
+#HomeTabPanelSec .HomeTabPanelWrap ul.HomeTabPanel li.Active a:hover { color:#7B7B7B; }
+#HomeTabPanelSec .HomeTabPanelWrap ul.HomeTabPanel li.Active a:before { content:"\e253"; width:20px; height:20px; position:absolute; top:-17px; font-family:'Glyphicons Halflings'; color:#fff; font-size:20px; left:50%; margin-left:-10px; } 
+
+
+
+
+/* QuickFilter For Home & Show Times */
+.Home #QuickFilter { padding:40px 0px; } /* APPLY FOR HOME PAGE ONLY */
+#QuickFilter { background:#ECECEC; padding:14px 0px 10px 0px; }
+#QuickFilter .form-control { font-family:'robotobold'; }
+#QuickFilter .BtnSubmit { margin:0px; padding:12px; text-align:center; background:#FDA711; display:block; color:#fff; border:none; }
+#QuickFilter .BtnSubmit:hover { color:#000; font-family:'robotobold'; } 
+#QuickFilter .ErrMsg {color:#FF0004; padding-top:4px; font-size: 12px; display: block;}
+
+#QuickFilterShowTimes { background:#ECECEC; padding:14px 0px 10px 0px; }
+#QuickFilterShowTimes .Pad_0px {padding-right: 0px;}
+#QuickFilterShowTimes .PadRight { padding-right: 30px;}
+#QuickFilterShowTimes .OR { display:block; position: absolute; right: 0px; top: 12px; font-size:14px; font-family:'robotobold';  }
+#QuickFilterShowTimes .form-control { font-family:'robotobold'; }
+#QuickFilterShowTimes .BtnSubmit { margin:0px; padding:12px; text-align:center; background:#FDA711; display:block; color:#fff; border:none;}
+#QuickFilterShowTimes .BtnSubmit:hover { color:#000; font-family:'robotobold'; } 
+.QuickFilterBlack #QuickFilterShowTimes { background:#000;}
+.QuickFilterBlack #QuickFilterShowTimes .OR { color:#fff;}
+
+iframe.QuickFilterIframe { height:76px; width:100%; margin:0px; padding:0px;}
+iframe.QuickFilterShowTimesIframe { height:70px; width:100%; margin:0px; padding:0px;}
+
+.QuickFilterWhite #QuickFilterShowTimes { background:#ECECEC;}
+.QuickFilterWhite #QuickFilterShowTimes .OR { color:#000;}
+
+
+
+
+/* TOP 10 MOVIES */
+.Top10Movies { background:#000000; }
+.Top10Movies .TableWrap { display:table; }
+.Top10Movies .Lpanel { width:100%; display:table-cell;vertical-align:top; }
+/*.Top10Movies .Lpanel div[class^="col-"] { padding-left:0px; padding-right:0px; }*/
+.Top10Movies .Lpanel .BoxRow { display:table; width:100%; padding:16px 12px; }
+.Top10Movies .Lpanel .BoxRow h2 { display:table-cell; color:#fff; font-family:'robotobold'; font-size:25px; }
+.Top10Movies .Lpanel .BoxRow span.Date { display:table-cell; text-align:right; font-size:12px; color:#fff; }
+.Top10Movies .Lpanel ul { list-style:none; padding:0px; margin:0px; 
+	/*-webkit-columns:2; 
+	-moz-columns:2;
+	columns:2; 
+	-webkit-column-gap:0px;
+    -moz-column-gap:0px;
+    column-gap:0px;*/
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    height: 310px;
+	
+}
+.Top10Movies .Lpanel ul li { padding:0px; margin:0px; }
+
+.Top10Movies .Lpanel ul li .Item a { padding:10px; margin:0px; display:block; color:#fff;font-family:'robotomedium'; height:60px; }
+.Top10Movies .Lpanel ul li .Item a span.Number { font-family:'BebasNeueRegular'; font-size:30px; float:left; color:#FDA711; width:40px; height:60px; top:0px; position:absolute; text-align:center; background-repeat:no-repeat; background-size:40px 60px; background-position:100px;line-height:60px; }
+.Top10Movies .Lpanel ul li .Item a span.MovieTitle { display:block; margin-left:50px; font-size:14px; white-space:nowrap; line-height:25px; padding-right: 80px;}
+.Top10Movies .Lpanel ul li .Item a span.GetInfo { display:block; margin-left:50px; font-size:12px;color:rgba(253, 167, 17, 0); }
+
+.Top10Movies .Lpanel ul li .Item { display: block;}
+.Top10Movies .Lpanel ul li .Item input.BuyBtn { position: absolute; right: 10px; top: 16px; background: #fda711; border: none; padding: 6px 12px; font-size: 12px; color: #fff;}
+.Top10Movies .Lpanel ul li .Item:hover input.BuyBtn { background: #333;}
+.Top10Movies .Lpanel ul li .Item:hover a { background:#FDA711; } 
+.Top10Movies .Lpanel ul li .Item:hover a span.Number { background-position:0px; color:rgba(253, 167, 17, 0); }
+.Top10Movies .Lpanel ul li .Item:hover a span.GetInfo { color:#000; }
+
+.Top10Movies .RPanel { min-width:330px; display:table-cell; padding-left:30px; vertical-align:middle; }
+.Top10Movies .RPanel .Ads {}
+.Top10Movies .RPanel .Ads>div { display: inline-block;}
+.Top10Movies .RPanel .Ads small { color:#fff; }
+.Top10Movies .RPanel .Ads a.Link { color:#FDA711; font-size:12px; text-align:right; display:block; padding:10px 0px; }
+
+
+/*============================================================================================*/
+/* ERROR PAGE & SEARCH PAGE	*/
+/*============================================================================================*/
+#ErrorPageSec,
+#SearchPageSec { padding: 4% 0; min-height:550px; }
+#ErrorPageSec h1,
+#SearchPageSec h1 { margin-top:0; margin-bottom:3%; text-transform:uppercase; }
+
+.ErrorMaxWidth { float:none; margin:auto; max-width:610px; text-align:center; }
+.ErrorMaxWidth img { display:block; margin:auto; width:100%; max-width:455px; }
+.ErrorMaxWidth p { margin-top:3%; color:#000; font-family:'robotoregular'; font-size:23px; line-height:35px;}
+
+#ErrorPageSec .SearchWrap { position:relative; margin:auto; margin-bottom:5%; max-width:500px; border:10px solid #eeeeee; }
+#ErrorPageSec .SearchWrap svg { position:absolute; top:7px; right:10px;}
+#ErrorPageSec .SearchWrap a svg g path { fill:#464646; }
+#ErrorPageSec .SearchWrap input { width:100%; display:inline-block; border:none; padding:12px !important; padding-right:50px !important; font-size:16px; color:#000; background:#fff !important;}
+#ErrorPageSec .SearchWrap a { display:inline-block; cursor:hand; cursor:pointer;color:#464646; padding:4px; position:absolute; top:3px; right:3px; }
+#ErrorPageSec .SearchWrap a svg g path { fill:#464646; }
+
+#ErrorPageSec a.BackToHome { display:block; color:#FFF; margin:auto; padding:12px; width:200px; font-family:'robotobold'; font-size:14px; background:#fda811; text-transform:uppercase; }
+#ErrorPageSec a.BackToHome:hover { color:#FFF; background:#000; } 
+
+
+	/* Google Overide */
+	#ErrorPageSec .SearchWrap .form.gsc-search-box,
+	#ErrorPageSec .SearchWrap form.gsc-search-box,
+	#ErrorPageSec .SearchWrap table.gsc-search-box {margin:0px!important;}
+
+	#ErrorPageSec .SearchWrap table.gsc-search-box td { padding:0px!important;}
+	#ErrorPageSec .SearchWrap .gsc-input-box { height:auto!important; padding:0px!important; margin:0px!important; border:none!important;}
+	#ErrorPageSec .SearchWrap .gsc-search-button,
+	#ErrorPageSec .SearchWrap .gsc-clear-button,
+	#ErrorPageSec .SearchWrap .gsib_b { display:none!important;}
+
+/* CUSTOM GOOGLE SEARCH PAGE RESULTS OVERIDE */
+#SearchPageSec .gsc-control-cse.gsc-control-cse-en { padding:0px; margin:0px; border:none;}
+#SearchPageSec .gs-image-box.gs-web-image-box.gs-web-image-box-portrait { width: 80px;}
+.gsc-input input[type="text"] { padding:10px; background-image:none !important;}
+.gsc-search-button input[type="button"] {padding: 9px 20px; height: auto; border: none; font-size: 18px;}
+
+
+
+
+/*============================================================================================*/
+/* DEFAULT PAGE 	*/
+/*============================================================================================*/
+#DefaultSec { min-height:550px; }
+#DefaultSec .MastHeadBanner { background-size:cover; background-repeat:no-repeat; background-position:center; }
+#DefaultSec .MastHeadBanner img { margin:0 auto; display:block}
+
+
+
+
+/*============================================================================================*/
+/* MOVIE LISTING PAGE 	*/
+/*============================================================================================*/
+
+.NoImageImg {position: relative!important; z-index: 1!important;}
+
+#MovieListingCatg { background:#000; padding-top:30px; }
+#MovieListingCatg .DP_Wrap { text-align:left; position:relative; }
+#MovieListingCatg .DP_Wrap a { color:#7D7D7D; font-size:18px; font-family:'robotobold'; padding:6px 0px; }
+#MovieListingCatg .DP_Wrap a:hover { color:#FFF; }
+#MovieListingCatg .DP_Wrap a.DP_ListingCatgBtn { display:none; }
+#MovieListingCatg .DP_Wrap a.DP_ListingCatgBtn:after { content:"\e252"; display:inline-block; font-family:'Glyphicons Halflings'; font-size:10px; margin-left:10px; } 
+#MovieListingCatg .DP_Wrap a.DP_ListingCatgBtn.Expaned:after { content:"\e253"; display:inline-block; font-family:'Glyphicons Halflings'; font-size:10px; margin-left:10px; } 
+#MovieListingCatg .DP_Wrap .DP_ListingCatgWrap { display:block; overflow:hidden; height:auto; position:relative; z-index:50; width:100%; }
+#MovieListingCatg .DP_Wrap .DP_ListingCatgWrap.Expaned { display:block; height:auto; }
+#MovieListingCatg .DP_Wrap .DP_ListingCatgWrap ul { padding:0px; margin:0px; }
+#MovieListingCatg .DP_Wrap .DP_ListingCatgWrap ul li { display:inline-block; padding:4px 30px 4px 0px; margin:0px; }
+#MovieListingCatg .DP_Wrap .DP_ListingCatgWrap ul li:last-child { padding-right:0px; }
+#MovieListingCatg .DP_Wrap .DP_ListingCatgWrap ul li.Active a { color:#fff; }
+
+
+#MovieListingCatg .Tap_Wrap { margin-top:10px; }
+#MovieListingCatg .Tap_Wrap ul.Tap { padding:0px; margin:0px; }
+#MovieListingCatg .Tap_Wrap ul.Tap li { display:inline-block; padding:4px 30px 4px 0px; margin:0px; }
+#MovieListingCatg .Tap_Wrap ul.Tap li:last-child { padding-right:0px; }
+#MovieListingCatg .Tap_Wrap ul.Tap li a { color:#7D7D7D; font-size:12px; font-family:'robotobold'; padding:6px 0px; }
+#MovieListingCatg .Tap_Wrap ul.Tap li a:hover { color:#fff; }
+#MovieListingCatg .Tap_Wrap ul.Tap li.Active a { color:#fff; }
+#MovieListingCatg .Tap_Wrap ul.Tap li.Active a:after { content:""; display:block; border-bottom:3px solid #FDA711; } 
+#MovieListingCatg .Tap_Wrap .MovieResultText { color:#FDA711; font-size:12px; margin:20px 0px 24px 0px; display:block; }
+
+#MovieListingCatg.Active_1 .Tap_Wrap ul.Tap li a.All {color:#fff; }
+#MovieListingCatg.Active_1 .Tap_Wrap ul.Tap li a.All:after {content:""; display:block; border-bottom:3px solid #FDA711;} 
+#MovieListingCatg.Active_2015 .Tap_Wrap ul.Tap li a.Active_2015 {color:#fff; }
+#MovieListingCatg.Active_2015 .Tap_Wrap ul.Tap li a.Active_2015:after {content:""; display:block; border-bottom:3px solid #FDA711;} 
+#MovieListingCatg.Active_2014 .Tap_Wrap ul.Tap li a.Active_2014 {color:#fff; }
+#MovieListingCatg.Active_2014 .Tap_Wrap ul.Tap li a.Active_2014:after {content:""; display:block; border-bottom:3px solid #FDA711;} 
+#MovieListingCatg.Active_2013 .Tap_Wrap ul.Tap li a.Active_2013 {color:#fff; }
+#MovieListingCatg.Active_2013 .Tap_Wrap ul.Tap li a.Active_2013:after {content:""; display:block; border-bottom:3px solid #FDA711;} 
+#MovieListingCatg.Active_2012 .Tap_Wrap ul.Tap li a.Active_2012 {color:#fff; }
+#MovieListingCatg.Active_2012 .Tap_Wrap ul.Tap li a.Active_2012:after {content:""; display:block; border-bottom:3px solid #FDA711;} 
+
+
+#MovieListingSec { background:#000; padding:20px 0px; }
+#MovieListingSec { display:block; }
+#MovieListingSec a { display:block; overflow:hidden; position:relative; margin-bottom:40px; }
+#MovieListingSec a img { width:100%; z-index:2; position:absolute; height:400px;}
+#MovieListingSec a .OverlayPanel { position:absolute; z-index:3; bottom:0px; height:0px; width:100%; display:block; background:rgba(0,0,0,0.7); padding:0px 16px; }
+#MovieListingSec a .OverlayPanel .Txt01 { color:#FDA711; font-size:14px; padding:18px 0px 0px 0px; position:relative; bottom:-10px; opacity:0; }
+#MovieListingSec a .OverlayPanel .Title { color:#fff; font-size:18px; position:relative; bottom:-10px; opacity:0; padding-top:10px; }
+#MovieListingSec a:hover .OverlayPanel { height:130px; }
+#MovieListingSec a:hover .OverlayPanel .Txt01,
+#MovieListingSec a:hover .OverlayPanel .Title { bottom:0px; opacity:1; }
+
+#MovieListFilterSec { display:block; background:#000; }
+#MovieListFilterSec .container { padding:0px; }
+#MovieListFilterSec .MovieListFilterWrap { background:#101010; position:relative; }
+#MovieListFilterSec .MovieListFilterWrap .ToggleBar { padding:13px 18px; color:#FDA711; font-size:13px; font-family:'robotobold'; cursor:hand; cursor:pointer; }
+#MovieListFilterSec .MovieListFilterWrap .ToggleBar span { display:inline-block; color:#7D7D7D; font-size:12px; font-family:'robotomedium'; padding:0px 0px 2px 12px; }
+#MovieListFilterSec .MovieListFilterWrap .ToggleBar:after { content:"\e252"; color:#7D7D7D; display:inline-block; font-family:'Glyphicons Halflings'; float:right; }
+#MovieListFilterSec .MovieListFilterWrap .ToggleBar:hover:after { color:#fff; }
+#MovieListFilterSec .MovieListFilterWrap .ToggleBar:hover { color:#fff; }
+#MovieListFilterSec .MovieListFilterWrap .DropdownWrap { display:none; height:0%; width:100%; position:absolute; z-index:10; background:#101010; }
+#MovieListFilterSec .MovieListFilterWrap .DropdownWrap.Expaned { display:block; height:auto; }
+
+#MovieListFilterSec .MovieListFilterWrap .DropdownWrap ul.NavTabs { display:block; padding:0px; margin:0px; padding-left:9px; list-style:none; }
+#MovieListFilterSec .MovieListFilterWrap .DropdownWrap ul.NavTabs li { display:inline-block; padding:0px; margin:0px; }
+#MovieListFilterSec .MovieListFilterWrap .DropdownWrap ul.NavTabs li a { color:#818181; font-size:16px; font-family:'robotobold'; padding:10px; margin:10px; display:block; }
+#MovieListFilterSec .MovieListFilterWrap .DropdownWrap ul.NavTabs li.active a { color:#fff; }
+#MovieListFilterSec .MovieListFilterWrap .DropdownWrap ul.NavTabs li a input[type=radio] { display:none;}
+#MovieListFilterSec .MovieListFilterWrap .DropdownWrap ul.NavTabs li a label { margin-right: 40px; cursor: pointer; cursor:hand;}
+
+#MovieListFilterSec .MovieListFilterWrap .DropdownWrap .tab-content { padding:30px; padding-top:10px; display:block; }
+#MovieListFilterSec .MovieListFilterWrap .DropdownWrap .tab-content ul { list-style:none; padding:0px; margin:0px; display:block; }
+#MovieListFilterSec .MovieListFilterWrap .DropdownWrap .tab-content ul li { display:block; margin:0px; }
+#MovieListFilterSec .MovieListFilterWrap .DropdownWrap .tab-content ul li .checkbox { margin:0px; padding:0px; }
+#MovieListFilterSec .MovieListFilterWrap .DropdownWrap .tab-content ul li .checkbox label { color:#A29D9D; font-size:16px; font-family:'robotobold'; padding-left:30px; padding-bottom:18px; }
+#MovieListFilterSec .MovieListFilterWrap .DropdownWrap .tab-content ul li .checkbox label input { width:16px; height:16px; margin-left:-28px; }
+#MovieListFilterSec .MovieListFilterWrap .DropdownWrap .tab-content ul { list-style:none; padding:0px; margin:0px; 
+	-webkit-columns:6; 
+	-moz-columns:6;
+	columns:6; 
+	-webkit-column-gap:0px;
+	-moz-column-gap:0px;
+	column-gap:0px;
+	-webkit-column-fill:auto;	
+	-moz-column-fill:auto;
+	column-fill:auto;
+}
+
+#MovieListFilterSec .MovieListFilterWrap .DropdownWrap .tab-content .BtnSearch { float:right; margin:0px; padding:12px; font-family:'robotomedium'; width:170px; text-align:center; text-transform:uppercase; background:#FDA711; display:block; color:#fff; border:none; }
+#MovieListFilterSec .MovieListFilterWrap .DropdownWrap .tab-content .BtnSearch:hover { color:#000; }
+#MovieListFilterSec .MovieListFilterWrap .DropdownWrap .tab-content .BtnSearch:focus { outline:none; }
+
+/* ADDED */ 
+#MovieListFilterSec .MovieListFilterWrap .DropdownWrap .BtnSearch { float:right; margin:30px; padding:12px; font-family:'robotomedium'; width:170px; text-align:center; text-transform:uppercase; background:#FDA711; display:block; color:#fff; border:none; }
+#MovieListFilterSec .MovieListFilterWrap .DropdownWrap .BtnSearch:hover { color:#000; }
+#MovieListFilterSec .MovieListFilterWrap .DropdownWrap .BtnSearch:focus { outline:none; }
+
+#MovieListFilterSec .MovieListFilterWrap .DropdownWrap #UpDDLFilter {}
+#MovieListFilterSec .MovieListFilterWrap .DropdownWrap #UpDDLFilter ul { padding:0px; margin:0px; padding-left: 48px;}
+#MovieListFilterSec .MovieListFilterWrap .DropdownWrap #UpDDLFilter ul li label { width:100%;}
+#MovieListFilterSec .MovieListFilterWrap .DropdownWrap #UpDDLFilter ul li label table { width:100%;}
+#MovieListFilterSec .MovieListFilterWrap .DropdownWrap #UpDDLFilter ul li label table label {padding-left:0px; color: #A29D9D;font-size: 16px; font-family: 'robotobold';}
+
+
+/* ARCHIVE PAGE */
+#MovieListingCatg .SortAlphabetWrap { }
+#MovieListingCatg .SortAlphabetWrap ul.SortAlphabet { list-style: none; margin: 0px; padding: 0px; }
+#MovieListingCatg .SortAlphabetWrap ul.SortAlphabet li { margin: 0px; padding: 0px; display: inline-block; }
+#MovieListingCatg .SortAlphabetWrap ul.SortAlphabet li a { margin: 0px; padding: 0px 10px; color: #7D7D7D; font-size: 14px; font-family: 'robotomedium'; }
+#MovieListingCatg .SortAlphabetWrap ul.SortAlphabet li a:first-child { padding-left: 0px; }
+#MovieListingCatg .SortAlphabetWrap ul.SortAlphabet li.Active a { color:#FDA711}
+
+#MovieListingCatg .SearchArchiveWrap { width:100%;}
+#MovieListingCatg .SearchArchiveWrap .SearchBtnHolder { width:100%; height:35px; display:block;}
+#MovieListingCatg .SearchArchiveWrap .SearchBtnHolder a.SearchToggleArchive {float: right;}
+#MovieListingCatg .SearchArchiveWrap .SearchTextfieldWrap { background:#333; overflow: hidden;}
+#MovieListingCatg .SearchArchiveWrap .SearchTextfieldWrap input { width:100%; padding:10px; background-color:transparent; border:0px; color:#ccc; margin:10px;}
+#MovieListingCatg .SearchArchiveWrap .SearchTextfieldWrap input:focus { outline:none; border:none;}
+#MovieListingCatg .SearchArchiveWrap .SearchTextfieldWrap #btnSearch {padding: 4px 16px; background: #FDA711; color: #fff; display: block; float: left; margin: 0px 0px 15px 15px; }
+
+
+/* MovieLoaderBG - ADDED - 28/12/2016 */
+.MovieLoaderBG {text-align:center; padding: 20px 0px; background: #fff;}
+
+
+
+/*============================================================================================*/
+/* PROMOTION PAGE 	*/
+/*============================================================================================*/
+#PromotionSec { padding-bottom:60px; }
+#PromotionSec .MastHeadBanner { background-size:cover; background-repeat:no-repeat; background-position:center; }
+#PromotionSec .MastHeadBanner img { margin:0 auto; display:block}
+#PromotionSec .JumboTron { background:#F6F6F6; padding:60px; padding-bottom:80px; margin:0px; text-align:center; }
+#PromotionSec .JumboTron h1 { margin-bottom:20px; }
+#PromotionSec .JumboTron h2 { margin-bottom:40px; color:#A29D9D; }
+
+#PromotionSec .Set  { display:table; width:100%; position:relative; }
+#PromotionSec .Set .PromotionItem { display:table-cell; padding:0px; }
+
+#PromotionSec .Set .PromotionItem.Image { width:57%; background:#B42B2D; float:left; }
+#PromotionSec .Set .PromotionItem.Desc { width:43%; float:right; }
+#PromotionSec .Set.odd .PromotionItem.Image { float:right; width:57%; } /*  image float right*/
+#PromotionSec .Set.odd .PromotionItem.Desc { float:left; width:43%; } /*  Description float left*/
+	
+#PromotionSec .Set .PromotionItem.Image img { width:100%; height:auto; margin:0 auto; display:block; }
+#PromotionSec .Set .PromotionItem.Desc { padding:0px; text-align:center; position:relative; height:367px; }
+#PromotionSec .Set .PromotionItem.Desc .Box { display:block; overflow:hidden; padding:0px 20px; width:100%; }
+
+#PromotionSec .Set .PromotionItem.Desc .Box h2 {line-height:1.5em; }
+#PromotionSec .Set .PromotionItem.Desc .Box p { color:#A29D9D; }
+
+.Top10Movies .Lpanel a { display:block; position:relative;}
+.Top10Movies .Lpanel a .BannerImg { background-repeat:no-repeat; background-position:center center; background-size:cover;}
+.Top10Movies .Lpanel img { margin-top:30px; margin-bottom: 10px; width:100%; height:auto; }
+.Top10Movies .Lpanel .BannerImg { position:absolute; width:100%; height:100%;}
+
+/*============================================================================================*/
+/* PROMOTION DETAILS PAGE 	*/
+/*============================================================================================*/
+#PromotionSec .RTBWrap { padding-top:40px; }
+#PromotionSec .RTBWrap h1 { padding:0; margin:0 0 2% 0; color:#000; font-family:'robotobold'; font-size:42px; font-style:normal; text-transform:uppercase; }
+#PromotionSec .RTBWrap h2 { padding:0; margin:0 0 2% 0; color:#000; font-family:'robotobold'; font-size:30px; font-style:normal; text-transform:uppercase; }
+#PromotionSec .RTBWrap h3 { padding:0; margin:0 0 2% 0; color:#000; font-family:'robotobold'; font-size:18px; font-style:bold; text-transform:uppercase; }
+
+#PageNavigate .PrevNextWrap { color:#FFF; background:url(../images/PageNavigate/prev-next_bg.jpg) center top repeat-y; }
+#PageNavigate .PrevNextWrap > div:first-child { text-align:right; }
+
+#PageNavigate .PrevNextWrap a.btnPrevPage { float:right; }
+#PageNavigate .PrevNextWrap a.btnNextPage { float:left; }
+
+#PageNavigate .PrevNextWrap a.btnPrevPage,
+#PageNavigate .PrevNextWrap a.btnNextPage { display:block; padding:50px 10%; color:#FFF; text-align:center; font-size:13px; text-transform:uppercase; }
+#PageNavigate .PrevNextWrap a.btnPrevPage:hover,
+#PageNavigate .PrevNextWrap a.btnNextPage:hover { color:#fda811; }
+
+#PageNavigate .BackToListingWrap { color:#FFF; background:#fda811; text-align:center; }
+#PageNavigate .BackToListingWrap a.btnBackToListing { display:block; padding:45px 10%; color:#FFF; text-align:center; font-size:16px; text-transform:uppercase; }
+#PageNavigate .BackToListingWrap a.btnBackToListing:hover { color:#000; }
+
+/*============================================================================================*/
+/* NEW PROMOTION PAGE 2018 JULY */
+/*============================================================================================*/
+
+#NewPromoSec {  padding-bottom: 60px;  padding: 4% 0;}  
+#NewPromoSec .Tap_Wrap { margin-top:30px; margin-bottom: 50px; }
+#NewPromoSec .Tap_Wrap ul.Tap { padding:0px; margin:0px; }
+#NewPromoSec .Tap_Wrap ul.Tap li { display:inline-block; padding:4px 30px 4px 0px; margin:0px; }
+#NewPromoSec .Tap_Wrap ul.Tap li:last-child { padding-right:0px; }
+#NewPromoSec .Tap_Wrap ul.Tap li a { color:#000; font-size:16px; font-family:'robotobold'; padding:6px 0px; }
+#NewPromoSec .Tap_Wrap ul.Tap li a:hover { color:#FDA711; }
+#NewPromoSec .Tap_Wrap ul.Tap li.Active a { color:#000; }
+#NewPromoSec .Tap_Wrap ul.Tap li.Active a:after { content:""; display:block; border-bottom:3px solid #FDA711; } 
+
+#NewPromoSec .PromoItemWrap { display:block;  }
+#NewPromoSec .PromoItemWrap a { display:block; overflow:hidden; position:relative; margin-bottom:20px; }
+#NewPromoSec .PromoItemWrap a img { width:100%; z-index:2; position:relative; height:100%;}
+#NewPromoSec .PromoItemWrap a .OverlayPanel { position:absolute; z-index:3; bottom:0px; height:0px; width:100%; display:block; background:rgba(0,0,0,0.7); padding:0px 16px; }
+#NewPromoSec .PromoItemWrap a .OverlayPanel .Txt01 { color:#FDA711; font-size:14px; padding:18px 0px 0px 0px; position:relative; bottom:-10px; opacity:0; }
+#NewPromoSec .PromoItemWrap a .OverlayPanel .Title { color:#fff; font-size:18px; position:relative; bottom:-10px; opacity:0; margin-bottom: 5px; font-weight: bold; }
+#NewPromoSec .PromoItemWrap a .OverlayPanel .Text { color:#A29D9D; position:relative; bottom:-10px; opacity:0; }
+#NewPromoSec .PromoItemWrap a:hover .OverlayPanel { height:160px; }
+#NewPromoSec .PromoItemWrap a:hover .OverlayPanel .Txt01,
+#NewPromoSec .PromoItemWrap a:hover .OverlayPanel .Title,
+#NewPromoSec .PromoItemWrap a:hover .OverlayPanel .Text { bottom:0px; opacity:1; }
+
+.condensed-grid10.row, 
+.condensed-grid10 .row {margin-left: -10px; margin-right: -10px; } 
+.condensed-grid10 [class*="col-"]{padding-left: 10px; padding-right: 10px; }
+
+/*============================================================================================*/
+/* CINEMA EXPERIENCE PAGE 	*/
+/*============================================================================================*/
+#CinemaExperienceSec { padding-bottom:60px; padding: 4% 0;}
+#CinemaExperienceSec h1 { margin-bottom:30px; text-transform:uppercase; }
+/*
+#CinemaExperienceSec a { display:block; width:100%; overflow:hidden; color:#7a7a7a; position:relative; margin-bottom:10%; }
+#CinemaExperienceSec a:hover { background:url(../images/cinema_experience/hover-btmRigh-arrow.png) right bottom no-repeat; }
+#CinemaExperienceSec a img { display:block; width:100%; margin-bottom:3%;}
+#CinemaExperienceSec a h2 { font-family: 'robotomedium'; color:#000; padding:0; margin:0 0 2% 0; font-size:22px; text-transform:uppercase; }
+#CinemaExperienceSec a:hover h2 { color:#fda811;}
+#CinemaExperienceSec a .textWrap { padding-right:7%; }
+*/
+
+#CinemaExperienceSec a { display:block; width:100%; overflow:hidden; color:#7a7a7a; position:relative; padding-bottom:20px; }
+#CinemaExperienceSec a:hover { /*background:url(../images/cinema_experience/hover-btmRigh-arrow.png) right bottom no-repeat;*/ }
+#CinemaExperienceSec a img { display:block; width:100%; margin-bottom:3%;}
+#CinemaExperienceSec a h2 { font-family: 'robotomedium'; color:#000; padding:0; margin:0 0 2% 0; font-size:22px; text-transform:uppercase; }
+#CinemaExperienceSec a:hover h2 { color:#fda811;}
+#CinemaExperienceSec a .textWrap { padding-right:7%; }
+#CinemaExperienceSec a:hover .textWrap:last-child {background:url(../images/cinema_experience/hover-btmRigh-arrow.png) right bottom no-repeat;}
+
+
+
+.CinemaExperiencePage .fancybox-prev span, 
+.CinemaExperiencePage .fancybox-next span { background-position:0px!important; }
+.CinemaExperiencePage .fancybox-prev span {  background-image: url(/assets/images/fancybox/btnPrevious.png); left: 10px; }
+.CinemaExperiencePage .fancybox-next span {  background-image: url(/assets/images/fancybox/btnNext.png); right: 10px; }
+.CinemaExperiencePage .fancybox-nav span { width: 49px; height:49px; }
+.CinemaExperiencePage .fancybox-close { background-image: url(/assets/images/fancybox/close.png); top:0px; right:0px; width: 49px; height: 49px;}
+
+
+
+/*============================================================================================*/
+/* CINEMA EXPERIENCE DETAILS PAGE 	*/
+/*============================================================================================*/
+#dolby-atmos-experience .item { margin: 10px; }
+#dolby-atmos-experience .item img { display: block; width: 100%; height: auto; }
+
+
+
+/*============================================================================================*/
+/* CONTEST PAGE 	*/
+/*============================================================================================*/
+#ContestSec { padding-bottom:60px; }
+#ContestSec .MastHeadBanner { background-size:cover; background-repeat:no-repeat; background-position:center; }
+#ContestSec .MastHeadBanner img { margin:0 auto; display:block}
+#ContestSec { padding-bottom:60px; padding: 4% 0;}
+#ContestSec h1 { margin-bottom:30px; text-transform:uppercase; }
+#ContestSec a { display:block; width:100%; overflow:hidden; color:#7a7a7a; position:relative; padding-bottom:20px; }
+#ContestSec a:hover { /*background:url(../images/cinema_experience/hover-btmRigh-arrow.png) right bottom no-repeat;*/ }
+#ContestSec a img { display:block; width:100%; margin-bottom:3%;}
+#ContestSec a h2 { font-family: 'robotomedium'; color:#000; padding:0; margin:0 0 2% 0; font-size:22px; text-transform:uppercase; }
+#ContestSec a:hover h2 { color:#fda811;}
+#ContestSec a .textWrap { padding-right:7%; }
+#ContestSec a:hover .textWrap:last-child {background:url(../images/cinema_experience/hover-btmRigh-arrow.png) right bottom no-repeat;}
+
+
+/*============================================================================================*/
+/* PARTNERSHIP DETAILS PAGE 	*/
+/*============================================================================================*/
+#PartnershipBtmContact { padding:45px 0; color:#FFF; background:#000; }
+#PartnershipBtmContact h3 { font-family: 'robotomedium'; color:#FFF; padding:0; margin:0 0 3% 0; font-size:27px; text-transform:uppercase; }
+#PartnershipBtmContact h4 { color:#8e8e8e; padding:0; margin:0 0 10px 0; font-size:11px; text-transform:uppercase; }
+#PartnershipBtmContact a { color:#fda811; text-decoration:none; }
+#PartnershipBtmContact a:hover { color:#fda811; text-decoration:underline; }
+
+
+/*============================================================================================*/
+/* MOVIE PAGE 	*/
+/*============================================================================================*/
+#MoviePageSec { padding-bottom:0px; background:#EAEAEA; }
+#MoviePageSec .MastHeadBanner { position:relative; background-size:cover; background-repeat:no-repeat; background-position:center; }
+#MoviePageSec .MastHeadBanner .YouTubeCTA { width:108px; height:94px; }
+#MoviePageSec .MastHeadBanner img { margin:0 auto; display:block}
+#MoviePageSec .MastHeadBanner .GradientBG {height: 100px; position: absolute; width: 100%; bottom: 0px; background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzAwMDAwMCIgc3RvcC1vcGFjaXR5PSIwIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMwMDAwMDAiIHN0b3Atb3BhY2l0eT0iMC42NSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+background: -moz-linear-gradient(top,  rgba(0,0,0,0) 0%, rgba(0,0,0,0.65) 100%);
+background: -webkit-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%);
+background: linear-gradient(to bottom,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a6000000',GradientType=0 );
+}
+
+#MoviePageSec .container.Pushup { position:relative; top:-105px; }
+#MoviePageSec .RightBoxWrap .MovieTitle { position:relative; height:0px; padding-bottom: 60px;}
+#MoviePageSec .RightBoxWrap h1 { color:#fff; /*font-size:54px;*/ font-size:35px; height: 59px; font-family:'robotobold'; padding:0px; margin:0px; display:table; position:absolute; bottom:0px; padding-top: 16px;}
+#MoviePageSec .PosterKeyart { padding-right:40px; display:block; }
+
+
+#MoviePageSec .RightBoxWrap .TabPanelWrap {}
+#MoviePageSec .RightBoxWrap .TabPanelWrap ul.Tab { padding:0px; margin:0px; margin-top:10px; }
+#MoviePageSec .RightBoxWrap .TabPanelWrap ul.Tab li { display:inline-block; padding:4px 30px 4px 0px; margin:0px; }
+#MoviePageSec .RightBoxWrap .TabPanelWrap ul.Tab li:last-child { padding-right:0px; }
+#MoviePageSec .RightBoxWrap .TabPanelWrap ul.Tab li a { color:#7D7D7D; font-size:20px; font-family:'robotobold'; padding:6px 0px; position:relative; outline:none;}
+#MoviePageSec .RightBoxWrap .TabPanelWrap ul.Tab li a:hover { color:#fff; }
+#MoviePageSec .RightBoxWrap .TabPanelWrap ul.Tab li.active a { color:#fff; }
+#MoviePageSec .RightBoxWrap .TabPanelWrap ul.Tab li.active a:after { content:""; display:block; border-bottom:3px solid #FDA711; position: absolute; width:100%; bottom: 2px;} 
+
+#MoviePageSec .RightBoxWrap .SynopsisWrap { display:block; }
+#MoviePageSec .RightBoxWrap .SynopsisWrap .iconsWrap ul { list-style:none; padding:0px; margin:0px; margin-top:16px; }
+#MoviePageSec .RightBoxWrap .SynopsisWrap .iconsWrap ul li { padding:0px; margin:0px; margin-right:20px; display:inline-block; }
+
+#MoviePageSec .RightBoxWrap .SynopsisWrap .SynopsisDescriptionWrap { display:block; }
+#MoviePageSec .RightBoxWrap .SynopsisWrap .SynopsisDescriptionWrap .TableBox {}
+#MoviePageSec .RightBoxWrap .SynopsisWrap .SynopsisDescriptionWrap .TableBox .dl-horizontal { font-family:Arial, Helvetica, sans-serif; margin-top:20px; }
+#MoviePageSec .RightBoxWrap .SynopsisWrap .SynopsisDescriptionWrap .TableBox .dl-horizontal dt { text-align:left; }
+#MoviePageSec .RightBoxWrap .SynopsisWrap .SynopsisDescriptionWrap .TableBox .dl-horizontal dd { position: relative; padding-bottom: 4px;}
+#MoviePageSec .RightBoxWrap .SynopsisWrap .SynopsisDescriptionWrap .TableBox .dl-horizontal dd:before { content:":"; display:inline-block; font-weight:bold; position: absolute; left: -14px;}
+
+#MoviePageSec .RightBoxWrap .SynopsisWrap .SynopsisDescriptionWrap ul.Tab li { display:inline-block; padding:4px 6px 4px 0px; margin:0px; }
+#MoviePageSec .RightBoxWrap .SynopsisWrap .SynopsisDescriptionWrap ul.Tab li a { color:#7D7D7D; font-size:10px; font-family:'robotomedium'; padding:4px 6px; background:#fff; border:1px solid #000; }
+#MoviePageSec .RightBoxWrap .SynopsisWrap .SynopsisDescriptionWrap ul.Tab li a:hover { color:#000; }
+#MoviePageSec .RightBoxWrap .SynopsisWrap .SynopsisDescriptionWrap ul.Tab li.active a { color:#fff; background:#000; }
+#MoviePageSec .RightBoxWrap .SynopsisWrap .SynopsisDescriptionWrap ul.Tab li.active a:after { content:""; display:none; }
+
+#MoviePageSec .RightBoxWrap #showtime .ErrMsg { margin:0 auto; display:block; text-align:center; color:#FF0004;}
+
+#MoviePageSec .RightBoxWrap #showtime { margin-top:20px; }	
+#MoviePageSec .RightBoxWrap #showtime .form-control { border:none; border-radius:0px; padding: 7px 14px; height:44px; margin-bottom:8px; color:#FFF; background:#000 url(../images/movie_page/arrow-showtime-select.png) right center no-repeat;
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	appearance: none;
+}
+#MoviePageSec .RightBoxWrap #showtime .form-control:focus { border:none; -webkit-box-shadow:none; box-shadow:none;
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	appearance: none;
+}
+
+#MoviePageSec .RightBoxWrap #showtime h3 { color:#fda811; font-size:18px; text-transform:uppercase; }
+#MoviePageSec .RightBoxWrap #showtime .ShowMoviesTable { width:100%; margin-bottom:10px;}
+#MoviePageSec .RightBoxWrap #showtime .ShowMoviesTable .TimeSelect {display: inline-block; border: 1px solid #ccc; padding: 8px 10px; margin-bottom: 4px; min-width: 115px;    position: relative;}
+#MoviePageSec .RightBoxWrap #showtime .ShowMoviesTable .TimeSelect label {white-space:nowrap; margin-bottom: 0px;}
+
+#MoviePageSec .RightBoxWrap #showtime .ShowMoviesTable .TimeSelect label input[type="radio"] { position:inherit;}
+#MoviePageSec .RightBoxWrap #showtime .ShowMoviesTable .TimeSelect label input[type="radio"]::after {content:""; display: block; position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; border: 1px solid #ccc;}
+#MoviePageSec .RightBoxWrap #showtime .ShowMoviesTable .TimeSelect label input[type="radio"]:checked::after {border: 1px solid #fda811;}
+
+#MoviePageSec .RightBoxWrap #showtime .ShowMoviesTable .FlimType { margin-bottom:6px; display: block;}
+
+
+#MoviePageSec .RightBoxWrap #showtime .MovieTitle-wrap .AvailableTime { display:inline-block; margin-right:10px; }
+#MoviePageSec .RightBoxWrap #showtime .MovieTitle-wrap .AvailableTime input[type="radio"] { display:none; }
+#MoviePageSec .RightBoxWrap #showtime .MovieTitle-wrap .AvailableTime label { display:inline-block; padding:1px 5px; font-weight:normal; font-size:14px; }
+#MoviePageSec .RightBoxWrap #showtime .MovieTitle-wrap .AvailableTime input[type="radio"]:checked + label { color:#FFF; background:#000; }
+
+#MoviePageSec .RightBoxWrap #showtime .SelectedAndBuy { margin-top:20px; }
+#MoviePageSec .RightBoxWrap #showtime .SelectedAndBuy .SelectedAndBuyWrap { display:table; margin-bottom: 20px;}
+#MoviePageSec .RightBoxWrap #showtime .SelectedAndBuy .SelectedSummary { padding:15px; padding-bottom:5px; color:#FFF; background:#000; display:table-cell; width: 100%; }
+#MoviePageSec .RightBoxWrap #showtime .SelectedAndBuy .SelectedSummary h3 { padding:0; margin:0px; margin-bottom: 6px; }
+#MoviePageSec .RightBoxWrap #showtime .SelectedAndBuy .SelectedSummary .Details { display:block; color:#fff;}
+#MoviePageSec .RightBoxWrap #showtime .SelectedAndBuy .SelectedSummary .Details .DetailsLabel { float:left; display:block;}
+#MoviePageSec .RightBoxWrap #showtime .SelectedAndBuy .SelectedSummary .Details ul { padding:0px; margin:0px; list-style:none;}
+#MoviePageSec .RightBoxWrap #showtime .SelectedAndBuy .SelectedSummary .Details ul li { padding:0px; margin:0px; display:inline-block; vertical-align: middle;}
+#MoviePageSec .RightBoxWrap #showtime .SelectedAndBuy .ButtonWrap { padding:0px; background:#fda811; display:table-cell; vertical-align: middle;}
+#MoviePageSec .RightBoxWrap #showtime .SelectedAndBuy .ButtonWrap .BtnBuyTickets { margin:0px; padding:23px; font-size:18px; font-family:'robotomedium'; text-align:center; background:#FDA711; display:block; color:#fff; border:none; text-transform:uppercase; white-space: nowrap; }
+#MoviePageSec .RightBoxWrap #showtime .SelectedAndBuy .ButtonWrap .BtnBuyTickets:hover { color:#000; }
+#MoviePageSec .RightBoxWrap #showtime .SelectedAndBuy .ButtonWrap .BtnBuyTickets:active,
+#MoviePageSec .RightBoxWrap #showtime .SelectedAndBuy .ButtonWrap .BtnBuyTickets:focus { border:none; outline:none; }
+
+
+
+/* NEW SHOWTIME FILTER  - 26/05/2017 - ALFRED */
+#MoviePageSec .CBFilterWrap {margin: 20px auto;  display: table;}
+#MoviePageSec .CBFilterWrap input[type=button] {display:block; background:#fda811; text-align:center; padding:8px 30px; color:#fff; font-size:13px; font-family:'robotobold'; border:none; width: 190px; margin: 0 auto;}
+#MoviePageSec .CBFilterWrap .CBFilterTable { margin: 0 auto; margin-bottom: 8px;}
+#MoviePageSec .CBFilterWrap .CBFilterTable input {}
+#MoviePageSec .CBFilterWrap .CBFilterTable label { color: #000; padding: 0px 18px 0px 5px;}
+
+
+
+
+/*============================================================================================*/
+/* MEMBER REGISTRATION PAGE 	*/
+/*============================================================================================*/
+#MemberRegSec table { width:100%;} /* ADDED */
+#MemberRegSec h1 { position:relative; font-family:'robotobold'; font-weight:normal; font-size:42px; text-transform:uppercase; }
+#MemberRegSec img.forTooltip { display:inline-block; margin-left:10px; margin-bottom:25px; cursor:hand; cursor:pointer; }
+#MemberRegSec img.forTooltip + .tooltip > .tooltip-inner { text-transform: none; }
+#MemberRegSec .popover-content { font-size:12px; color:#000; font-family:'robotoregular'; text-transform:none;}
+#MemberRegSec .ErrorMsgWrap {display: block; padding-bottom: 10px;}
+#MemberRegSec .ErrorMsgWrap .ErrorMsg {}
+
+#MemberRegSec .SideNote { font-size:12px; padding-bottom: 6px;}
+#MemberRegSec .required::-webkit-input-placeholder:before { content: '* '; color:#F00; }
+#MemberRegSec .required:-moz-placeholder:before { content: '* '; color:#F00; }
+#MemberRegSec .required::-moz-placeholder:before { content: '* '; color:#F00; }
+#MemberRegSec .required:-ms-input-placeholder:before { content: '* '; color:#F00; }
+
+#MemberRegSec ::-webkit-input-placeholder:before { color:#999; }
+#MemberRegSec :-moz-placeholder:before { color:#999; }
+#MemberRegSec ::-moz-placeholder:before { color:#999; }
+#MemberRegSec :-ms-input-placeholder:before { color:#999; }
+
+#MemberRegSec .row { margin-bottom:15px; }
+#MemberRegSec .form-control { border:1px solid #000; border-radius:0px; padding:7px 14px; height:44px; margin-bottom:3px; }
+#MemberRegSec .form-control:focus { border-color:rgb(253, 167, 17); -webkit-box-shadow:none; box-shadow:none; }
+#MemberRegSec label { font-family:'robotoregular'; font-size:13px; font-weight:normal; }
+#MemberRegSec select { color:#999; }
+
+.RegisterSec { padding:45px 0; color:#000; }
+.RegisterSec h3 { font-family:'robotoregular'; font-size:36px; text-transform:uppercase; }
+.RegisterSec h2 { margin-bottom:50px; font-family:'robotobold'; font-size:80px; text-transform:uppercase; }
+.RegisterSec input[type=checkbox] { margin-right:7px;}
+
+
+#CreateProfileSec { padding:45px 0; background:#000; color:#FFF; }
+#CreateProfileSec h1 { margin-bottom: 30px; }
+#CreateProfileSec select.DOBddl { display:block; /*float:left; width:auto;*/ position:relative;}
+#CreateProfileSec .DOBddlRow {margin-right: -2px; margin-left: -2px;}
+#CreateProfileSec .DOBddlCol {padding-right: 2px; padding-left: 2px;}
+/*#CreateProfileSec .DOBddlCol + .DOBddlCol {padding-left: 10px;}*/
+#CreateProfileSec select#ddlDay { width:28%; }
+#CreateProfileSec select#ddlMonth { width:38%; margin-left:3%; }
+#CreateProfileSec select#ddlYear { width:28%; margin-left:3%; }
+#CreateProfileSec textarea.form-control { height:auto; color:#999; }
+
+#CreateProfileSec a:link { color:#fda811; text-decoration:none; }
+#CreateProfileSec a:link:hover { color:#fda811; text-decoration:underline; }
+
+#CreateProfileSec .textBox { color: #333; padding: 10px;width: 100%; margin-top: 10px;}
+
+#GSCMemberRewardsSec { padding:45px 0; background:#2a2a2a; color:#FFF; }
+#GSCMemberRewardsSec h2 { font-family:'robotobold'; font-size:26px; margin-bottom:4%; text-transform:uppercase; }
+#GSCMemberRewardsSec .FloatColSameHeight { margin-bottom:6%; }
+#GSCMemberRewardsSec .FloatColSameHeight .img-responsive { margin: 0 auto 20px auto; }
+#GSCMemberRewardsSec .FloatColSameHeight p { color:#AAA; font-size:14px; }
+
+#MemberRegSec .BtnUpdate-wrap { padding:50px 0; }
+#MemberRegSec input[type="submit"] { margin: 40px auto; display: block;  width:300px; padding:25px; font-size:35px; font-family:'robotobold'; text-align:center; background:#fda811; color:#fff; border:none; text-transform:uppercase; }
+#MemberRegSec input[type="submit"]:hover { background:#000; }
+
+
+
+
+/*============================================================================================*/
+/* PROFILE DETAILS PAGE 	*/
+/*============================================================================================*/
+.LoginRequired { text-align:center; color:#F80004; font-size: 36px;}
+
+#ProfileDetailsSec h1 { position:relative; font-family:'robotobold'; font-weight:normal; font-size:42px; text-transform:uppercase; }
+#ProfileDetailsSec img.forTooltip { display:inline-block; margin-left:10px; margin-bottom:25px; cursor:hand; cursor:pointer; }
+#ProfileDetailsSec img.forTooltip + .tooltip > .tooltip-inner { text-transform: none; }
+#ProfileDetailsSec .popover-content { font-size:12px; color:#000; font-family:'robotoregular'; text-transform:none;}
+#ProfileDetailsSec table { width:100%;} /* ADDED */
+
+
+#ProfileDetailsSec .SideNote { font-size:12px; padding-bottom:6px; padding-top:4px;}
+#ProfileDetailsSec .required::-webkit-input-placeholder:before { content: '* '; color:#F00; }
+#ProfileDetailsSec .required:-moz-placeholder:before { content: '* '; color:#F00; }
+#ProfileDetailsSec .required::-moz-placeholder:before { content: '* '; color:#F00; }
+#ProfileDetailsSec .required:-ms-input-placeholder:before { content: '* '; color:#F00; }
+
+#ProfileDetailsSec ::-webkit-input-placeholder:before { color:#999; }
+#ProfileDetailsSec :-moz-placeholder:before { color:#999; }
+#ProfileDetailsSec ::-moz-placeholder:before { color:#999; }
+#ProfileDetailsSec :-ms-input-placeholder:before { color:#999; }
+
+#ProfileDetailsSec .row { margin-bottom:15px; }
+#ProfileDetailsSec .form-control { border:1px solid #000; border-radius:0px; padding:7px 14px; height:44px; margin-bottom:3px; }
+#ProfileDetailsSec .form-control:focus { border-color:rgb(253, 167, 17); -webkit-box-shadow:none; box-shadow:none; }
+#ProfileDetailsSec label { font-family:'robotoregular'; font-size:13px; font-weight:normal; }
+#ProfileDetailsSec select { color:#999; }
+
+#ChangePasswordSec { padding:45px 0; background:#ffb42e; color:#000; }
+#ChangePasswordSec h1 { margin-bottom:3%; }
+#ChangePasswordSec h3 { font-family:'robotoregular'; font-size:36px; text-transform:uppercase; }
+#ChangePasswordSec h2 { font-family:'robotobold'; font-size:80px; text-transform:uppercase; }
+
+#ChangePasswordSec .ButtonWrap { margin-top:3%; text-align:right; }
+#ChangePasswordSec .ButtonWrap input[type="submit"] { margin:0px 0px 10px 0px; min-width:170px; padding:12px; font-size:14px; font-family:'robotomedium'; text-align:center; background:#000; display:inline-block; color:#fff; border:none; text-transform:uppercase; }
+#ChangePasswordSec .ButtonWrap input[type="submit"]:hover { color:#000; background:#FFF; }
+
+#LoginDetailsSec { padding:45px 0; background:#FFF; color:#000; }
+#LoginDetailsSec h1 { margin-bottom: 30px; }
+#LoginDetailsSec input[type=checkbox] { margin-right:7px;}
+
+
+#MemberProfileSec { padding:45px 0; background:#000; color:#FFF; }
+#MemberProfileSec h2 { font-family:'robotobold'; font-size:26px; margin-bottom:4%; text-transform:uppercase; }
+
+#MemberProfileSec .DOBddlRow {margin-right: -2px; margin-left: -2px;}
+#MemberProfileSec .DOBddlCol {padding-right: 2px; padding-left: 2px;}
+#MemberProfileSec select.DOBddl { display:block;/* float:left; width:auto; */}
+#MemberProfileSec select#ddlDay { width:28%; }
+#MemberProfileSec select#ddlMonth { width:38%; margin-left:3%; }
+#MemberProfileSec select#ddlYear { width:28%; margin-left:3%; }
+#MemberProfileSec textarea.form-control { height:auto; color:#999; }
+#MemberProfileSec input[type=checkbox] { margin-right:7px;}
+#MemberProfileSec a:link { color:#fda811; text-decoration:none; }
+#MemberProfileSec a:link:hover { color:#fda811; text-decoration:underline; }
+
+#ProfileDetailsSec .BtnUpdate-wrap { padding:50px 0; }
+#ProfileDetailsSec .BtnUpdate-wrap input[type="submit"] { width:300px; padding:25px; font-size:35px; font-family:'robotobold'; text-align:center; background:#fda811; color:#fff; border:none; text-transform:uppercase; }
+#ProfileDetailsSec .BtnUpdate-wrap input[type="submit"]:hover { background:#000; }
+
+#ProfileDetailsSec .AlertPanel {background: #FDA711; font-size: 18px; text-align: center; padding: 20px; display: block;}
+#ProfileDetailsSec .AlertPanel strong {font-size: 26px; font-weight: 100;}
+#ProfileDetailsSec .AlertPanel .BtnContinue {margin:16px auto 0px auto; padding: 8px 30px; text-align: center;  background: #000; display: block; color: #fff; border: none;}
+
+
+
+
+/*============================================================================================*/
+/* FORGOT PASSWORD PAGE 	*/
+/*============================================================================================*/
+#ForgotPassword { display: block; padding:50px 0px 80px 0px; min-height:350px;}
+#ForgotPassword .form-control { border:1px solid #000; border-radius:0px; padding:7px 14px; height:44px; margin-bottom:3px; }
+#ForgotPassword .form-control:focus { border-color:rgb(253, 167, 17); -webkit-box-shadow:none; box-shadow:none; }
+#ForgotPassword label { font-family:'robotoregular'; font-size:13px; font-weight:normal; }
+#ForgotPassword select { color:#999; }
+#ForgotPassword input[type="button"]{margin:10px 0px 0px 0px; padding:12px 30px; text-align: center;  background: #FDA711; display: block; color: #fff; border: none;}
+#ForgotPassword input[type="button"]:hover { background:#000; }
+
+
+
+/*============================================================================================*/
+/* CHECK BONUS PAGE 	*/
+/*============================================================================================*/
+#CheckBonusSec h2 { font-family:'robotobold'; font-size:42px; text-transform:uppercase; }
+#CheckBonusSec h3 { font-family:'robotoregular'; font-size:36px; text-transform:uppercase; margin-bottom: 30px;}
+
+#CheckBonusSec .FormStart { margin-top:5%; }
+#CheckBonusSec .SideNote { font-size:12px; }
+
+#CheckBonusSec ::-webkit-input-placeholder:before { color:#999; }
+#CheckBonusSec :-moz-placeholder:before { color:#999; }
+#CheckBonusSec ::-moz-placeholder:before { color:#999; }
+#CheckBonusSec :-ms-input-placeholder:before { color:#999; }
+
+#CheckBonusSec .row { margin-bottom:15px; }
+#CheckBonusSec .form-control { border:1px solid #000; border-radius:0px; padding:7px 14px; height:44px; margin-bottom:3px; }
+#CheckBonusSec .form-control:focus { border-color:rgb(253, 167, 17); -webkit-box-shadow:none; box-shadow:none; }
+
+#CheckBonusSec table thead {background-color: #666; color: #FFF;}
+
+#CheckGSCHongLeongCCSec { padding:45px 0; color:#000; }
+#CheckGSCHongLeongCCSec .ButtonWrap { margin-top:3%; text-align:right; }
+#CheckGSCHongLeongCCSec .ButtonWrap input[type="submit"] { margin:0px; width:170px; padding:12px; font-size:14px; font-family:'robotomedium'; text-align:center; background:#000; display:inline-block; color:#fff; border:none; text-transform:uppercase; }
+#CheckGSCHongLeongCCSec .ButtonWrap input[type="submit"]:hover { color:#000; background:#fda811; }
+
+#ExistingGSCMemberLoginSec { padding:45px 0; color:#000; background:#fda811; }
+#ExistingGSCMemberLoginSec .ButtonWrap { margin-top:3%; text-align:right; }
+#ExistingGSCMemberLoginSec .ButtonWrap input[type="submit"] { margin:0px; width:170px; padding:12px; font-size:14px; font-family:'robotomedium'; text-align:center; background:#FFF; display:inline-block; color:#000; border:none; text-transform:uppercase; }
+#ExistingGSCMemberLoginSec .ButtonWrap input[type="submit"]:hover { color:#FFF; background:#000; }
+
+
+
+
+
+/*============================================================================================*/
+/* SHOW TIMES PAGE 	*/
+/*============================================================================================*/
+body.ShowTimesBG { background: url(../images/showtimes/showtimes_bg.jpg) no-repeat top left #000 ; }
+#ShowTimes .NoticeWrap { text-align:center; display:block; margin: 60px 0px 80px 0px ;}
+#ShowTimes .NoticeWrap p { font-size:23px; color:#fff; font-family:'robotoregular';}
+#ShowTimes h1.PageTitle { /*font-size:45px;*/ font-size: calc(1.5em + 3.5vmin); color:#fff; font-family:'robotoregular'; text-align:center; margin-top: 70px; margin-bottom: 40px; }
+#ShowTimes .DatesWrap { padding-left:40px; padding-right:40px; margin-top: 50px; background:#0E0E0E; position:relative; z-index:0;}
+#ShowTimes .DatesWrap:after { content:""; width:100%; height:70px; background:#171717; display:block; position:absolute; z-index:-1; top:0px; left:0px;}
+#ShowTimes .DatesWrap .DateList { list-style:none; margin:0px; padding:0px;}
+#ShowTimes .DatesWrap .owl-wrapper-outer { height:100px; /*background:#0E0E0E;*/}
+#ShowTimes .DatesWrap .DateList .owl-prev,
+#ShowTimes .DatesWrap .DateList .owl-next { background:#353535; width:40px; margin-top:0px; height:70px; top:0px; margin:0px; }
+#ShowTimes .DatesWrap .DateList .owl-prev { left:-40px;}
+#ShowTimes .DatesWrap .DateList .owl-next { right:-40px;} 
+#ShowTimes .DatesWrap .DateList .owl-prev i,
+#ShowTimes .DatesWrap .DateList .owl-next i{ color:#848484; font-size:30px;}
+#ShowTimes .DatesWrap .DateList .item { height:70px; margin:0px; padding:0px; background:#fff; text-align:center;}
+#ShowTimes .DatesWrap .DateList .item a { display:block; background:#171717;padding-bottom: 12px;}
+#ShowTimes .DatesWrap .DateList .item a em { color:#7A7A7A; border-color:transparent;}
+#ShowTimes .DatesWrap .DateList .item em { font-style:normal; font-size:30px; color:#7A7A7A; display:block; line-height: 28px; padding-top:11px;font-family:'robotomedium'; border-top: 2px solid #FFB900;}
+#ShowTimes .DatesWrap .DateList .item em a { font-style:normal; font-size:30px; color:#7A7A7A; display:block; line-height: 28px; padding-top:0px;font-family:'robotomedium';}
+#ShowTimes .DatesWrap .DateList .item span { font-size:12px; color:#565656; display:block;}
+#ShowTimes .DatesWrap .DateList .item span:after { content:"\e252"; width:20px; height:20px; position:absolute; bottom:-10px; font-family:'Glyphicons Halflings'; color:#fff; font-size:20px; left:50%; margin-left:-10px; }
+#ShowTimes .DatesWrap .DateList .item a span:after { display:none;}
+#ShowTimes .DatesWrap .DateList .item span a { font-size:12px; color:#565656;}
+#ShowTimes .DatesWrap .DateList .item.Active { background:#fff; border-top:2px solid #FFB900;}
+#ShowTimes .DatesWrap .DateList .item.Active:after { content:"\e252"; width:20px; height:20px; position:absolute; bottom:-10px; font-family:'Glyphicons Halflings'; color:#fff; font-size:20px; left:50%; margin-left:-10px; }
+
+#ShowTimes .MovieNameGuideWrap { background:#0E0E0E; display:block; clear:both; padding: 0px 30px 10px 30px; }
+#ShowTimes .MovieNameGuideWrap:after{ content:""; clear:both; display:block;}
+#ShowTimes .MovieName {display:inline-block; float: left;}
+#ShowTimes .MovieName h2 { color:#8e8e8e; font-size:12px;font-family:'robotomedium'; padding:0px; margin:0px;}
+#ShowTimes .MovieGuideQL { display:inline-block; float:right; position: relative; bottom: 10px;}
+#ShowTimes .MovieGuideQL a { color:#fda811; font-size:12px; font-family:'robotomedium'; border-bottom:1px solid #fda811;}
+
+#ShowTimes .ListingWrap {background: #0E0E0E; padding-bottom: 20px; margin-bottom: 60px;}
+#ShowTimes .ListingWrap table { width:100%;}
+#ShowTimes .ListingWrap ul { list-style: none; padding:0px; margin: 0px;}
+#ShowTimes .ListingWrap ul .inner {padding: 0px 20px; /*overflow: hidden;*/ display: none; border:none;}
+#ShowTimes .ListingWrap ul .inner.show { /*display: block;*/}
+#ShowTimes .ListingWrap ul .inner .table>tbody>tr>td { border:none; padding:0px;}
+#ShowTimes .ListingWrap ul li { margin:0px; padding:0px; padding-bottom: 1px;}
+#ShowTimes .ListingWrap ul li a.CinemaTitle { background:#171717; font-size:20px; font-family:'robotobold';}
+#ShowTimes .ListingWrap ul li a.toggle { width: 100%; display: block; color: #fefefe; padding:8px 20px;}
+#ShowTimes .ListingWrap ul li a.toggle:hover { }
+#ShowTimes .ListingWrap ul li .TimeTableWrap { display:block; padding-left: 0px; margin-left: -15px; margin-right: -15px;}
+#ShowTimes .ListingWrap ul li .TimeTableWrap .Time { display: inline-block; min-width: 115px;}
+#ShowTimes .ListingWrap ul li .TimeTableWrap .Time label,
+#ShowTimes .ListingWrap ul li .TimeTableWrap .Time div span { font-size:14px; color:#fff; font-family:'robotoregular';}
+#ShowTimes .ListingWrap ul li .TimeTableWrap .Time > div { border: 1px solid #353535; padding: 8px 10px;}
+#ShowTimes .ListingWrap ul li .TimeTableWrap .Time > div > label input[type="radio"] { position:inherit;}
+#ShowTimes .ListingWrap ul li .TimeTableWrap .Time > div > label input[type="radio"]::after {content:""; display: block; position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; border: 1px solid #353535;}
+#ShowTimes .ListingWrap ul li .TimeTableWrap .Time > div > label input[type="radio"]:checked::after {border: 1px solid #fda811;}
+
+#ShowTimes .ListingWrap ul li ul li {/*border-bottom:1px solid #1C1C1C;*/ }
+#ShowTimes .ListingWrap ul li ul li .inner { padding:0px 30px; margin-bottom: 8px;}
+#ShowTimes .ListingWrap ul li .BuyTicketsWrap { float:right; display:block; }
+#ShowTimes .ListingWrap ul li .BuyTicketsWrap input.btn-input{display:block; background:#fda811; text-align:center; padding:8px 30px; color:#fff; font-size:13px;font-family:'robotobold';    border: none;}
+#ShowTimes .ListingWrap ul li .BuyTicketsWrap input.btn-input:hover { color:#000;}
+#ShowTimes .ListingWrap ul li .BuyTicketsWrap .ErrMsg { color:#FF0004; padding-top: 6px; font-size: 12px; display: block;}
+#ShowTimes .ListingWrap ul li ul li .MovieTitle,
+#ShowTimes .ListingWrap ul li ul li .MovieTitle span:first-child { color:#F8AC18;font-size:18px; padding: 10px 0px; font-family:'robotobold'; cursor:hand; cursor:pointer; }
+#ShowTimes .ListingWrap ul li ul li .MovieTitle span { color:#595959; font-size:13px; padding-left:2px; font-family:'robotomedium';}
+#ShowTimes .ListingWrap ul li ul li .MovieTitle span.showtimeasterisk {color: #F8AC18; font-size: 20px;}
+
+#ShowTimes .NotesWrap { background:#171717; margin-bottom: 30px;}
+#ShowTimes .NotesWrap ul {margin: 0px; padding:30px 58px;}
+#ShowTimes .NotesWrap ul li { font-size:12px; color:#fff; padding: 3px 0px;}
+
+/* NEW SHOWTIME FILTER  - 09/05/2017 - ALFRED */
+#ShowTimes .CBFilterWrap {margin: 20px auto; display: table;}
+#ShowTimes .CBFilterWrap input[type=button] {display: block; background: #fda811; text-align: center; padding: 8px 30px; color: #fff; font-size: 13px; font-family: 'robotobold'; border: none; width: 190px; margin: 0 auto;}
+#ShowTimes .CBFilterWrap .CBFilterTable { margin: 0 auto; margin-bottom: 8px;}
+#ShowTimes .CBFilterWrap .CBFilterTable input {}
+#ShowTimes .CBFilterWrap .CBFilterTable label { color: #fda811; padding: 0px 18px 0px 5px;}
+
+
+
+
+
+
+/*============================================================================================*/
+/* LOCATION PAGE 	*/
+/*============================================================================================*/
+a[href^="http://maps.google.com/maps"],
+a[href^="https://maps.google.com/maps"]{display:none !important}
+
+#Location .MapHolder { position:relative;}
+#Location .MapHolder .GoogleMapCanvas {width: 100%; height:642px; margin:0px auto;}
+#Location .MapHolder .LocationListWrap { background:#000; position:absolute; width: 300px; height:642px; top: 0px; margin-left:100px; overflow:hidden;}
+#Location .MapHolder .LocationListWrap .boxscroll_Location { height:550px;}
+#Location .MapHolder .LocationListWrap .RadPanelBar .rpRootGroup { border:none;}
+#Location .MapHolder .LocationListWrap .InnerTitle { font-size:25px; color:#fff; font-family:'robotobold'; padding: 8px 30px; padding-top: 30px;}
+#Location .MapHolder .LocationListWrap ul.rpRootGroup { padding:10px 22px;}
+#Location .MapHolder .LocationListWrap ul.rpRootGroup .rpOut {border-color:transparent;}
+#Location .MapHolder .LocationListWrap ul.rpRootGroup .rpOut .rpText { padding:0px !important;}
+#Location .MapHolder .LocationListWrap ul.rpRootGroup li.rpItem a.rpLink .rpOut .rpExpandHandle { margin:0px;}
+#Location .MapHolder .LocationListWrap ul.rpRootGroup li.rpItem a.rpLink .rpOut .rpExpandHandle:after { content:"\e252"; font-family:'Glyphicons Halflings'; color:#484848; font-size:12px;}
+#Location .MapHolder .LocationListWrap ul.rpRootGroup li a.rpLink { border-color:transparent; padding: 10px 10px; background:#101010;}
+#Location .MapHolder .LocationListWrap ul.rpRootGroup li a.rpLink:hover { background:#333;}
+#Location .MapHolder .LocationListWrap ul.rpRootGroup li a { color:#fff; font-size:14px;font-family:'robotomedium';}
+#Location .MapHolder .LocationListWrap ul.rpRootGroup li ul li .rpExpandHandle:after { display:none;}
+#Location .MapHolder .LocationListWrap ul.rpRootGroup li ul li a.rpLink { background-color:transparent!important; color:#8e8e8e; font-size:12px; padding-top:8px; padding-bottom:8px;}
+#Location .MapHolder .LocationListWrap ul.rpRootGroup li ul li a.rpLink:hover { color:#fff;} 
+.LocationPage .nicescroll-rails.nicescroll-rails-vr { background-color:transparent !important;}
+.LocationPage .nicescroll-cursors { border-radius:0px!important; background-color:#666 !important;}
+
+#Location .LocationDetailsWrap {padding: 40px 0px 60px 0px ;}
+#Location .LocationDetailsWrap .Label { display:block; clear:both; color:#8e8e8e; font-size:12px;}
+#Location .LocationDetailsWrap ul.TabLink { list-style:none; padding:0px; margin:0px;}
+#Location .LocationDetailsWrap ul.TabLink li {padding:0px; padding-right:30px; margin:0px; display:inline-block;}
+#Location .LocationDetailsWrap ul.TabLink li:last-child { padding-right:0px;}
+#Location .LocationDetailsWrap ul.TabLink li a {padding:0px; margin:0px; color:#7b7b7b; font-size:14px; font-family:'robotomedium'; border-bottom:2px solid hsla(0,0%,0%,0.00);}
+#Location .LocationDetailsWrap ul.TabLink li.Active a {padding:0px; margin:0px; color:#000; border-bottom:2px solid #fda811;}
+#Location .LocationDetailsWrap .CinemaTitle { display:block; clear:both;}
+#Location .LocationDetailsWrap .CinemaTitle h1 { padding:20px 0px; margin:0px; color:#000; /*font-size:42px;*/ font-size: calc(1.6em + 2.1vmin); font-family:'robotobold';}
+#Location .LocationDetailsWrap .ViewOptions {display:block; clear:both;}
+#Location .LocationDetailsWrap .ViewOptions span { display:block; clear:both; color:#575757; font-size:12px;}
+#Location .LocationDetailsWrap .ViewOptions span a { color:#fda811; padding:0px 3px;}
+#Location .LocationDetailsWrap .ViewOptions span em { font-style:normal;}
+#Location .LocationDetailsWrap .RTB_LocationDetails { display:block; padding:40px 0px 20px 0px ;}
+#Location .LocationDetailsWrap .RTB_LocationDetails .Label { display:block; clear:both;}
+#Location .LocationDetailsWrap .RTB_LocationDetails .LabelBlock {display:block; clear:both; color:#000; font-size:30px; font-family:'robotomedium'; padding-bottom: 10px;}
+
+#Location .LocationDetailsWrap .RTB_LocationDetails .SpeacialFeatures {padding-top: 36px;}
+#Location .LocationDetailsWrap .RTB_LocationDetails .SpeacialFeatures .Label { padding-bottom:20px;}
+#Location .LocationDetailsWrap .RTB_LocationDetails .SpeacialFeatures ul.IconList {list-style:none; padding:0px; margin:0px; display:table; position:relative;}
+#Location .LocationDetailsWrap .RTB_LocationDetails .SpeacialFeatures ul.IconList li { display: table-cell; /*border-right:1px solid #cdcdcd;*/}
+#Location .LocationDetailsWrap .RTB_LocationDetails .SpeacialFeatures ul.IconList li.Separator { padding:0px 20px;}
+#Location .LocationDetailsWrap .RTB_LocationDetails .SpeacialFeatures ul.IconList li.Separator:after {content:""; display:block; height:100%; position:absolute; border-right:1px solid #cdcdcd;}
+#Location .LocationDetailsWrap .RTB_LocationDetails .SpeacialFeatures ul.List {padding:30px 0px 30px 30px ; margin:0px;}
+#Location .LocationDetailsWrap .RTB_LocationDetails .SpeacialFeatures ul.List li {padding:0px; margin:0px; font-size:14px; font-family:'robotoregular';}
+
+#LocationGallery { padding-top:20px; margin-right: -30px; margin-left: -10px;}
+#LocationGallery .owl-controls { padding-top:20px;}
+#Location .LocationDetailsWrap .GalleryWrap {}
+#Location .LocationDetailsWrap .GalleryWrap .owl-item { padding:0px 0px 0px 10px} 
+/*#LocationGallery .owl-item + .owl-item {margin-left: 10px;}*/
+
+.LocationPage .fancybox-prev span, 
+.LocationPage .fancybox-next span { background-position:0px!important; }
+.LocationPage .fancybox-prev span {  background-image: url(/assets/images/fancybox/btnPrevious.png); left: 10px; }
+.LocationPage .fancybox-next span {  background-image: url(/assets/images/fancybox/btnNext.png); right: 10px; }
+.LocationPage .fancybox-nav span { width: 49px; height:49px; }
+.LocationPage .fancybox-close { background-image: url(/assets/images/fancybox/close.png); top: -49px; right:0px; width: 49px; height: 49px;}
+
+
+#ePayment { min-height:550px; padding: 40px 0px;}
+#ePayment h3 { font-family:'robotoregular'; font-size:36px; text-transform:uppercase; }
+#ePayment h2 { margin-bottom:50px; font-family:'robotobold'; font-size:60px; text-transform:uppercase; }
+
+
+/*============================================================================================*/
+/* FAQ PAGE 	*/
+/*============================================================================================*/
+
+#FAQSec .RadPanelBar_Default  { padding-top:0px;}
+/*#FAQSec .RadPanelBar_Default  * { padding:0; margin:0; background:none; border:none; }*/
+#FAQSec .RadPanelBar_Default ul.rpRootGroup { border:none;}
+#FAQSec .RadPanelBar_Default > .rpRootGroup > .rpItem > a.rpLink {font-family:'robotobold'; font-size:35px; padding: 14px 0px; line-height: 28px; background: none; border:none;}
+#FAQSec .RadPanelBar_Default > .rpRootGroup > .rpItem > a:hover.rpLink { color:#FDA711;}
+#FAQSec .RadPanelBar_Default .rpText { padding:0px;}
+#FAQSec .RadPanelBar_Default .rpGroup a.rpLink:hover, 
+#FAQSec .RadPanelBar_Default ul.rpGroup .rpFocused,
+#FAQSec .RadPanelBar_Default .rpGroup a.rpLink, 
+#FAQSec .RadPanelBar_Default .rpGroup a.rpLink .rpOut {background: none; text-decoration: none;}
+#FAQSec .RadPanelBar_Default .rpFocused .rpOut, 
+#FAQSec .RadPanelBar_Default a.rpLink:hover .rpOut, 
+#FAQSec .RadPanelBar_Default .rpSelected .rpOut, 
+#FAQSec .RadPanelBar_Default a.rpSelected:hover .rpOut{ border:none; padding-bottom:0px; background: none;} 
+#FAQSec .RadPanelBar_Default > .rpRootGroup > .rpItem > .rpSlide { padding-left:45px; background:#fff; }
+#FAQSec .RadPanelBar_Default > .rpRootGroup > .rpItem > .rpSlide > .rpGroup { margin:6px 0px;}
+#FAQSec .RadPanelBar_Default > .rpRootGroup > .rpItem > .rpSlide > .rpGroup > .rpItem.rpLast { padding-bottom:12px;} 
+#FAQSec .RadPanelBar_Default > .rpRootGroup > .rpItem > .rpSlide > .rpGroup > .rpItem > a.rpLink { font-size:16px; font-family:'robotomedium'; color:#fda811; padding: 6px 0px;background: none;}
+#FAQSec .RadPanelBar_Default > .rpRootGroup > .rpItem > .rpSlide > .rpGroup > .rpItem > .rpSlide > .rpGroup > .rpItem > a.rpLink > .rpOut { padding:0px;}
+#FAQSec .RadPanelBar_Default > .rpRootGroup > .rpItem > .rpSlide > .rpGroup > .rpItem > .rpSlide > .rpGroup > .rpItem > a.rpLink > .rpOut > .rpText{ font-family:'robotomedium'; font-size:16px; color:#000; padding:2px 0px;}
+
+/* YY */
+#FAQSec { padding: 4% 0; min-height:550px; }
+#FAQSec h1 { margin-bottom: 30px; text-transform:uppercase; }
+#RadPanelBarFAQ { margin-top:3%; }
+/*#RadPanelBarFAQ * { padding:0; margin:0; background:none; border:none; }*/
+#RadPanelBarFAQ .rpText { padding:0; }
+#RadPanelBarFAQ > .rpRootGroup > .rpItem > .rpSlide { padding-left:45px; }
+#RadPanelBarFAQ a.rpLink, div.rpHeaderTemplate, .RadPanelBar_Default .rpTemplate { color:#000; font-family:'robotobold'; font-size:35px; line-height:normal; }
+#RadPanelBarFAQ .Tier2 { margin-bottom:5px; }
+#RadPanelBarFAQ .Tier2 .rpText { color:#fda811; font-family:'robotoregular'; font-size:16px; font-weight:normal; }
+#RadPanelBarFAQ ul.rpLevel1 { padding-bottom:15px; }
+#RadPanelBarFAQ ul.rpLevel2 .rpTemplate { margin-bottom:5px; color:#000;  font-family:'robotoregular'; font-size:16px; }
+#RadPanelBarFAQ ul.rpLevel2 .rpTemplate p { margin-bottom:15px; }
+
+
+#FAQSec .RadPanelBar_Default .rpOut { border:none;}
+#FAQSec .RadPanelBar_Default .rpOut .rpExpandHandle { background:none;}
+
+
+/*============================================================================================*/
+/* MOVIE GUIDE PAGE 	*/
+/*============================================================================================*/
+
+#MovieGuideSec .RadPanelBar_Default  { padding-top:20px;}
+#MovieGuideSec .RadPanelBar_Default  * { padding:0; margin:0; background:none; border:none; }
+#MovieGuideSec .RadPanelBar_Default ul.rpRootGroup { border:none;}
+#MovieGuideSec .RadPanelBar_Default > .rpRootGroup > .rpItem > a.rpLink {font-family:'robotobold'; font-size:35px; padding: 14px 0px; line-height: 28px;}
+#MovieGuideSec .RadPanelBar_Default > .rpRootGroup > .rpItem > .rpSlide { /*padding-left:45px;*/ background:#fff !important; }
+#MovieGuideSec .RadPanelBar_Default > .rpRootGroup > .rpItem > .rpSlide > .rpGroup { margin:6px 0px;}
+#MovieGuideSec .RadPanelBar_Default > .rpRootGroup > .rpItem > .rpSlide > .rpGroup > .rpItem.rpLast { padding-bottom:12px;} 
+#MovieGuideSec .RadPanelBar_Default > .rpRootGroup > .rpItem > .rpSlide > .rpGroup > .rpItem > a.rpLink { font-size:16px; font-family:'robotomedium'; color:#fda811; padding: 6px 0px;}
+#MovieGuideSec .RadPanelBar_Default > .rpRootGroup > .rpItem > .rpSlide > .rpGroup > .rpItem > .rpSlide > .rpGroup > .rpItem > a.rpLink > .rpOut { padding:0px;}
+#MovieGuideSec .RadPanelBar_Default > .rpRootGroup > .rpItem > .rpSlide > .rpGroup > .rpItem > .rpSlide > .rpGroup > .rpItem > a.rpLink > .rpOut > .rpText{ font-family:'robotomedium'; font-size:16px; color:#000; padding:2px 0px;}
+
+/* YY 	*/
+#MovieGuideSec { padding: 4% 0; min-height:550px; }
+#MovieGuideSec h1 { text-transform:uppercase; }
+#RadPanelBarMovieGuide { margin-top:3%; }
+#RadPanelBarMovieGuide * { padding:0; margin:0; background:none; border:none; }
+#RadPanelBarMovieGuide .rpText { padding:0; }
+#RadPanelBarMovieGuide > .rpRootGroup > .rpItem > .rpSlide { padding-left:30px; }
+#RadPanelBarMovieGuide a.rpLink, div.rpHeaderTemplate, .RadPanelBar_Default .rpTemplate { color:#000; font-family:'robotobold'; font-size:35px; line-height:normal; }
+#RadPanelBarMovieGuide ul.rpLevel1 .rpTemplate { padding:30px 0 15px 0; color:#666; font-family:'robotoregular'; font-size:16px; line-height:24px; }
+#RadPanelBarMovieGuide ul.rpLevel1 .rpTemplate p { margin-bottom:15px; }
+
+
+/* RTB USED */
+.RTB_Content a { color:#fda811; text-decoration:none; }
+.RTB_Content a:hover { color:#fda811; text-decoration:underline; }
+.RTB_Content table thead {background-color: #fda811; color: #fff;}
+.RTB_Content .RTB_btn_wrap { margin-bottom:5%; }
+.RTB_Content a.RTB_btn { display:inline-block; padding:3px 10px; margin-right:10px; color:#FFF; background:#000; text-align:center; text-transform:uppercase; }
+.RTB_Content a.RTB_btn:hover { color:#fda811; text-decoration:none; }
+.RTB_Content .boxscroll { width:100%; padding-right:10px; max-height:490px; overflow:auto; }
+.RTB_Content small { font-size:10px; }
+
+
+
+
+/*============================================================================================*/
+/* TICKET PRICING PAGE 	- YY */
+/*============================================================================================*/
+#TicketPricingSec { padding: 4% 0; min-height:550px; }
+#TicketPricingSec h1 {margin-bottom: 30px; text-transform:uppercase; }
+#TicketPricingSec h2 { margin:25px 0 30px 0; color:#000; font-family:'robotobold'; font-size:42px; font-weight:bold; text-transform:uppercase; }
+#TicketPricingSec .LinksWrap { margin:0; padding:0; list-style-type:none; }
+#TicketPricingSec .LinksWrap li { display:inline-block; margin-right:30px; font-family: 'robotomedium'; font-size:14px; text-transform:uppercase; }
+#TicketPricingSec .LinksWrap li a { color:#7b7b7b; }
+#TicketPricingSec .LinksWrap li a:hover { color:#FDA711; }
+#TicketPricingSec .LinksWrap li.active {  border-bottom:3px solid #FDA711; }
+#TicketPricingSec .LinksWrap li.active a { color:#000; }
+
+#TicketPricingSec select#mainDDL { margin:25px 0 30px 0; width:220px; color:#1a1a1a; background-color:#ececec; }
+
+#TicketPricingSec .table-responsive .NoDisplay { display:none; }
+#TicketPricingSec .table-responsive * { border-color:#bababa }
+#TicketPricingSec .table-responsive td, #TicketPricingSec .table-responsive th { font-family:'robotomedium'; font-weight:normal; text-align:center; vertical-align:middle; }
+#TicketPricingSec .table-responsive .TicketPricingHeader td { color:#000; font-family:'robotomedium'; font-size:11px; text-align:center; vertical-align:middle; background:#e2e2e2; }
+#TicketPricingSec .table-responsive .TicketPricingHeader td h2 { margin:0; font-family:'robotobold'; font-size:14px; }
+#TicketPricingSec .table-responsive .TicketPricingHeader td p { margin:0; }
+#TicketPricingSec .table-responsive .TicketPricingHeader td .GreyText { color:#777; font-family:'robotoregular'; }
+#TicketPricingSec .table-responsive .TicketPricingHeader td div { padding:8px 0; border-bottom:1px solid #bababa; }
+#TicketPricingSec .table-responsive .TicketPricingHeader td div:last-child { padding-bottom:0; border-bottom:none; }
+#TicketPricingSec .table-responsive .LabelRow { color:#FFF; font-family:'robotobold'; font-size:14px; background:#000; text-transform:uppercase; }
+#TicketPricingSec .table-responsive .LabelTown { font-size:16px; color:#FFF; background:#666; text-transform:uppercase; }
+
+#TicketPricingSec .OtherDetails { font-size:12px; }
+#TicketPricingSec .OtherDetails li { margin-bottom:6px; }
+
+
+
+
+/*============================================================================================*/
+/* ANNOUNCEMENTS PAGE 	*/
+/*============================================================================================*/
+#AnnouncementsSec { padding: 4% 0; min-height:550px; }
+#AnnouncementsSec h1 { margin-bottom: 30px; text-transform:uppercase; }
+#AnnouncementsSec h2 { margin:0 0 3% 0; font-family:'robotobold'; font-size:42px; text-transform:uppercase; }
+#AnnouncementsSec .row { margin-bottom:5%; }
+#AnnouncementsSec .DateText { margin-bottom:3px; color:#8e8e8e; font-family:'robotomedium'; font-size:12px; text-transform:uppercase; }
+#AnnouncementsSec p { margin:0 0 3% 0; font-family:'robotoregular'; font-size:24px; line-height:1.5em; }
+#AnnouncementsSec a { color:#fda811; font-size:12px; }
+#AnnouncementsSec a:hover { color:#000; }
+#AnnouncementDetailsSec { padding: 4% 0; min-height:550px; }
+#AnnouncementDetailsSec h2 { margin:0 0 3% 0; font-family:'robotobold'; font-size:80px; text-transform:uppercase; }
+#AnnouncementDetailsSec .DateText { margin-bottom:3px; color:#8e8e8e; font-family:'robotomedium'; font-size:12px; text-transform:uppercase; }
+#AnnouncementDetailsSec p,
+#AnnouncementDetailsSec ul { margin:0 0 3% 0; }
+#AnnouncementDetailsSec { font-family:'robotoregular'; font-size:24px; line-height:36px; }
+#AnnouncementDetailsSec a { color:#fda811; }
+#AnnouncementDetailsSec a:hover { color:#000; }
+
+
+
+/*============================================================================================*/
+/* MODAL LOGIN & TOP10 LOGIN & MODAL ANNOUNCEMENT	*/
+/*============================================================================================*/
+
+#ModalLogin {}
+#ModalLogin .modal-content,
+#ModalLoginTop10 .modal-content {background: #FDA711; padding: 30px; display: block;}
+#ModalLogin .modal-content .ModalLoginWrap h2,
+#ModalLoginTop10 .modal-content .ModalLoginWrap h2 {margin-top: 10px;}
+
+#ModalLogin .modal-content .ModalLoginWrap .form-control,
+#ModalLoginTop10 .modal-content .ModalLoginWrap .form-control {border-radius: 0px; border: none; font-family: 'robotoregular'; font-size: 12px;}
+
+#ModalLogin .modal-content .ModalLoginWrap .LoginPanel .ForgotPass ,
+#ModalLoginTop10 .modal-content .ModalLoginWrap .LoginPanel .ForgotPass { color: #000;}
+
+#ModalLogin .modal-content .ModalLoginWrap .LoginPanel input[type="submit"],
+#ModalLoginTop10 .modal-content .ModalLoginWrap .LoginPanel input[type="submit"] { padding:12px; font-size:14px; font-family:'robotomedium'; text-align:center; background:#000; display:inline-block; color:#fff; border:none; text-transform:uppercase; border-radius: 0px; min-width: 230px;}
+
+#ModalLogin .modal-content .ModalLoginWrap .LoginPanel input[type="submit"]:hover,
+#ModalLoginTop10 .modal-content .ModalLoginWrap .LoginPanel input[type="submit"]:hover { color:#000; background:#FFF; }
+
+#ModalLogin .modal-content .ModalLoginWrap .CloseBtn,
+#ModalLoginTop10 .modal-content .ModalLoginWrap .CloseBtn {display: block;font-size: 30px; padding: 10px;position: absolute; right: 0px; top: 0px; cursor: hand; cursor: pointer; color: #000; z-index: 1050;}
+
+#ModalAnnouncement .ModalAnnouncementWrap {}
+#ModalAnnouncement .ModalAnnouncementWrap .Description {padding: 20px;}
+#ModalAnnouncement .ModalAnnouncementWrap .CloseBtn {float: right; display: block;font-size: 30px; padding: 10px;cursor: hand; cursor: pointer; color: #000;}
+
+
+
+
+
+/*============================================================================================*/
+/* INBOX PAGE 	*/
+/*============================================================================================*/
+
+body.InBoxPG { background: url(/assets/images/inbox/showtimes_bg.jpg) no-repeat top left #000; }
+
+.InBoxPG h1.PageTitle {font-size: calc(1.5em + 3.5vmin);  color: #fff;  font-family: 'robotoregular';   text-align: center;   margin-top: 70px;   margin-bottom: 40px;}
+.InBoxPG .InboxBox { display: block; background: #FDA711; padding: 20px;  padding-bottom: 50px; margin-top: 70px; }
+.InBoxPG .InboxBox ul { margin: 0px; padding: 0px; }
+.InBoxPG .InboxBox ul li { list-style: none; color: #000; font-size: 16px; padding: 10px; border-bottom: 1px solid #fdbb40;}
+.InBoxPG .InboxBox ul li a {  color: #000; text-decoration: none; }
+.InBoxPG .InboxBox ul li a.active {  font-weight: bold; color: #fff; }
+.InBoxPG .InboxBox ul li a:hover {  color: #fff; }
+.InBoxPG .InboxBox .red_badge { background-color: #ff0000; padding-bottom: 5px; }
+.grey_badge { background-color: #777777; padding-bottom: 5px; }
+
+.InBoxPG h3 {font-size: 28px; color: #fff; font-family: 'robotobold'; }
+
+.InBoxPG .InboxItemWrap ul.tablestyle {margin: 0px; padding: 0px;margin-top: 20px; margin-bottom: 80px}  
+.InBoxPG .InboxItemWrap ul.tablestyle li { list-style: none; border-bottom: 1px solid #a9a9a9; background: #171717;}
+.InBoxPG .InboxItemWrap ul.tablestyle li.active { background: #444;}
+.InBoxPG .InboxItemWrap ul.tablestyle li.active a .Item .ItemContent .Wrap .TitleBox h4,
+.InBoxPG .InboxItemWrap ul.tablestyle li.active a .Item .ItemContent .Wrap .TitleBox span {  color: #fff; }
+
+.InBoxPG .InboxItemWrap ul.tablestyle li a  { display: block; color: #fff; }
+.InBoxPG .InboxItemWrap ul.tablestyle li a:hover  { text-decoration: none; }
+.InBoxPG .InboxItemWrap ul.tablestyle li:hover  { background: #353535; }
+.InBoxPG .InboxItemWrap ul.tablestyle li a .Item { display:table; margin: 0px; padding: 18px 13px; min-height: 65px; width: 100%;   }
+
+.InBoxPG .InboxItemWrap ul.tablestyle li a .Item .ItemContent { display: table-cell; margin: 0px; padding: 0px; width: 100%; vertical-align: middle; }
+.InBoxPG .InboxItemWrap ul.tablestyle li a .Item .ItemContent .Wrap { display: table; margin: 0px; padding: 0px; width: 100%; vertical-align: middle; }
+.InBoxPG .InboxItemWrap ul.tablestyle li a .Item .ItemContent .Wrap .ImgBox { display: table-cell; margin: 0px; padding: 0px; width: 35%; background-size: cover; background-position: center;  }
+
+.InBoxPG .InboxItemWrap ul.tablestyle li a .Item .ItemContent .Wrap .TitleBox { display: table-cell; margin: 0px; padding: 0px 20px; width: 100%; vertical-align: middle;}
+.InBoxPG .InboxItemWrap ul.tablestyle li a .Item .ItemContent .Wrap .TitleBox h4 { margin-top: 0px; font-size: 16px; margin-bottom: 0px; color: #FDA711; font-family: 'robotobold'; line-height: 1.5;  }
+.InBoxPG .InboxItemWrap ul.tablestyle li a .Item .ItemContent .Wrap .TitleBox span { font-size: 14px; color: #8e8e8e; font-family: 'robotomedium'; }
+
+.InBoxPG .InboxItemWrap ul.tablestyle li:last-child {border-bottom: none;}
+
+
+/*  INBOX DETAIL PAGE 	*/
+.InBoxPG .InboxContent { margin: 20px 0px 100px 0px; background: #171717; color: #fff;}
+.InBoxPG .InboxContent .MastheadImg { display: block; border: 1px solid #171717; }
+.InBoxPG .InboxContent .TextWrap  { display: table;  padding: 30px 40px; padding-bottom: 0px; }
+.InBoxPG .InboxContent .TextWrap .Title { display: table-cell; width: 90%; vertical-align: top;  }
+.InBoxPG .InboxContent .TextWrap .Title h4 { color: #F8AC18; font-size: 20px; font-family: 'robotobold'; margin-top: 0px; }
+.InBoxPG .InboxContent .TextWrap .Title span { color: #8e8e8e;  font-size: 14px;  font-family: 'robotomedium';}
+.InBoxPG .InboxContent .TextWrap .Button { display: table-cell; width: 10%; vertical-align: top; padding-left: 20px; }
+
+.InBoxPG .InboxContent .BuyBtn { margin: 0px;  padding: 12px;  text-align: center;  background: #FDA711;  width: 170px;  display: block;  color: #fff; margin-top: 30px; }
+.InBoxPG .InboxContent .BuyBtn:hover { color: #000; text-decoration: none;  }
+.InBoxPG .InboxContent .RTB_Content { padding: 40px; padding-bottom: 50px; font-size:14px;  }
+.InBoxPG .InboxContent .RTB_Content ol,
+.InBoxPG .InboxContent .RTB_Content ul { margin: 0px; padding: 0px; margin-bottom: 20px; margin-left: 20px; }
+
+
+
+
+
+
+
+/*============================================================================================*/
+/* MEMBERSHIP PAGE 	*/
+/*============================================================================================*/
+#MemberShipSec { padding-bottom:60px; padding: 4% 0; padding-top: 0px;}
+
+#MemberShipSec .Masthead { background: #000; /*padding:4% 0px 6% 0px; */  position: relative; }
+#MemberShipSec .Masthead h1 {font-size: 32px; display: block; line-height: 51px; color: #fff;}
+#MemberShipSec .Masthead h1 strong { font-weight: 400;font-size: 46px; display: block;}
+#MemberShipSec .Masthead a {margin:0px; padding:12px; text-align:center; background:#000; display:table; color:#fff; width: 170px;}
+#MemberShipSec .Masthead a:hover { color:#ccc; } 
+
+#MemberShipSec .Masthead .Content { position: absolute; top: 50%; margin-top: 60px;}
+#MemberShipSec .MastheadBG { position: relative;  background-size: cover;  background-position: center;}
+
+
+
+#MemberShipSec h2 { margin-bottom:30px; text-transform:uppercase; font-size: 30px;}
+#MemberShipSec p.SecDesc { margin-bottom: 20px; font-size: 18px;}
+
+#MemberShipSec .ExclusiveContest {margin-bottom: 50px;}
+#MemberShipSec .ExclusiveContest a { display:block; width:100%; overflow:hidden; color:#7a7a7a; position:relative; padding-bottom:20px; }
+#MemberShipSec .ExclusiveContest a img { display:block; width:100%; margin-bottom:3%;}
+#MemberShipSec .ExclusiveContest a h3 { font-family: 'robotomedium'; color:#000; padding:0; margin:0 0 2% 0; font-size:22px; text-transform:uppercase; }
+#MemberShipSec .ExclusiveContest a:hover h3 { color:#fda811;}
+#MemberShipSec .ExclusiveContest a .textWrap { padding-right:7%; }
+#MemberShipSec .ExclusiveContest a:hover .textWrap:last-child {background:url(../images/cinema_experience/hover-btmRigh-arrow.png) right bottom no-repeat;}
+
+
+#MemberShipSec .PastMemberEvents {margin-bottom: 30px;}
+#MemberShipSec .PastMemberEvents .Item a { display: block; overflow: hidden; margin-bottom: 20px;}
+#MemberShipSec .PastMemberEvents .Item img { display:block; width:100%; margin-bottom:3%;}
+#MemberShipSec .PastMemberEvents .Item a h3 { font-family: 'robotomedium'; color:#000; padding:0; margin:0 0 2% 0; font-size:22px; text-transform:uppercase; }
+#MemberShipSec .PastMemberEvents .Item a:hover h3 { color:#fda811;}
+#MemberShipSec .PastMemberEvents .Item a p { font-size: 16px; margin-bottom:16px; color: #7a7a7a;}
+#MemberShipSec .PastMemberEvents .Item a:hover p:last-child {background:url(../images/cinema_experience/hover-btmRigh-arrow.png) right bottom no-repeat;}
+
+
+
+#MemberShipSec .MembershipRewards { margin-bottom: 30px;}
+#MemberShipSec .MembershipRewards .Item { text-align: center; display: block; margin-bottom: 50px;}
+#MemberShipSec .MembershipRewards .Item img { margin: 0 auto;  margin-bottom: 20px; display: block; max-width: 100%; height: auto;}
+#MemberShipSec .MembershipRewards .Item h3 { font-family: 'robotomedium'; color:#000; padding:0; margin:0 0 2% 0; font-size:22px; text-transform:uppercase; }
+#MemberShipSec .MembershipRewards .Item p { font-size: 18px; margin-bottom:16px;}
+#MemberShipSec .MembershipRewards .Item a {margin:0 auto; padding:12px; text-align:center; background:#FDA711; width:170px; display:block; color:#fff;}
+#MemberShipSec .MembershipRewards .Item a:hover { color:#000; }  
+
+
+
+
+
+
+
+

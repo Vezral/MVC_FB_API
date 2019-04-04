@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using TEST_FB_API.Helper;
 using TEST_FB_API.Models.Charts;
 using TEST_FB_API.Models.FacebookData;
+using TEST_FB_API.Models.HeatMap;
 
 namespace TEST_FB_API.Controllers
 {
@@ -15,26 +16,26 @@ namespace TEST_FB_API.Controllers
     {
         private const string APP_ID = "485102995357580";
         private const string APP_SECRET = "28e8e11afc6c7bca1419b9b3a0b57fd2";
+        private static List<DataPoint> DATAPOINT_LIST = new List<DataPoint>();
 
         public ActionResult Index()
         {
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult HeatmapPage()
         {
-            ViewBag.Message = "Your application description page.";
+            return View();
+        }
+
+        public ActionResult InputPage()
+        {
+            DATAPOINT_LIST = new List<DataPoint>();
 
             return View();
         }
 
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
-
+        #region FB Stuff
         [HttpPost]
         public ActionResult GetChartData()
         {
@@ -244,6 +245,43 @@ namespace TEST_FB_API.Controllers
 
             public string ErrorMsg { get; set; }
         }
-        
+        #endregion
+
+        #region HeatMap Stuff
+        [HttpPost]
+        public ActionResult RetrieveDataPointList()
+        {
+            HeatMapReturnObj jsonReturn = new HeatMapReturnObj();
+            jsonReturn.IsSuccess = false;
+            jsonReturn.DataPointListJSON = JsonConvert.SerializeObject(DATAPOINT_LIST);
+            jsonReturn.IsSuccess = true;
+
+            return Json(jsonReturn, "application/json");
+        }
+
+        [HttpPost]
+        public ActionResult UpdateDataPointList(DataPoint dataPoint)
+        {
+            HeatMapReturnObj jsonReturn = new HeatMapReturnObj();
+            jsonReturn.IsSuccess = false;
+
+            if (dataPoint != null)
+            {
+                DATAPOINT_LIST.Add(dataPoint);
+                jsonReturn.IsSuccess = true;
+            }
+
+            return Json(jsonReturn, "application/json");
+        }
+
+        private class HeatMapReturnObj
+        {
+            public string DataPointListJSON { get; set; }
+
+            public bool IsSuccess { get; set; }
+
+            public string ErrorMsg { get; set; }
+        }
+        #endregion
     }
 }
