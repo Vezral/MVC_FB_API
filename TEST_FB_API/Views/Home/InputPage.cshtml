@@ -760,6 +760,8 @@
         };
 
         $(document).ready(function () {
+            $('img').on('dragstart', function (e) { e.preventDefault(); });
+
             $(document.body).on('click', function (e) {
                 var sendData = {
                     "x": e.pageX,
