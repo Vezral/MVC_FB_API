@@ -1,0 +1,49 @@
+//
+// Bootstrap Telerik Menu Patch -  v1.2
+// Date 		: 20/04/2015
+// Latest Date 	: 14/10/2015
+// Creator 		: Jerry / Alfred
+// Remarks 		: 
+//
+
+
+	/**/ 
+	$(document).ready(function () {
+
+        $('ul.rmRootGroup.rmHorizontal').removeClass();
+        $('li > div.rmSlide').parent().removeClass().addClass("dropdown-submenu");
+        $('div.rmSlide > ul.rmVertical.rmGroup').removeClass().addClass("dropdown-menu");
+        $('li > div.rmSlide').removeClass().addClass("handsome");
+        $('a.rmLink').removeClass().addClass("swt"); //Disable this for Telerik .rmFocused to worked!
+        $('div.RadMenu.RadMenu_Default').removeClass().addClass("pro");
+        $('li.rmItem').removeClass().addClass("pro3");
+
+        $('div.pro').removeClass().addClass("navbar-collapse").addClass("collapse");
+        $("div.navbar-collapse > ul").addClass("MainNav nav");
+        $("div.navbar-collapse > ul").addClass("navbar-nav");
+        $("div.navbar-collapse > ul.navbar-nav > li").removeClass().addClass("dropdown");
+        //$("li.dropdown > a").removeClass().addClass("dropdown-toggle").attr('data-toggle', 'dropdown').append('<b class="caret"></b>');
+        $("li.dropdown > a[href='#']").removeClass().addClass("dropdown-toggle").attr('data-toggle', 'dropdown').append('<b class="caret"></b>');
+        $("li.dropdown > a[href='javascript:void(0);']").removeClass().addClass("dropdown-toggle").attr('data-toggle', 'dropdown').append('<b class="caret"></b>');
+		//$("li.dropdown > a[href='#']").removeClass().addClass("dropdown-toggle").attr('data-toggle', 'dropdown').append('<b class="caret"></b>');
+        //$("li.dropdown > a[href='javascript:void(0);']").removeClass().addClass("dropdown-toggle").attr('data-toggle', 'dropdown').append('<b class="caret"></b>');
+		
+		$('.dropdown-submenu > a').click(function() { return false; }); // Alfred 
+		
+        //$("a.swt,li.dropdown-submenu").unbind();
+        $("a.swt").bind("click", function (event) {
+			
+            //event.preventDefault();
+			event.stopPropagation(); // Alfred 
+			$(this).parent().siblings().removeClass('open'); // Alfred 
+			$(this).parent().toggleClass('open'); // Alfred 
+			
+        });
+		
+		// THIS FINDS LEVEL 2 DROPDOWN AND COLLAPSE 
+		$(this).find('li.dropdown-submenu > a').attr('data-toggle', 'dropdown');
+
+
+    });
+	
+	

@@ -1,0 +1,2375 @@
+﻿@{
+    Layout = "";
+}
+
+<style>
+    html, body {
+        margin: 0;
+        height: 100%;
+    }
+</style>
+
+@*<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+    <h2>InputPage</h2>
+
+    <script>
+        $(document).ready(function () {
+            $(document.body).on('click', function (e) {
+                var sendData = {
+                    "x": e.pageX,
+                    "y": e.pageY,
+                    "value": 1
+                }
+
+                $.ajax({
+                    method: 'POST',
+                    data: sendData,
+                    dataType: 'json',
+                    url: '@Url.Action("UpdateDataPointList", "Home")'
+                });
+            });
+        });
+    </script>
+</body>
+</html>*@
+
+<!DOCTYPE html>
+<!-- saved from url=(0060)https://www.gsc.com.my/html/movieNowShowing.aspx?ID=9&PID=49 -->
+<html lang="en" class="">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="smartbanner:title" content="Golden Screen Cinemas Mobile App">
+    <meta name="smartbanner:author" content=" ">
+    <meta name="smartbanner:price" content=" ">
+    <meta name="smartbanner:price-suffix-apple" content="Download from the App Store">
+    <meta name="smartbanner:price-suffix-google" content="Download from the Google Play">
+    <meta name="smartbanner:icon-apple" content="https://cdn4.gsc.com.my/WebLITE/Applications/WCM/uploaded/pics/Mobile_Banner/gsc_app_logo.jpg">
+    <meta name="smartbanner:icon-google" content="https://cdn4.gsc.com.my/WebLITE/Applications/WCM/uploaded/pics/Mobile_Banner/gsc_app_logo.jpg">
+    <meta name="smartbanner:button" content="Download">
+    <meta name="smartbanner:button-url-apple" content="https://itunes.apple.com/my/app/golden-screen-cinemas/id413024972?mt=8">
+    <meta name="smartbanner:button-url-google" content="https://play.google.com/store/apps/details?id=com.gscandroid.yk&amp;hl=en">
+    <meta name="smartbanner:enabled-platforms" content="android,ios">
+    <!--<meta name="smartbanner:hide-ttl" content="2629746000">-->
+    <!--<meta name="smartbanner:hide-path" content="/">-->
+    <!--<meta name="smartbanner:disable-positioning" content="true">-->
+    <!-- Enable for all platforms -->
+    <!--<meta name="smartbanner:include-user-agent-regex" content=".*">-->
+    <!--<meta name="smartbanner:custom-design-modifier" content="ios">-->
+
+    <meta name="KEYWORDS" content="">
+    <meta name="DESCRIPTION" content="Want to know what movies are playing near you? Find out more on the now showing movies in all Golden Screen Cinemas locations.">
+    <meta property="og:type" content="product.group">
+    <meta property="og:title" content="Now Showing">
+    <meta property="og:url" content="http://www.gsc.com.my/html/movieNowShowing.aspx?ID=9&amp;PID=49">
+    <meta property="og:description" content="Want to know what movies are playing near you? Find out more on the now showing movies in all Golden Screen Cinemas locations.">
+    <meta property="og:image" content="https://cdn4.gsc.com.my/WebLITE/Applications/WCM/uploaded/pics/Generic_Image.jpg">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="Golden Screen Cinemas">
+    <meta name="twitter:title" content="Now Showing">
+    <meta name="twitter:description" content="Want to know what movies are playing near you? Find out more on the now showing movies in all Golden Screen Cinemas locations.">
+    <meta name="twitter:image" content="https://cdn4.gsc.com.my/WebLITE/Applications/WCM/uploaded/pics/Generic_Image.jpg">
+
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="https://www.gsc.com.my/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="https://www.gsc.com.my/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/Content/GSC_Template/Complete_files/smartbanner.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script async="" src="/Content/GSC_Template/Complete_files/async-ads.js.download"></script>
+    <script async="" src="/Content/GSC_Template/Complete_files/async-ads.js.download"></script>
+    <script src="/Content/GSC_Template/Complete_files/f.txt"></script>
+    <script src="/Content/GSC_Template/Complete_files/pubads_impl_rendering_2019032901.js.download"></script>
+    <script async="" src="/Content/GSC_Template/Complete_files/analytics.js.download"></script>
+    <script type="text/javascript" async="" src="/Content/GSC_Template/Complete_files/f(1).txt"></script>
+    <script async="" type="text/javascript" src="/Content/GSC_Template/Complete_files/gpt.js.download"></script>
+    <script src="/Content/GSC_Template/Complete_files/340820586666847" async=""></script>
+    <script async="" src="/Content/GSC_Template/Complete_files/fbevents.js.download"></script>
+    <script async="" src="/Content/GSC_Template/Complete_files/gtm.js.download"></script>
+    <script src="/Content/GSC_Template/Complete_files/smartbanner.min.js.download"></script>
+    <script>
+        var onLoadHandlerCount = function () {
+            if ($('div.js_smartbanner').length > 0) {
+                $('body').addClass('SmartBannerMobile');
+            }
+
+            $('.smartbanner__exit.js_smartbanner__exit').on('click', function () {
+                $('body').removeClass('SmartBannerMobile');
+            });
+
+            $('.smartbanner__button').on('click', function () {
+
+                var strLinks = $(this).attr('href');
+                if (strLinks.indexOf('itunes.apple.com/my/app/golden-screen-cinemas') >= 0) {
+                    inputClickBannerAjax('iOS');
+                }
+
+                if (strLinks.indexOf('play.google.com/store/apps') >= 0) {
+                    inputClickBannerAjax('Android');
+                }
+            });
+        };
+        function inputClickBannerAjax(inputType) {
+            $.ajax({
+                type: "POST",
+                url: "/WebService/AddFileClick.asmx/CreateFile",
+                data: "{ InputType : '" + inputType + "' }",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                },
+                failure: function (response) {
+                }
+            });
+        }
+        window.onload = onLoadHandlerCount;
+
+    </script>
+    <title>Golden Screen Cinemas :: Movies - Now Showing</title>
+    <!-- Bootstrap core CSS -->
+    <link href="/Content/GSC_Template/Complete_files/bootstrap.min.css" rel="stylesheet">
+    <link href="/Content/GSC_Template/Complete_files/bootstrap_telerik_patch.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="/Content/GSC_Template/Complete_files/mainstyle_v16.css" rel="stylesheet">
+    <link href="/Content/GSC_Template/Complete_files/custom_responsive_v10.css" rel="stylesheet">
+    <link href="/Content/GSC_Template/Complete_files/animate.css" rel="stylesheet">
+    <link href="/Content/GSC_Template/Complete_files/fonts.css" rel="stylesheet" charset="utf-8">
+    <link href="/Content/GSC_Template/Complete_files/font-awesome.min.css" rel="stylesheet" charset="utf-8">
+    <link href="/Content/GSC_Template/Complete_files/lity.css" rel="stylesheet" charset="utf-8">
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="/Content/GSC_Template/Complete_files/ie10-viewport-bug-workaround.js.download"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script src="/Content/GSC_Template/Complete_files/jquery.min.js.download"></script>
+    <script src="/Content/GSC_Template/Complete_files/jquery.easing.min.js.download" type="text/javascript"></script>
+    <script src="/Content/GSC_Template/Complete_files/jquery-ui.js.download"></script>
+    <script src="/Content/GSC_Template/Complete_files/bootstrap.min.js.download"></script>
+    <script src="/Content/GSC_Template/Complete_files/bootstrap_telerik_patch.js.download"></script>
+
+    <!-- Google Tag Manager -->
+    <script>
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-TVZDQ3X');</script>
+    <!-- End Google Tag Manager -->
+
+    <link rel="stylesheet" href="/Content/GSC_Template/Complete_files/jquery.fancybox.css" type="text/css" media="screen" charset="utf-8">
+    <script src="/Content/GSC_Template/Complete_files/jquery.fancybox.js.download" type="text/javascript" charset="utf-8"></script>
+
+    <!-- Facebook Pixel Code -->
+    <script>
+        !function (f, b, e, v, n, t, s) {
+            if (f.fbq) return; n = f.fbq = function () {
+                n.callMethod ?
+                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            };
+            if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+            n.queue = []; t = b.createElement(e); t.async = !0;
+            t.src = v; s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s)
+        }(window, document, 'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '340820586666847');
+        fbq('track', 'PageView');
+    </script>
+    <noscript>
+        <img height="1" width="1"
+             src="https://www.facebook.com/tr?id=340820586666847&ev=PageView
+&noscript=1" />
+    </noscript>
+    <!-- End Facebook Pixel Code -->
+
+    <style type="text/css">
+        .NoMore {
+            display: none;
+        }
+    </style>
+    <link rel="preload" href="/Content/GSC_Template/Complete_files/f(2).txt" as="script">
+    <script type="text/javascript" src="/Content/GSC_Template/Complete_files/f(2).txt"></script>
+    <script src="/Content/GSC_Template/Complete_files/pubads_impl_2019032901.js.download" async=""></script>
+    <link rel="prefetch" href="https://tpc.googlesyndication.com/safeframe/1-0-32/html/container.html">
+    <script src="/Content/GSC_Template/Complete_files/cse_element__en.js.download" type="text/javascript"></script>
+    <link type="text/css" rel="stylesheet" href="/Content/GSC_Template/Complete_files/default+en.css">
+    <link type="text/css" rel="stylesheet" href="/Content/GSC_Template/Complete_files/default.css">
+    <style type="text/css">
+        .fancybox-margin {
+            margin-right: 17px;
+        }
+    </style>
+    <style type="text/css">
+        .gsc-control-cse {
+            font-family: arial, sans-serif
+        }
+
+            .gsc-control-cse .gsc-table-result {
+                font-family: arial, sans-serif
+            }
+    </style>
+    <style type="text/css">
+        .gscb_a {
+            display: inline-block;
+            font: 27px/13px arial,sans-serif
+        }
+
+        .gsst_a .gscb_a {
+            color: #a1b9ed;
+            cursor: pointer
+        }
+
+        .gsst_a:hover .gscb_a, .gsst_a:focus .gscb_a {
+            color: #36c
+        }
+
+        .gsst_a {
+            display: inline-block
+        }
+
+        .gsst_a {
+            cursor: pointer;
+            padding: 0 4px
+        }
+
+            .gsst_a:hover {
+                text-decoration: none !important
+            }
+
+        .gsst_b {
+            font-size: 16px;
+            padding: 0 2px;
+            position: relative;
+            user-select: none;
+            -webkit-user-select: none;
+            white-space: nowrap
+        }
+
+        .gsst_e {
+            vertical-align: middle;
+            opacity: 0.55;
+        }
+
+        .gsst_a:hover .gsst_e, .gsst_a:focus .gsst_e {
+            opacity: 0.72;
+        }
+
+        .gsst_a:active .gsst_e {
+            opacity: 1;
+        }
+
+        .gsst_f {
+            background: white;
+            text-align: left
+        }
+
+        .gsst_g {
+            background-color: white;
+            border: 1px solid #ccc;
+            border-top-color: #d9d9d9;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            -webkit-box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            margin: -1px -3px;
+            padding: 0 6px
+        }
+
+        .gsst_h {
+            background-color: white;
+            height: 1px;
+            margin-bottom: -1px;
+            position: relative;
+            top: -1px
+        }
+
+        .gsib_a {
+            width: 100%;
+            padding: 4px 6px 0
+        }
+
+        .gsib_a, .gsib_b {
+            vertical-align: top
+        }
+
+        .gssb_c {
+            border: 0;
+            position: absolute;
+            z-index: 989
+        }
+
+        .gssb_e {
+            border: 1px solid #ccc;
+            border-top-color: #d9d9d9;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            -webkit-box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            cursor: default
+        }
+
+        .gssb_f {
+            visibility: hidden;
+            white-space: nowrap
+        }
+
+        .gssb_k {
+            border: 0;
+            display: block;
+            position: absolute;
+            top: 0;
+            z-index: 988
+        }
+
+        .gsdd_a {
+            border: none !important
+        }
+
+        .gsq_a {
+            padding: 0
+        }
+
+        .gssb_a {
+            padding: 0 7px
+        }
+
+            .gssb_a, .gssb_a td {
+                white-space: nowrap;
+                overflow: hidden;
+                line-height: 22px
+            }
+
+        #gssb_b {
+            font-size: 11px;
+            color: #36c;
+            text-decoration: none
+        }
+
+            #gssb_b:hover {
+                font-size: 11px;
+                color: #36c;
+                text-decoration: underline
+            }
+
+        .gssb_g {
+            text-align: center;
+            padding: 8px 0 7px;
+            position: relative
+        }
+
+        .gssb_h {
+            font-size: 15px;
+            height: 28px;
+            margin: 0.2em;
+            -webkit-appearance: button
+        }
+
+        .gssb_i {
+            background: #eee
+        }
+
+        .gss_ifl {
+            visibility: hidden;
+            padding-left: 5px
+        }
+
+        .gssb_i .gss_ifl {
+            visibility: visible
+        }
+
+        a.gssb_j {
+            font-size: 13px;
+            color: #36c;
+            text-decoration: none;
+            line-height: 100%
+        }
+
+            a.gssb_j:hover {
+                text-decoration: underline
+            }
+
+        .gssb_l {
+            height: 1px;
+            background-color: #e5e5e5
+        }
+
+        .gssb_m {
+            color: #000;
+            background: #fff
+        }
+
+        .gssb_a {
+            padding: 0 9px
+        }
+
+        .gsib_a {
+            padding-right: 8px;
+            padding-left: 8px
+        }
+
+        .gsst_a {
+            padding-top: 5.5px
+        }
+
+        .gssb_e {
+            border: 0
+        }
+
+        .gssb_l {
+            margin: 5px 0
+        }
+
+        input.gsc-input::-webkit-input-placeholder {
+            font-size: 14px
+        }
+
+        input.gsc-input:-moz-placeholder {
+            font-size: 14px
+        }
+
+        input.gsc-input::-moz-placeholder {
+            font-size: 14px
+        }
+
+        input.gsc-input:-ms-input-placeholder {
+            font-size: 14px
+        }
+
+        input.gsc-input:focus::-webkit-input-placeholder {
+            color: transparent
+        }
+
+        input.gsc-input:focus:-moz-placeholder {
+            color: transparent
+        }
+
+        input.gsc-input:focus::-moz-placeholder {
+            color: transparent
+        }
+
+        input.gsc-input:focus:-ms-input-placeholder {
+            color: transparent
+        }
+
+        .gssb_c .gsc-completion-container {
+            position: static
+        }
+
+        .gssb_c {
+            z-index: 5000
+        }
+
+        .gsc-completion-container table {
+            background: transparent;
+            font-size: inherit;
+            font-family: inherit
+        }
+
+        .gssb_c > tbody > tr, .gssb_c > tbody > tr > td, .gssb_d, .gssb_d > tbody > tr, .gssb_d > tbody > tr > td, .gssb_e, .gssb_e > tbody > tr, .gssb_e > tbody > tr > td {
+            padding: 0;
+            margin: 0;
+            border: 0
+        }
+
+        .gssb_a table, .gssb_a table tr, .gssb_a table tr td {
+            padding: 0;
+            margin: 0;
+            border: 0
+        }
+    </style>
+    <style type="text/css">
+        .gscb_a {
+            display: inline-block;
+            font: 27px/13px arial,sans-serif
+        }
+
+        .gsst_a .gscb_a {
+            color: #a1b9ed;
+            cursor: pointer
+        }
+
+        .gsst_a:hover .gscb_a, .gsst_a:focus .gscb_a {
+            color: #36c
+        }
+
+        .gsst_a {
+            display: inline-block
+        }
+
+        .gsst_a {
+            cursor: pointer;
+            padding: 0 4px
+        }
+
+            .gsst_a:hover {
+                text-decoration: none !important
+            }
+
+        .gsst_b {
+            font-size: 16px;
+            padding: 0 2px;
+            position: relative;
+            user-select: none;
+            -webkit-user-select: none;
+            white-space: nowrap
+        }
+
+        .gsst_e {
+            vertical-align: middle;
+            opacity: 0.55;
+        }
+
+        .gsst_a:hover .gsst_e, .gsst_a:focus .gsst_e {
+            opacity: 0.72;
+        }
+
+        .gsst_a:active .gsst_e {
+            opacity: 1;
+        }
+
+        .gsst_f {
+            background: white;
+            text-align: left
+        }
+
+        .gsst_g {
+            background-color: white;
+            border: 1px solid #ccc;
+            border-top-color: #d9d9d9;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            -webkit-box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            margin: -1px -3px;
+            padding: 0 6px
+        }
+
+        .gsst_h {
+            background-color: white;
+            height: 1px;
+            margin-bottom: -1px;
+            position: relative;
+            top: -1px
+        }
+
+        .gsib_a {
+            width: 100%;
+            padding: 4px 6px 0
+        }
+
+        .gsib_a, .gsib_b {
+            vertical-align: top
+        }
+
+        .gssb_c {
+            border: 0;
+            position: absolute;
+            z-index: 989
+        }
+
+        .gssb_e {
+            border: 1px solid #ccc;
+            border-top-color: #d9d9d9;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            -webkit-box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            cursor: default
+        }
+
+        .gssb_f {
+            visibility: hidden;
+            white-space: nowrap
+        }
+
+        .gssb_k {
+            border: 0;
+            display: block;
+            position: absolute;
+            top: 0;
+            z-index: 988
+        }
+
+        .gsdd_a {
+            border: none !important
+        }
+
+        .gsq_a {
+            padding: 0
+        }
+
+        .gssb_a {
+            padding: 0 7px
+        }
+
+            .gssb_a, .gssb_a td {
+                white-space: nowrap;
+                overflow: hidden;
+                line-height: 22px
+            }
+
+        #gssb_b {
+            font-size: 11px;
+            color: #36c;
+            text-decoration: none
+        }
+
+            #gssb_b:hover {
+                font-size: 11px;
+                color: #36c;
+                text-decoration: underline
+            }
+
+        .gssb_g {
+            text-align: center;
+            padding: 8px 0 7px;
+            position: relative
+        }
+
+        .gssb_h {
+            font-size: 15px;
+            height: 28px;
+            margin: 0.2em;
+            -webkit-appearance: button
+        }
+
+        .gssb_i {
+            background: #eee
+        }
+
+        .gss_ifl {
+            visibility: hidden;
+            padding-left: 5px
+        }
+
+        .gssb_i .gss_ifl {
+            visibility: visible
+        }
+
+        a.gssb_j {
+            font-size: 13px;
+            color: #36c;
+            text-decoration: none;
+            line-height: 100%
+        }
+
+            a.gssb_j:hover {
+                text-decoration: underline
+            }
+
+        .gssb_l {
+            height: 1px;
+            background-color: #e5e5e5
+        }
+
+        .gssb_m {
+            color: #000;
+            background: #fff
+        }
+
+        .gssb_a {
+            padding: 0 9px
+        }
+
+        .gsib_a {
+            padding-right: 8px;
+            padding-left: 8px
+        }
+
+        .gsst_a {
+            padding-top: 5.5px
+        }
+
+        .gssb_e {
+            border: 0
+        }
+
+        .gssb_l {
+            margin: 5px 0
+        }
+
+        input.gsc-input::-webkit-input-placeholder {
+            font-size: 14px
+        }
+
+        input.gsc-input:-moz-placeholder {
+            font-size: 14px
+        }
+
+        input.gsc-input::-moz-placeholder {
+            font-size: 14px
+        }
+
+        input.gsc-input:-ms-input-placeholder {
+            font-size: 14px
+        }
+
+        input.gsc-input:focus::-webkit-input-placeholder {
+            color: transparent
+        }
+
+        input.gsc-input:focus:-moz-placeholder {
+            color: transparent
+        }
+
+        input.gsc-input:focus::-moz-placeholder {
+            color: transparent
+        }
+
+        input.gsc-input:focus:-ms-input-placeholder {
+            color: transparent
+        }
+
+        .gssb_c .gsc-completion-container {
+            position: static
+        }
+
+        .gssb_c {
+            z-index: 5000
+        }
+
+        .gsc-completion-container table {
+            background: transparent;
+            font-size: inherit;
+            font-family: inherit
+        }
+
+        .gssb_c > tbody > tr, .gssb_c > tbody > tr > td, .gssb_d, .gssb_d > tbody > tr, .gssb_d > tbody > tr > td, .gssb_e, .gssb_e > tbody > tr, .gssb_e > tbody > tr > td {
+            padding: 0;
+            margin: 0;
+            border: 0
+        }
+
+        .gssb_a table, .gssb_a table tr, .gssb_a table tr td {
+            padding: 0;
+            margin: 0;
+            border: 0
+        }
+    </style>
+</head>
+<body class="breakpoint-1185" cz-shortcut-listen="true">
+    @* Disable all links *@
+    <script>
+        window.onload = function () {
+            var anchors = document.getElementsByTagName("a");
+            for (var i = 0; i < anchors.length; i++) {
+                anchors[i].onclick = function (e) {
+                    return false;
+                };
+            }
+        };
+
+        $(document).ready(function () {
+            $(document.body).on('click', function (e) {
+                var sendData = {
+                    "x": e.pageX,
+                    "y": e.pageY,
+                    "value": 1
+                }
+
+                console.log(sendData);
+
+                $.ajax({
+                    method: 'POST',
+                    data: sendData,
+                    dataType: 'json',
+                    url: '@Url.Action("UpdateDataPointList", "Home")'
+                });
+            });
+        });
+    </script>
+
+    <div class="AjaxLoaderWrap hide"><div class="Loading"><img src="/Content/GSC_Template/Complete_files/loader.gif"></div></div>
+    <form name="fm" method="post" action="https://www.gsc.com.my/html/movieNowShowing.aspx?ID=9&amp;PID=49" onsubmit="javascript:return WebForm_OnSubmit();" id="fm">
+        <div>
+            <input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="">
+            <input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="">
+            <input type="hidden" name="__LASTFOCUS" id="__LASTFOCUS" value="">
+            <input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwULLTE3MDg5MTU2ODkPZBYCAgIPFgIeBmFjdGlvbgUmL2h0bWwvbW92aWVOb3dTaG93aW5nLmFzcHg/SUQ9OSZQSUQ9NDkWEgIDD2QWAgIDD2QWAgICD2QWAmYPFCsAAhQrAAIPFgoeEURhdGFGaWVsZFBhcmVudElEBQ9QUk9EVUNUUEFSRU5USUQeC18hRGF0YUJvdW5kZx4XRW5hYmxlQWpheFNraW5SZW5kZXJpbmdoHgtEYXRhRmllbGRJRAUJUFJPRFVDVElEHg1EYXRhVGV4dEZpZWxkBQhQUk9ETkFNRWQQFghmAgECAgIDAgQCBQIGAgcWCBQrAAIPFgYeBFRleHQFBk1vdmllcx4GVGFyZ2V0BQVfc2VsZh4LTmF2aWdhdGVVcmwFE2phdmFzY3JpcHQ6dm9pZCgwKTtkEBYGZgIBAgICAwIEAgUWBhQrAAIPFgYfBgULTm93IFNob3dpbmcfBwUFX3NlbGYfCAUmL2h0bWwvbW92aWVOb3dTaG93aW5nLmFzcHg/SUQ9OSZQSUQ9NDlkZBQrAAIPFgYfBgULTmV4dCBDaGFuZ2UfBwUFX3NlbGYfCAUnL2h0bWwvbW92aWVOZXh0Q2hhbmdlLmFzcHg/SUQ9OSZQSUQ9MTQ1ZGQUKwACDxYGHwYFC0NvbWluZyBTb29uHwcFBV9zZWxmHwgFJi9odG1sL21vdmllQ29taW5nU29vbi5hc3B4P0lEPTkmUElEPTUwZGQUKwACDxYGHwYFFUludGVybmF0aW9uYWwgU2NyZWVucx8HBQVfc2VsZh8IBSMvaHRtbC9JbnRTY3JlZW5fTlMuYXNweD9JRD05JlBJRD01NGRkFCsAAg8WBh8GBRlGcmVuY2ggRmlsbSBGZXN0aXZhbCAyMDE5HwcFBV9zZWxmHwgFNi9odG1sL0ZpbG1GZXN0aXZhbF9BZGhvYy5hc3B4P0lEPTkmUElEPTQ1NTQmQ2F0SUQ9NDU0OWRkFCsAAg8WBh8GBQ9Nb3ZpZXMgQXJjaGl2ZXMfBwUFX3NlbGYfCAUqL2h0bWwvbW92aWVBcmNoaXZlLmFzcHg/SUQ9OSZQSUQ9NTMmWWVhcj0xZGQPFgZmZmZmZmYWAQVzVGVsZXJpay5XZWIuVUkuUmFkTWVudUl0ZW0sIFRlbGVyaWsuV2ViLlVJLCBWZXJzaW9uPTIwMTMuMS40MDMuMzUsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49MTIxZmFlNzgxNjViYTNkNBQrAAIPFgYfBgUVVGlja2V0aW5nICYgU2hvd3RpbWVzHwcFBV9zZWxmHwgFE2phdmFzY3JpcHQ6dm9pZCgwKTtkEBYEZgIBAgICAxYEFCsAAg8WBh8GBQlTaG93dGltZXMfBwUFX3NlbGYfCAUoL2h0bWwvdGlja2V0X3Nob3d0aW1lcy5hc3B4P0lEPTM4JlBJRD01N2RkFCsAAg8WBh8GBQlUaWNrZXRpbmcfBwUFX3NlbGYfCAUTamF2YXNjcmlwdDp2b2lkKDApO2QQFgJmAgEWAhQrAAIPFgYfBgUTRS1QYXltZW50IFRpY2tldGluZx8HBQVfc2VsZh8IBScvaHRtbC9lcGF5bWVudC5hc3B4P0lEMT0zOCZJRD01OCZQSUQ9NjVkZBQrAAIPFgYfBgURU2VsZlByaW50IFRpY2tldHMfBwUFX3NlbGYfCAUmL2h0bWwvZGVmYXVsdC5hc3B4P0lEMT0zOCZJRD01OCZQSUQ9NjdkZA8WAmZmFgEFc1RlbGVyaWsuV2ViLlVJLlJhZE1lbnVJdGVtLCBUZWxlcmlrLldlYi5VSSwgVmVyc2lvbj0yMDEzLjEuNDAzLjM1LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPTEyMWZhZTc4MTY1YmEzZDQUKwACDxYGHwYFD1RpY2tldGluZyBHdWlkZR8HBQVfc2VsZh8IBRNqYXZhc2NyaXB0OnZvaWQoMCk7ZBAWAmYCARYCFCsAAg8WBh8GBRRIb3cgdG8gVXNlIEUtUGF5bWVudB8HBQVfc2VsZh8IBR8vaHRtbC9kZWZhdWx0LmFzcHg/SUQ9NjAmUElEPTY4ZGQUKwACDxYGHwYFDkdTQyBNT0JJTEUgQVBQHwcFBV9zZWxmHwgFHy9odG1sL2RlZmF1bHQuYXNweD9JRD02MCZQSUQ9NjlkZA8WAmZmFgEFc1RlbGVyaWsuV2ViLlVJLlJhZE1lbnVJdGVtLCBUZWxlcmlrLldlYi5VSSwgVmVyc2lvbj0yMDEzLjEuNDAzLjM1LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPTEyMWZhZTc4MTY1YmEzZDQUKwACDxYGHwYFC01vdmllIEd1aWRlHwcFBV9zZWxmHwgFE2phdmFzY3JpcHQ6dm9pZCgwKTtkEBYBZhYBFCsAAg8WBh8GBQ5DbGFzc2lmaWNhdGlvbh8HBQVfc2VsZh8IBSMvaHRtbC9tb3ZpZV9ndWlkZS5hc3B4P0lEPTYxJlBJRD03MWRkDxYBZhYBBXNUZWxlcmlrLldlYi5VSS5SYWRNZW51SXRlbSwgVGVsZXJpay5XZWIuVUksIFZlcnNpb249MjAxMy4xLjQwMy4zNSwgQ3VsdHVyZT1uZXV0cmFsLCBQdWJsaWNLZXlUb2tlbj0xMjFmYWU3ODE2NWJhM2Q0DxYEZmZmZhYBBXNUZWxlcmlrLldlYi5VSS5SYWRNZW51SXRlbSwgVGVsZXJpay5XZWIuVUksIFZlcnNpb249MjAxMy4xLjQwMy4zNSwgQ3VsdHVyZT1uZXV0cmFsLCBQdWJsaWNLZXlUb2tlbj0xMjFmYWU3ODE2NWJhM2Q0FCsAAg8WBh8GBQpQcm9tb3Rpb25zHwcFBV9zZWxmHwgFE2phdmFzY3JpcHQ6dm9pZCgwKTtkEBYBZhYBFCsAAg8WBh8GBQ5QUk9NT1RJT04gTElTVB8HBQVfc2VsZh8IBSIvaHRtbC9wcm9tb3Rpb25zLmFzcHg/SUQ9MzkmUElEPTc0ZGQPFgFmFgEFc1RlbGVyaWsuV2ViLlVJLlJhZE1lbnVJdGVtLCBUZWxlcmlrLldlYi5VSSwgVmVyc2lvbj0yMDEzLjEuNDAzLjM1LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPTEyMWZhZTc4MTY1YmEzZDQUKwACDxYGHwYFE0dTQyBITEIgQ3JlZGl0IENhcmQfBwUFX3NlbGYfCAUTamF2YXNjcmlwdDp2b2lkKDApO2QQFgJmAgEWAhQrAAIPFgYfBgUURW5qb3kgUk02IE9mZiBNb3ZpZXMfBwUFX3NlbGYfCAV6aHR0cHM6Ly93d3cuaGxiLmNvbS5teS9lbi9wZXJzb25hbC1iYW5raW5nL2NyZWRpdC1jYXJkcy9yZXdhcmRzLXBvaW50cy9nc2MtZ29sZC1hbmQtcGxhdGludW0tY2FyZHMuaHRtbD91dG1fc291cmNlPU1lbnVCYXJkZBQrAAIPFgYfBgUDRkFRHwcFBV9zZWxmHwgFWmh0dHBzOi8vd3d3LmdzYy5jb20ubXkvaHRtbC9HU0NITEJDcmVkaXRDYXJkRkFRLmFzcHg/SUQ9NDAwMSZQSUQ9NDEzNyZ1dG1fc291cmNlPUdTQ0hMQkZBUWRkDxYCZmYWAQVzVGVsZXJpay5XZWIuVUkuUmFkTWVudUl0ZW0sIFRlbGVyaWsuV2ViLlVJLCBWZXJzaW9uPTIwMTMuMS40MDMuMzUsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49MTIxZmFlNzgxNjViYTNkNBQrAAIPFgYfBgUOR1NDIE1lbWJlcnNoaXAfBwUFX3NlbGYfCAUTamF2YXNjcmlwdDp2b2lkKDApO2QQFgFmFgEUKwACDxYGHwYFC0dTQyBSZXdhcmRzHwcFBV9zZWxmHwgFKmh0dHA6Ly93d3cuZ3NjLmNvbS5teS9odG1sL21lbWJlcnNoaXAuYXNweGRkDxYBZhYBBXNUZWxlcmlrLldlYi5VSS5SYWRNZW51SXRlbSwgVGVsZXJpay5XZWIuVUksIFZlcnNpb249MjAxMy4xLjQwMy4zNSwgQ3VsdHVyZT1uZXV0cmFsLCBQdWJsaWNLZXlUb2tlbj0xMjFmYWU3ODE2NWJhM2Q0FCsAAg8WBh8GBQhDb250ZXN0cx8HBQVfc2VsZh8IBRNqYXZhc2NyaXB0OnZvaWQoMCk7ZBAWAmYCARYCFCsAAg8WBh8GBQxNYWluIENvbnRlc3QfBwUFX3NlbGYfCAUgL2h0bWwvY29udGVzdHMuYXNweD9JRD00MCZQSUQ9NzVkZBQrAAIPFgYfBgUPQ29udGVzdCBSZXN1bHRzHwcFBV9zZWxmHwgFJy9odG1sL2NvbnRlc3RfcmVzdWx0cy5hc3B4P0lEPTQwJlBJRD03NmRkDxYCZmYWAQVzVGVsZXJpay5XZWIuVUkuUmFkTWVudUl0ZW0sIFRlbGVyaWsuV2ViLlVJLCBWZXJzaW9uPTIwMTMuMS40MDMuMzUsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49MTIxZmFlNzgxNjViYTNkNBQrAAIPFgYfBgUTQ2luZW1hcyBFeHBlcmllbmNlcx8HBQVfc2VsZh8IBRNqYXZhc2NyaXB0OnZvaWQoMCk7ZBAWAWYWARQrAAIPFgYfBgUIRmVhdHVyZXMfBwUFX3NlbGYfCAUpL2h0bWwvY2luZW1hX2V4cGVyaWVuY2UuYXNweD9JRD00MSZQSUQ9NzdkZA8WAWYWAQVzVGVsZXJpay5XZWIuVUkuUmFkTWVudUl0ZW0sIFRlbGVyaWsuV2ViLlVJLCBWZXJzaW9uPTIwMTMuMS40MDMuMzUsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49MTIxZmFlNzgxNjViYTNkNBQrAAIPFgYfBgUHU3VwcG9ydB8HBQVfc2VsZh8IBRNqYXZhc2NyaXB0OnZvaWQoMCk7ZBAWBmYCAQICAgMCBAIFFgYUKwACDxYGHwYFDUdTQyBDb3Jwb3JhdGUfBwUFX3NlbGYfCAUgaHR0cHM6Ly93d3cuZ3NjLmNvbS5teS9jb3Jwb3JhdGVkZBQrAAIPFgYfBgUNRmVlZGJhY2sgRm9ybR8HBQVfc2VsZh8IBRMvaHRtbC9GZWVkYmFjay5hc3B4ZGQUKwACDxYGHwYFDUFubm91bmNlbWVudHMfBwUFX3NlbGYfCAUlL2h0bWwvYW5ub3VuY2VtZW50cy5hc3B4P0lEPTQyJlBJRD04MmRkFCsAAg8WBh8GBQhMb2NhdGlvbh8HBQVfc2VsZh8IBSIvaHRtbC9sb2NhdGlvbi5hc3B4P0lEPTIwNCZQSUQ9MjM0ZGQUKwACDxYGHwYFCkNvbnRhY3QgVXMfBwUFX3NlbGYfCAUfL2h0bWwvZGVmYXVsdC5hc3B4P0lEPTQyJlBJRD04NGRkFCsAAg8WBh8GBQNGQVEfBwUFX3NlbGYfCAUcL2h0bWwvZmFxcy5hc3B4P0lEPTQyJlBJRD04NWRkDxYGZmZmZmZmFgEFc1RlbGVyaWsuV2ViLlVJLlJhZE1lbnVJdGVtLCBUZWxlcmlrLldlYi5VSSwgVmVyc2lvbj0yMDEzLjEuNDAzLjM1LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPTEyMWZhZTc4MTY1YmEzZDQPFghmZmZmZmZmZhYBBXNUZWxlcmlrLldlYi5VSS5SYWRNZW51SXRlbSwgVGVsZXJpay5XZWIuVUksIFZlcnNpb249MjAxMy4xLjQwMy4zNSwgQ3VsdHVyZT1uZXV0cmFsLCBQdWJsaWNLZXlUb2tlbj0xMjFmYWU3ODE2NWJhM2Q0ZBYQZg8PFgYfBgUGTW92aWVzHwcFBV9zZWxmHwgFE2phdmFzY3JpcHQ6dm9pZCgwKTtkFgxmDw8WBh8GBQtOb3cgU2hvd2luZx8HBQVfc2VsZh8IBSYvaHRtbC9tb3ZpZU5vd1Nob3dpbmcuYXNweD9JRD05JlBJRD00OWRkAgEPDxYGHwYFC05leHQgQ2hhbmdlHwcFBV9zZWxmHwgFJy9odG1sL21vdmllTmV4dENoYW5nZS5hc3B4P0lEPTkmUElEPTE0NWRkAgIPDxYGHwYFC0NvbWluZyBTb29uHwcFBV9zZWxmHwgFJi9odG1sL21vdmllQ29taW5nU29vbi5hc3B4P0lEPTkmUElEPTUwZGQCAw8PFgYfBgUVSW50ZXJuYXRpb25hbCBTY3JlZW5zHwcFBV9zZWxmHwgFIy9odG1sL0ludFNjcmVlbl9OUy5hc3B4P0lEPTkmUElEPTU0ZGQCBA8PFgYfBgUZRnJlbmNoIEZpbG0gRmVzdGl2YWwgMjAxOR8HBQVfc2VsZh8IBTYvaHRtbC9GaWxtRmVzdGl2YWxfQWRob2MuYXNweD9JRD05JlBJRD00NTU0JkNhdElEPTQ1NDlkZAIFDw8WBh8GBQ9Nb3ZpZXMgQXJjaGl2ZXMfBwUFX3NlbGYfCAUqL2h0bWwvbW92aWVBcmNoaXZlLmFzcHg/SUQ9OSZQSUQ9NTMmWWVhcj0xZGQCAQ8PFgYfBgUVVGlja2V0aW5nICYgU2hvd3RpbWVzHwcFBV9zZWxmHwgFE2phdmFzY3JpcHQ6dm9pZCgwKTtkFghmDw8WBh8GBQlTaG93dGltZXMfBwUFX3NlbGYfCAUoL2h0bWwvdGlja2V0X3Nob3d0aW1lcy5hc3B4P0lEPTM4JlBJRD01N2RkAgEPDxYGHwYFCVRpY2tldGluZx8HBQVfc2VsZh8IBRNqYXZhc2NyaXB0OnZvaWQoMCk7ZBYEZg8PFgYfBgUTRS1QYXltZW50IFRpY2tldGluZx8HBQVfc2VsZh8IBScvaHRtbC9lcGF5bWVudC5hc3B4P0lEMT0zOCZJRD01OCZQSUQ9NjVkZAIBDw8WBh8GBRFTZWxmUHJpbnQgVGlja2V0cx8HBQVfc2VsZh8IBSYvaHRtbC9kZWZhdWx0LmFzcHg/SUQxPTM4JklEPTU4JlBJRD02N2RkAgIPDxYGHwYFD1RpY2tldGluZyBHdWlkZR8HBQVfc2VsZh8IBRNqYXZhc2NyaXB0OnZvaWQoMCk7ZBYEZg8PFgYfBgUUSG93IHRvIFVzZSBFLVBheW1lbnQfBwUFX3NlbGYfCAUfL2h0bWwvZGVmYXVsdC5hc3B4P0lEPTYwJlBJRD02OGRkAgEPDxYGHwYFDkdTQyBNT0JJTEUgQVBQHwcFBV9zZWxmHwgFHy9odG1sL2RlZmF1bHQuYXNweD9JRD02MCZQSUQ9NjlkZAIDDw8WBh8GBQtNb3ZpZSBHdWlkZR8HBQVfc2VsZh8IBRNqYXZhc2NyaXB0OnZvaWQoMCk7ZBYCZg8PFgYfBgUOQ2xhc3NpZmljYXRpb24fBwUFX3NlbGYfCAUjL2h0bWwvbW92aWVfZ3VpZGUuYXNweD9JRD02MSZQSUQ9NzFkZAICDw8WBh8GBQpQcm9tb3Rpb25zHwcFBV9zZWxmHwgFE2phdmFzY3JpcHQ6dm9pZCgwKTtkFgJmDw8WBh8GBQ5QUk9NT1RJT04gTElTVB8HBQVfc2VsZh8IBSIvaHRtbC9wcm9tb3Rpb25zLmFzcHg/SUQ9MzkmUElEPTc0ZGQCAw8PFgYfBgUTR1NDIEhMQiBDcmVkaXQgQ2FyZB8HBQVfc2VsZh8IBRNqYXZhc2NyaXB0OnZvaWQoMCk7ZBYEZg8PFgYfBgUURW5qb3kgUk02IE9mZiBNb3ZpZXMfBwUFX3NlbGYfCAV6aHR0cHM6Ly93d3cuaGxiLmNvbS5teS9lbi9wZXJzb25hbC1iYW5raW5nL2NyZWRpdC1jYXJkcy9yZXdhcmRzLXBvaW50cy9nc2MtZ29sZC1hbmQtcGxhdGludW0tY2FyZHMuaHRtbD91dG1fc291cmNlPU1lbnVCYXJkZAIBDw8WBh8GBQNGQVEfBwUFX3NlbGYfCAVaaHR0cHM6Ly93d3cuZ3NjLmNvbS5teS9odG1sL0dTQ0hMQkNyZWRpdENhcmRGQVEuYXNweD9JRD00MDAxJlBJRD00MTM3JnV0bV9zb3VyY2U9R1NDSExCRkFRZGQCBA8PFgYfBgUOR1NDIE1lbWJlcnNoaXAfBwUFX3NlbGYfCAUTamF2YXNjcmlwdDp2b2lkKDApO2QWAmYPDxYGHwYFC0dTQyBSZXdhcmRzHwcFBV9zZWxmHwgFKmh0dHA6Ly93d3cuZ3NjLmNvbS5teS9odG1sL21lbWJlcnNoaXAuYXNweGRkAgUPDxYGHwYFCENvbnRlc3RzHwcFBV9zZWxmHwgFE2phdmFzY3JpcHQ6dm9pZCgwKTtkFgRmDw8WBh8GBQxNYWluIENvbnRlc3QfBwUFX3NlbGYfCAUgL2h0bWwvY29udGVzdHMuYXNweD9JRD00MCZQSUQ9NzVkZAIBDw8WBh8GBQ9Db250ZXN0IFJlc3VsdHMfBwUFX3NlbGYfCAUnL2h0bWwvY29udGVzdF9yZXN1bHRzLmFzcHg/SUQ9NDAmUElEPTc2ZGQCBg8PFgYfBgUTQ2luZW1hcyBFeHBlcmllbmNlcx8HBQVfc2VsZh8IBRNqYXZhc2NyaXB0OnZvaWQoMCk7ZBYCZg8PFgYfBgUIRmVhdHVyZXMfBwUFX3NlbGYfCAUpL2h0bWwvY2luZW1hX2V4cGVyaWVuY2UuYXNweD9JRD00MSZQSUQ9NzdkZAIHDw8WBh8GBQdTdXBwb3J0HwcFBV9zZWxmHwgFE2phdmFzY3JpcHQ6dm9pZCgwKTtkFgxmDw8WBh8GBQ1HU0MgQ29ycG9yYXRlHwcFBV9zZWxmHwgFIGh0dHBzOi8vd3d3LmdzYy5jb20ubXkvY29ycG9yYXRlZGQCAQ8PFgYfBgUNRmVlZGJhY2sgRm9ybR8HBQVfc2VsZh8IBRMvaHRtbC9GZWVkYmFjay5hc3B4ZGQCAg8PFgYfBgUNQW5ub3VuY2VtZW50cx8HBQVfc2VsZh8IBSUvaHRtbC9hbm5vdW5jZW1lbnRzLmFzcHg/SUQ9NDImUElEPTgyZGQCAw8PFgYfBgUITG9jYXRpb24fBwUFX3NlbGYfCAUiL2h0bWwvbG9jYXRpb24uYXNweD9JRD0yMDQmUElEPTIzNGRkAgQPDxYGHwYFCkNvbnRhY3QgVXMfBwUFX3NlbGYfCAUfL2h0bWwvZGVmYXVsdC5hc3B4P0lEPTQyJlBJRD04NGRkAgUPDxYGHwYFA0ZBUR8HBQVfc2VsZh8IBRwvaHRtbC9mYXFzLmFzcHg/SUQ9NDImUElEPTg1ZGQCBw9kFgICAQ8WAh4LXyFJdGVtQ291bnQCBBYIZg9kFgJmDxUDAzEzMCYvaHRtbC9tb3ZpZU5vd1Nob3dpbmcuYXNweD9JRD05JlBJRD00OQZNT1ZJRVNkAgEPZBYCZg8VAwMxMzIjL2h0bWwvSW50U2NyZWVuX05TLmFzcHg/SUQ9OSZQSUQ9NTQVSU5URVJOQVRJT05BTCBTQ1JFRU5TZAICD2QWAmYPFQMENDU0OTYvaHRtbC9GaWxtRmVzdGl2YWxfQWRob2MuYXNweD9JRD05JlBJRD00NTU0JkNhdElEPTQ1NDkZRlJFTkNIIEZJTE0gRkVTVElWQUwgMjAxOWQCAw9kFgJmDxUDAzEzNCovaHRtbC9tb3ZpZUFyY2hpdmUuYXNweD9JRD05JlBJRD01MyZZZWFyPTEOTU9WSUVTIEFSQ0hJVkVkAgkPFgIfCQIDFgZmD2QWAmYPFQImL2h0bWwvbW92aWVOb3dTaG93aW5nLmFzcHg/SUQ9OSZQSUQ9NDkLTm93IFNob3dpbmdkAgEPZBYCZg8VAicvaHRtbC9tb3ZpZU5leHRDaGFuZ2UuYXNweD9JRD05JlBJRD0xNDULTmV4dCBDaGFuZ2VkAgIPZBYCZg8VAiYvaHRtbC9tb3ZpZUNvbWluZ1Nvb24uYXNweD9JRD05JlBJRD01MAtDb21pbmcgU29vbmQCCw8PFgIfBgUZMjQmbmJzcG1vdmllcyBub3cgc2hvd2luZ2RkAg0PZBYCZg9kFgICAQ8QZGQWAWZkAg8PZBYCZg9kFgICAQ8QDxYEHwUFBE5hbWUfAmdkEBVHBkFSQUJJQwRBU0xJCEFVU1RSSUFOB0JBSVFVRU8GQkFOR0xBB0JFTEdJQU4HQkVOR0FMSQlCVUxHQVJJQU4HQlVSTUVTRQlDQU5UT05FU0UHQ0hJTkVTRQhDUk9BVElBTgVDWkVDSAZEQU5JU0gFRFVUQ0gIRFpPTkdLSEEFRUdZUFQHRU5HTElTSAhGSUxJUElOTwdGSU5OSVNIBkZSRU5DSAZHRVJNQU4FR1JFRUsGSEVCUkVXBUhJTkRJB0hPS0tJRU4JSFVOR0FSSUFOBElCQU4KSU5ET05FU0lBTgdJUkFOSUFOBUlSSVNIB0lUQUxJQU4ISkFQQU5FU0UHS0FOTkFEQQVLaG1lcgZLT1JFQU4HS1VSRElTSARMQU9TB0xBT1RJQU4NTFVYRU1CT1VSR0lTSAVNQUxBWQlNQUxBWUFMQU0ITUFOREFSSU4HTUFSQVRISQdNRVhJQ0FOCU1PTkdPTElBTgdNWUFOTUFSAk5BCU5PUldFR0lBTgdQRVJTSUFOBlBPTElTSAlQT1JUVUdFU0UHUFVOSkFCSQhST01BTklBTgdSVVNTSUFOBVNFTUFJCVNMT1ZBS0lBTgdTUEFOSVNIB1NXRURJU0gMU1dJU1MgR0VSTUFOBVNZUklBB1RBR0FMT0cFVEFKSUsFVEFNSUwGVEVMVUdVBFRIQUkFVElCRVQEVVJEVQVVWkJFSwpWSUVUTkFNRVNFBVhIT1NBFUcBLQRBU0xJCEFVU1RSSUFOB0JBSVFVRU8GQkFOR0xBB0JFTEdJQU4HQkVOR0FMSQlCVUxHQVJJQU4HQlVSTUVTRQlDQU5UT05FU0UHQ0hJTkVTRQhDUk9BVElBTgVDWkVDSAZEQU5JU0gFRFVUQ0gIRFpPTkdLSEEFRUdZUFQHRU5HTElTSAhGSUxJUElOTwdGSU5OSVNIBkZSRU5DSAZHRVJNQU4FR1JFRUsGSEVCUkVXBUhJTkRJB0hPS0tJRU4JSFVOR0FSSUFOBElCQU4KSU5ET05FU0lBTgdJUkFOSUFOBUlSSVNIB0lUQUxJQU4ISkFQQU5FU0UHS0FOTkFEQQVLaG1lcgZLT1JFQU4HS1VSRElTSARMQU9TB0xBT1RJQU4NTFVYRU1CT1VSR0lTSAVNQUxBWQlNQUxBWUFMQU0ITUFOREFSSU4HTUFSQVRISQdNRVhJQ0FOCU1PTkdPTElBTgdNWUFOTUFSAk5BCU5PUldFR0lBTgdQRVJTSUFOBlBPTElTSAlQT1JUVUdFU0UHUFVOSkFCSQhST01BTklBTgdSVVNTSUFOBVNFTUFJCVNMT1ZBS0lBTgdTUEFOSVNIB1NXRURJU0gMU1dJU1MgR0VSTUFOBVNZUklBB1RBR0FMT0cFVEFKSUsFVEFNSUwGVEVMVUdVBFRIQUkFVElCRVQEVVJEVQVVWkJFSwpWSUVUTkFNRVNFBVhIT1NBFCsDR2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZGQCEw9kFgJmD2QWEgIBD2QWAgIBDxQrAAYPFgYfAmcfCQIYHwNoZBQrAANkZBQrAAIWAh4RSXRlbVBsYWNlSG9sZGVySUQFEk5TR3JpZF9Qcm9kdWN0SXRlbWQUKwADDwUGXyFEU0lDAhgPBQtfIUl0ZW1Db3VudAIYDwUIXyFQQ291bnRkFCsAGBQrAAIUKwABBQ1Nb3ZpZU1hc3RlcklEFCsAAQUEMzI5MBQrAAIUKwABBQ1Nb3ZpZU1hc3RlcklEFCsAAQUEMzQxNRQrAAIUKwABBQ1Nb3ZpZU1hc3RlcklEFCsAAQUEMzQxMxQrAAIUKwABBQ1Nb3ZpZU1hc3RlcklEFCsAAQUEMzQxORQrAAIUKwABBQ1Nb3ZpZU1hc3RlcklEFCsAAQUEMzQxNhQrAAIUKwABBQ1Nb3ZpZU1hc3RlcklEFCsAAQUEMzQzNBQrAAIUKwABBQ1Nb3ZpZU1hc3RlcklEFCsAAQUEMzIwOBQrAAIUKwABBQ1Nb3ZpZU1hc3RlcklEFCsAAQUEMzQyNBQrAAIUKwABBQ1Nb3ZpZU1hc3RlcklEFCsAAQUEMzQ0ORQrAAIUKwABBQ1Nb3ZpZU1hc3RlcklEFCsAAQUEMjg4NhQrAAIUKwABBQ1Nb3ZpZU1hc3RlcklEFCsAAQUEMzQ2MRQrAAIUKwABBQ1Nb3ZpZU1hc3RlcklEFCsAAQUEMzM2NxQrAAIUKwABBQ1Nb3ZpZU1hc3RlcklEFCsAAQUEMzQzOBQrAAIUKwABBQ1Nb3ZpZU1hc3RlcklEFCsAAQUEMzQ1NBQrAAIUKwABBQ1Nb3ZpZU1hc3RlcklEFCsAAQUEMzM0NhQrAAIUKwABBQ1Nb3ZpZU1hc3RlcklEFCsAAQUEMzM5MxQrAAIUKwABBQ1Nb3ZpZU1hc3RlcklEFCsAAQUEMzQzMRQrAAIUKwABBQ1Nb3ZpZU1hc3RlcklEFCsAAQUEMzM0ORQrAAIUKwABBQ1Nb3ZpZU1hc3RlcklEFCsAAQUEMzQwNBQrAAIUKwABBQ1Nb3ZpZU1hc3RlcklEFCsAAQUEMzQwMRQrAAIUKwABBQ1Nb3ZpZU1hc3RlcklEFCsAAQUEMzMzNxQrAAIUKwABBQ1Nb3ZpZU1hc3RlcklEFCsAAQUEMzQwMBQrAAIUKwABBQ1Nb3ZpZU1hc3RlcklEFCsAAQUEMzM4MxQrAAIUKwABBQ1Nb3ZpZU1hc3RlcklEFCsAAQUEMjY1NxYCHgJfY2ZkFgJmD2QWMAIBDxYCHg5TYXZlZE9sZFZhbHVlcxcAFgJmDxUFBDMyOTAFVmlyYWxtaHR0cHM6Ly9jZG40LmdzYy5jb20ubXkvV2ViTElURS9BcHBsaWNhdGlvbnMvTW92aWVNYW5hZ2VtZW50L3VwbG9hZGVkL3BpY3MvMjAxOC9WaXJhbC9WaXJhbF9WMl9LZXlhcnRfNTAwLmpwZwswNCBBcHIgMjAxOQVWaXJhbGQCAg8WAh8MFwAWAmYPFQUEMzQxNQpCZWNhc3NpbmUhdmh0dHBzOi8vY2RuNC5nc2MuY29tLm15L1dlYkxJVEUvQXBwbGljYXRpb25zL01vdmllTWFuYWdlbWVudC91cGxvYWRlZC9waWNzLzIwMTlfRkZGL0JlY2Fzc2luZS9CZWNhc3NpbmVfS2V5YXJ0XzUwMC5qcGcLMDQgQXByIDIwMTkKQmVjYXNzaW5lIWQCAw8WAh8MFwAWAmYPFQUEMzQxMwtCbG9vZHkgTWlsa3todHRwczovL2NkbjQuZ3NjLmNvbS5teS9XZWJMSVRFL0FwcGxpY2F0aW9ucy9Nb3ZpZU1hbmFnZW1lbnQvdXBsb2FkZWQvcGljcy8yMDE5X0ZGRi9CbG9vZHlfTWlsay9QZXRpdF9wYXlzYW5fS2V5YXJ0XzUwMC5qcGcLMDQgQXByIDIwMTkLQmxvb2R5IE1pbGtkAgQPFgIfDBcAFgJmDxUFBDM0MTkHQ3VzdG9keXJodHRwczovL2NkbjQuZ3NjLmNvbS5teS9XZWJMSVRFL0FwcGxpY2F0aW9ucy9Nb3ZpZU1hbmFnZW1lbnQvdXBsb2FkZWQvcGljcy8yMDE5X0ZGRi9DdXN0b2R5L0N1c3RvZHlfS2V5YXJ0XzUwMC5qcGcLMDQgQXByIDIwMTkHQ3VzdG9keWQCBQ8WAh8MFwAWAmYPFQUEMzQxNhJKdXN0IEEgQnJlYXRoIEF3YXmIAWh0dHBzOi8vY2RuNC5nc2MuY29tLm15L1dlYkxJVEUvQXBwbGljYXRpb25zL01vdmllTWFuYWdlbWVudC91cGxvYWRlZC9waWNzLzIwMTlfRkZGL0p1c3RfQV9CcmVhdGhfQXdheS9KdXN0X2FfQnJlYXRoX0F3YXlfS2V5YXJ0XzUwMC5qcGcLMDQgQXByIDIwMTkSSnVzdCBBIEJyZWF0aCBBd2F5ZAIGDxYCHwwXABYCZg8VBQQzNDM0B1AgU3Rvcm1taHR0cHM6Ly9jZG40LmdzYy5jb20ubXkvV2ViTElURS9BcHBsaWNhdGlvbnMvTW92aWVNYW5hZ2VtZW50L3VwbG9hZGVkL3BpY3MvMjAxOS9QX1N0b3JtL1BTdG9ybV9LZXlhcnRfNTAwLmpwZwswNCBBcHIgMjAxOQdQIFN0b3JtZAIHDxYCHwwXABYCZg8VBQQzMjA4DFBldCBTZW1hdGFyeXtodHRwczovL2NkbjQuZ3NjLmNvbS5teS9XZWJMSVRFL0FwcGxpY2F0aW9ucy9Nb3ZpZU1hbmFnZW1lbnQvdXBsb2FkZWQvcGljcy8yMDE5L1BldF9TZW1hdGFyeS9QZXRfU2VtYXRhcnlfS2V5YXJ0X3YyXzUwMC5qcGcLMDQgQXByIDIwMTkMUGV0IFNlbWF0YXJ5ZAIIDxYCHwwXABYCZg8VBQQzNDI0DlRoZSBSZWQgQ29sbGFyggFodHRwczovL2NkbjQuZ3NjLmNvbS5teS9XZWJMSVRFL0FwcGxpY2F0aW9ucy9Nb3ZpZU1hbmFnZW1lbnQvdXBsb2FkZWQvcGljcy8yMDE5X0ZGRi9UaGVfUmVkX0NvbGxhci9MZV9Db2xsZWlyX1JvdWdlX0tleWFydF81MDAuanBnCzA0IEFwciAyMDE5DlRoZSBSZWQgQ29sbGFyZAIJDxYCHwwXABYCZg8VBQQzNDQ5C1RpYWRhIFRhanVrdmh0dHBzOi8vY2RuNC5nc2MuY29tLm15L1dlYkxJVEUvQXBwbGljYXRpb25zL01vdmllTWFuYWdlbWVudC91cGxvYWRlZC9waWNzLzIwMTkvVGlhZGFfdGFqdWsvVGlhZGFfdGFqdWtfa2V5YXJ0XzUwMC5qcGcLMDQgQXByIDIwMTkLVGlhZGEgVGFqdWtkAgoPFgIfDBcAFgJmDxUFBDI4ODYHU2hhemFtIXBodHRwczovL2NkbjQuZ3NjLmNvbS5teS9XZWJMSVRFL0FwcGxpY2F0aW9ucy9Nb3ZpZU1hbmFnZW1lbnQvdXBsb2FkZWQvcGljcy8yMDE5L1NoYXphbS9TaGF6YW1fbmV3X2tleWFydF81MDAuanBnCzAxIEFwciAyMDE5B1NoYXphbSFkAgsPFgIfDBcAFgJmDxUFBDM0NjEHSnVuZ2xlZW5odHRwczovL2NkbjQuZ3NjLmNvbS5teS9XZWJMSVRFL0FwcGxpY2F0aW9ucy9Nb3ZpZU1hbmFnZW1lbnQvdXBsb2FkZWQvcGljcy8yMDE5L0p1bmdsZWUvanVuZ2xlZV9rZXlhcnRfNTAwLmpwZwsyOSBNYXIgMjAxOQdKdW5nbGVlZAIMDxYCHwwXABYCZg8VBQQzMzY3T0xvdmVMaXZlISBTY2hvb2wgSWRvbCBQcm9qZWN0IFN1bnNoaW5lISEgVGhlIFNjaG9vbCBJZG9sIE1vdmllIE92ZXIgVGhlIFJhaW5ib3eYAWh0dHBzOi8vY2RuNC5nc2MuY29tLm15L1dlYkxJVEUvQXBwbGljYXRpb25zL01vdmllTWFuYWdlbWVudC91cGxvYWRlZC9waWNzLzIwMTkvTG92ZV9MaXZlX1NjaG9vbF9JZG9sX1Byb2plY3RfU3Vuc2hpbmUvTG92ZV9saXZlX1N1bnNoaW5lX2tleWFydF81MDAuanBnCzI4IE1hciAyMDE5T0xvdmVMaXZlISBTY2hvb2wgSWRvbCBQcm9qZWN0IFN1bnNoaW5lISEgVGhlIFNjaG9vbCBJZG9sIE1vdmllIE92ZXIgVGhlIFJhaW5ib3dkAg0PFgIfDBcAFgJmDxUFBDM0MzgJVGhlIFF1YWtlcmh0dHBzOi8vY2RuNC5nc2MuY29tLm15L1dlYkxJVEUvQXBwbGljYXRpb25zL01vdmllTWFuYWdlbWVudC91cGxvYWRlZC9waWNzLzIwMTkvVGhlX1F1YWtlL1RoZV9RdWFrZV9LZXlhcnRfNTAwLmpwZwsyOCBNYXIgMjAxOQlUaGUgUXVha2VkAg4PFgIfDBcAFgJmDxUFBDM0NTQFQWlyYWFqaHR0cHM6Ly9jZG40LmdzYy5jb20ubXkvV2ViTElURS9BcHBsaWNhdGlvbnMvTW92aWVNYW5hZ2VtZW50L3VwbG9hZGVkL3BpY3MvMjAxOS9BaXJhYS9BaXJhYV9LZXlhcnRfNTAwLmpwZwsyOCBNYXIgMjAxOQVBaXJhYWQCDw8WAh8MFwAWAmYPFQUEMzM0NgVEdW1ib3todHRwczovL2NkbjQuZ3NjLmNvbS5teS9XZWJMSVRFL0FwcGxpY2F0aW9ucy9Nb3ZpZU1hbmFnZW1lbnQvdXBsb2FkZWQvcGljcy8yMDE5L0R1bWJvL0RVTUJPXzAwM0JfR19FTkctTVlfMTA4MHgxOTIwXzUwMC5qcGcLMjggTWFyIDIwMTkFRHVtYm9kAhAPFgIfDBcAFgJmDxUFBDMzOTMJUmVkIFN0b3Jtcmh0dHBzOi8vY2RuNC5nc2MuY29tLm15L1dlYkxJVEUvQXBwbGljYXRpb25zL01vdmllTWFuYWdlbWVudC91cGxvYWRlZC9waWNzLzIwMTkvUmVkX1N0b3JtL1JlZF9TdG9ybV9LZXlhcnRfNTAwLmpwZwsyOCBNYXIgMjAxOQlSZWQgU3Rvcm1kAhEPFgIfDBcAFgJmDxUFBDM0MzEEVGFidWhodHRwczovL2NkbjQuZ3NjLmNvbS5teS9XZWJMSVRFL0FwcGxpY2F0aW9ucy9Nb3ZpZU1hbmFnZW1lbnQvdXBsb2FkZWQvcGljcy8yMDE5L1RhYnUvVGFidV9LZXlhcnRfNTAwLmpwZwsyOCBNYXIgMjAxOQRUYWJ1ZAISDxYCHwwXABYCZg8VBQQzMzQ5IlVwaW4gJiBJcGluOiBLZXJpcyBTaWFtYW5nIFR1bmdnYWyTAWh0dHBzOi8vY2RuNC5nc2MuY29tLm15L1dlYkxJVEUvQXBwbGljYXRpb25zL01vdmllTWFuYWdlbWVudC91cGxvYWRlZC9waWNzLzIwMTkvVXBpbl9kYW5fSXBpbi9VcGluX2Rhbl9JcGluX0tlcmlzX1NpYW1hbmdfVHVuZ2dhbF9LZXlhcnRfdjJfNTAwLmpwZwsyMSBNYXIgMjAxOSJVcGluICYgSXBpbjogS2VyaXMgU2lhbWFuZyBUdW5nZ2FsZAITDxYCHwwXABYCZg8VBQQzNDA0D0ZpdmUgRmVldCBBcGFydH5odHRwczovL2NkbjQuZ3NjLmNvbS5teS9XZWJMSVRFL0FwcGxpY2F0aW9ucy9Nb3ZpZU1hbmFnZW1lbnQvdXBsb2FkZWQvcGljcy8yMDE5L0ZpdmVfRmVldF9BcGFydC9GaXZlX0ZlZXRfQXBhcnRfS2V5YXJ0XzUwMC5qcGcLMjEgTWFyIDIwMTkPRml2ZSBGZWV0IEFwYXJ0ZAIUDxYCHwwXABYCZg8VBQQzNDAxDVRoZSBBZnRlcm1hdGh6aHR0cHM6Ly9jZG40LmdzYy5jb20ubXkvV2ViTElURS9BcHBsaWNhdGlvbnMvTW92aWVNYW5hZ2VtZW50L3VwbG9hZGVkL3BpY3MvMjAxOS9UaGVfQWZ0ZXJtYXRoL1RoZV9BZnRlcm1hdGhfS2V5YXJ0XzUwMC5qcGcLMjEgTWFyIDIwMTkNVGhlIEFmdGVybWF0aGQCFQ8WAh8MFwAWAmYPFQUEMzMzNwJVc2xodHRwczovL2NkbjQuZ3NjLmNvbS5teS9XZWJMSVRFL0FwcGxpY2F0aW9ucy9Nb3ZpZU1hbmFnZW1lbnQvdXBsb2FkZWQvcGljcy8yMDE5L1VzL1VTX01hcmNoMjFfS2V5YXJ0XzUwMC5qcGcLMjEgTWFyIDIwMTkCVXNkAhYPFgIfDBcAFgJmDxUFBDM0MDALV29uZGVyIFBhcmt8aHR0cHM6Ly9jZG40LmdzYy5jb20ubXkvV2ViTElURS9BcHBsaWNhdGlvbnMvTW92aWVNYW5hZ2VtZW50L3VwbG9hZGVkL3BpY3MvMjAxOS9Xb25kZXJfUGFyay9XT05ERVIgUEFSS19TTUlMRV9rZXlhcnRfNTAwLmpwZwsyMSBNYXIgMjAxOQtXb25kZXIgUGFya2QCFw8WAh8MFwAWAmYPFQUEMzM4Mw9CaWtlcnMgS2VudGFsIDJ9aHR0cHM6Ly9jZG40LmdzYy5jb20ubXkvV2ViTElURS9BcHBsaWNhdGlvbnMvTW92aWVNYW5hZ2VtZW50L3VwbG9hZGVkL3BpY3MvMjAxOS9CaWtlcnNfS2VudGFsXzIvQmlrZXJzX2tlbnRhbDJfa2V5YXJ0XzUwMC5qcGcLMTQgTWFyIDIwMTkPQmlrZXJzIEtlbnRhbCAyZAIYDxYCHwwXABYCZg8VBQQyNjU3DkNhcHRhaW4gTWFydmVsfGh0dHBzOi8vY2RuNC5nc2MuY29tLm15L1dlYkxJVEUvQXBwbGljYXRpb25zL01vdmllTWFuYWdlbWVudC91cGxvYWRlZC9waWNzLzIwMTkvQ2FwdGFpbl9NYXJ2ZWwvQ2FwdGFpbl9tYXJ2ZWxfa2V5YXJ0XzUwMC5qcGcLMDYgTWFyIDIwMTkOQ2FwdGFpbiBNYXJ2ZWxkAgUPDxYCHgdWaXNpYmxlaGRkAgkPDxYCHwYFB1BhZ2UgOiBkZAILDxAPFgIfAmdkEBUBATEVAQExFCsDAWcWAWZkAg0PDxYCHwYFAk9mZGQCDw8PFgIfBgUBMWRkAhEPFgIfCQIBFgJmD2QWAgIBDxYGHgV0aXRsZQUBMR4IdGFiaW5kZXgFATEeBWNsYXNzBQxwYWdpbmdhY3RpdmUWAmYPFQEBMWQCFQ8PFgQeCENzc0NsYXNzBQZOb01vcmUeBF8hU0ICAmRkAh0PDxYCHwYFAjI0ZGQCFw9kFgJmD2QWAgIBD2QWAmYPFgIfCQIKFhRmD2QWBGYPFQYkL2h0bWwvbW92aWVfcGFnZS5hc3B4P01fTW92aWVJRD0yODg2BV9zZWxmB1NoYXphbSFwaHR0cHM6Ly9jZG40LmdzYy5jb20ubXkvV2ViTElURS9BcHBsaWNhdGlvbnMvTW92aWVNYW5hZ2VtZW50L3VwbG9hZGVkL3BpY3MvMjAxOS9TaGF6YW0vU2hhemFtX25ld19rZXlhcnRfMTAwLmpwZwExB1NIQVpBTSFkAgEPDxYCHwYFCDY5MzMwMTkwZGQCAQ9kFgRmDxUGJC9odG1sL21vdmllX3BhZ2UuYXNweD9NX01vdmllSUQ9MzM0OQVfc2VsZiJVcGluICYgSXBpbjogS2VyaXMgU2lhbWFuZyBUdW5nZ2FskwFodHRwczovL2NkbjQuZ3NjLmNvbS5teS9XZWJMSVRFL0FwcGxpY2F0aW9ucy9Nb3ZpZU1hbmFnZW1lbnQvdXBsb2FkZWQvcGljcy8yMDE5L1VwaW5fZGFuX0lwaW4vVXBpbl9kYW5fSXBpbl9LZXJpc19TaWFtYW5nX1R1bmdnYWxfS2V5YXJ0X3YyXzEwMC5qcGcBMiJVUElOICYgSVBJTjogS0VSSVMgU0lBTUFORyBUVU5HR0FMZAIBDw8WAh8GBQg2OTMzMDEzN2RkAgIPZBYEZg8VBiQvaHRtbC9tb3ZpZV9wYWdlLmFzcHg/TV9Nb3ZpZUlEPTMzNDYFX3NlbGYFRHVtYm97aHR0cHM6Ly9jZG40LmdzYy5jb20ubXkvV2ViTElURS9BcHBsaWNhdGlvbnMvTW92aWVNYW5hZ2VtZW50L3VwbG9hZGVkL3BpY3MvMjAxOS9EdW1iby9EVU1CT18wMDNCX0dfRU5HLU1ZXzEwODB4MTkyMF8xMDAuanBnATMFRFVNQk9kAgEPDxYCHwYFCDY5MzMwMTQ2ZGQCAw9kFgRmDxUGJC9odG1sL21vdmllX3BhZ2UuYXNweD9NX01vdmllSUQ9MjY1NwVfc2VsZg5DYXB0YWluIE1hcnZlbHxodHRwczovL2NkbjQuZ3NjLmNvbS5teS9XZWJMSVRFL0FwcGxpY2F0aW9ucy9Nb3ZpZU1hbmFnZW1lbnQvdXBsb2FkZWQvcGljcy8yMDE5L0NhcHRhaW5fTWFydmVsL0NhcHRhaW5fbWFydmVsX2tleWFydF8xMDAuanBnATQOQ0FQVEFJTiBNQVJWRUxkAgEPDxYCHwYFCDY5MzMwMDkyZGQCBA9kFgRmDxUGJC9odG1sL21vdmllX3BhZ2UuYXNweD9NX01vdmllSUQ9MzMzNwVfc2VsZgJVc2xodHRwczovL2NkbjQuZ3NjLmNvbS5teS9XZWJMSVRFL0FwcGxpY2F0aW9ucy9Nb3ZpZU1hbmFnZW1lbnQvdXBsb2FkZWQvcGljcy8yMDE5L1VzL1VTX01hcmNoMjFfS2V5YXJ0XzEwMC5qcGcBNQJVU2QCAQ8PFgIfBgUINjkzMzAxNTJkZAIFD2QWBGYPFQYkL2h0bWwvbW92aWVfcGFnZS5hc3B4P01fTW92aWVJRD0zMzgzBV9zZWxmD0Jpa2VycyBLZW50YWwgMn1odHRwczovL2NkbjQuZ3NjLmNvbS5teS9XZWJMSVRFL0FwcGxpY2F0aW9ucy9Nb3ZpZU1hbmFnZW1lbnQvdXBsb2FkZWQvcGljcy8yMDE5L0Jpa2Vyc19LZW50YWxfMi9CaWtlcnNfa2VudGFsMl9rZXlhcnRfMTAwLmpwZwE2D0JJS0VSUyBLRU5UQUwgMmQCAQ8PFgIfBgUINjkzMzAxNDRkZAIGD2QWBGYPFQYkL2h0bWwvbW92aWVfcGFnZS5hc3B4P01fTW92aWVJRD0zNDM4BV9zZWxmCVRoZSBRdWFrZXJodHRwczovL2NkbjQuZ3NjLmNvbS5teS9XZWJMSVRFL0FwcGxpY2F0aW9ucy9Nb3ZpZU1hbmFnZW1lbnQvdXBsb2FkZWQvcGljcy8yMDE5L1RoZV9RdWFrZS9UaGVfUXVha2VfS2V5YXJ0XzEwMC5qcGcBNwlUSEUgUVVBS0VkAgEPDxYCHwYFCDY5MzMwMTg1ZGQCBw9kFgRmDxUGJC9odG1sL21vdmllX3BhZ2UuYXNweD9NX01vdmllSUQ9MzQwNAVfc2VsZg9GaXZlIEZlZXQgQXBhcnR+aHR0cHM6Ly9jZG40LmdzYy5jb20ubXkvV2ViTElURS9BcHBsaWNhdGlvbnMvTW92aWVNYW5hZ2VtZW50L3VwbG9hZGVkL3BpY3MvMjAxOS9GaXZlX0ZlZXRfQXBhcnQvRml2ZV9GZWV0X0FwYXJ0X0tleWFydF8xMDAuanBnATgPRklWRSBGRUVUIEFQQVJUZAIBDw8WAh8GBQg2OTMzMDE2MmRkAggPZBYEZg8VBiQvaHRtbC9tb3ZpZV9wYWdlLmFzcHg/TV9Nb3ZpZUlEPTM0NTQFX3NlbGYFQWlyYWFqaHR0cHM6Ly9jZG40LmdzYy5jb20ubXkvV2ViTElURS9BcHBsaWNhdGlvbnMvTW92aWVNYW5hZ2VtZW50L3VwbG9hZGVkL3BpY3MvMjAxOS9BaXJhYS9BaXJhYV9LZXlhcnRfMTAwLmpwZwE5BUFJUkFBZAIBDw8WAh8GBQg2OTMzMDE5MWRkAgkPZBYEZg8VBiQvaHRtbC9tb3ZpZV9wYWdlLmFzcHg/TV9Nb3ZpZUlEPTM0MDAFX3NlbGYLV29uZGVyIFBhcmt8aHR0cHM6Ly9jZG40LmdzYy5jb20ubXkvV2ViTElURS9BcHBsaWNhdGlvbnMvTW92aWVNYW5hZ2VtZW50L3VwbG9hZGVkL3BpY3MvMjAxOS9Xb25kZXJfUGFyay9XT05ERVIgUEFSS19TTUlMRV9rZXlhcnRfMTAwLmpwZwIxMAtXT05ERVIgUEFSS2QCAQ8PFgIfBgUINjkzMzAxNTBkZAIZD2QWAgIBDxYCHwkCAxYGZg9kFgJmDxUDDzkgRGVjZW1iZXIgMjAxOFBHT09EIE5FV1MhPGJyIC8+CjxiciAvPgpHU0MgQ2l0eU9ORSBLdWNoaW5nIGlzIE5PVyBPUEVOISBDb21lIHdhdGNoIG1vdmllcyB3aXRoIAQ0NDgxZAIBD2QWAmYPFQMOMzEgQXVndXN0IDIwMThQUGxlYXNlIGJlIGluZm9ybWVkIHRoYXQgZWZmZWN0aXZlIDFzdCBTZXB0ZW1iZXIgMjAxOCAoU2F0dXJkYXkpLCBhbGwgZm9vZCBhbmQgYmUENDE5OGQCAg9kFgJmDxUDDzggRmVicnVhcnkgMjAxN1BXZSBoYXZlIHJlY2VpdmVkIG51bWVyb3VzIGZlZWRiYWNrIG9uIG91ciBiaXJ0aGRheSB2b3VjaGVyIChzZW50IHRocm91Z2ggZW1haWwpLgQyMDc4ZBgBBR5fX0NvbnRyb2xzUmVxdWlyZVBvc3RCYWNrS2V5X18WSgUuZ2V0SGVhZGVyX2N0cmwkZ2V0SGVhZGVyRGVza3RvcCRnZXROYXYkUmFkTWVudQULRERMRmlsdGVyJDAFC0RETEZpbHRlciQxBQtERExGaWx0ZXIkMgULRERMRmlsdGVyJDMFC0RETEZpbHRlciQ0BQtERExGaWx0ZXIkNQULRERMRmlsdGVyJDYFC0RETEZpbHRlciQ3BQtERExGaWx0ZXIkOAULRERMRmlsdGVyJDkFDERETEZpbHRlciQxMAUMRERMRmlsdGVyJDExBQxERExGaWx0ZXIkMTIFDERETEZpbHRlciQxMwUMRERMRmlsdGVyJDE0BQxERExGaWx0ZXIkMTUFDERETEZpbHRlciQxNgUMRERMRmlsdGVyJDE3BQxERExGaWx0ZXIkMTgFDERETEZpbHRlciQxOQUMRERMRmlsdGVyJDIwBQxERExGaWx0ZXIkMjEFDERETEZpbHRlciQyMgUMRERMRmlsdGVyJDIzBQxERExGaWx0ZXIkMjQFDERETEZpbHRlciQyNQUMRERMRmlsdGVyJDI2BQxERExGaWx0ZXIkMjcFDERETEZpbHRlciQyOAUMRERMRmlsdGVyJDI5BQxERExGaWx0ZXIkMzAFDERETEZpbHRlciQzMQUMRERMRmlsdGVyJDMyBQxERExGaWx0ZXIkMzMFDERETEZpbHRlciQzNAUMRERMRmlsdGVyJDM1BQxERExGaWx0ZXIkMzYFDERETEZpbHRlciQzNwUMRERMRmlsdGVyJDM4BQxERExGaWx0ZXIkMzkFDERETEZpbHRlciQ0MAUMRERMRmlsdGVyJDQxBQxERExGaWx0ZXIkNDIFDERETEZpbHRlciQ0MwUMRERMRmlsdGVyJDQ0BQxERExGaWx0ZXIkNDUFDERETEZpbHRlciQ0NgUMRERMRmlsdGVyJDQ3BQxERExGaWx0ZXIkNDgFDERETEZpbHRlciQ0OQUMRERMRmlsdGVyJDUwBQxERExGaWx0ZXIkNTEFDERETEZpbHRlciQ1MgUMRERMRmlsdGVyJDUzBQxERExGaWx0ZXIkNTQFDERETEZpbHRlciQ1NQUMRERMRmlsdGVyJDU2BQxERExGaWx0ZXIkNTcFDERETEZpbHRlciQ1OAUMRERMRmlsdGVyJDU5BQxERExGaWx0ZXIkNjAFDERETEZpbHRlciQ2MQUMRERMRmlsdGVyJDYyBQxERExGaWx0ZXIkNjMFDERETEZpbHRlciQ2NAUMRERMRmlsdGVyJDY1BQxERExGaWx0ZXIkNjYFDERETEZpbHRlciQ2NwUMRERMRmlsdGVyJDY4BQxERExGaWx0ZXIkNjkFDERETEZpbHRlciQ3MAUMRERMRmlsdGVyJDcwBQZOU0dyaWTIjoAC5bRy3/Vc/r8EV2GN/mBV6g==">
+        </div>
+        <script type="text/javascript">
+            //<![CDATA[
+            var theForm = document.forms['fm'];
+            if (!theForm) {
+                theForm = document.fm;
+            }
+            function __doPostBack(eventTarget, eventArgument) {
+                if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+                    theForm.__EVENTTARGET.value = eventTarget;
+                    theForm.__EVENTARGUMENT.value = eventArgument;
+                    theForm.submit();
+                }
+            }
+            //]]>
+        </script>
+
+        <script src="/Content/GSC_Template/Complete_files/WebResource.axd" type="text/javascript"></script>
+
+        <script src="/Content/GSC_Template/Complete_files/ScriptResource.axd" type="text/javascript"></script><link class="Telerik_stylesheet" type="text/css" rel="stylesheet" href="/Content/GSC_Template/Complete_files/WebResource(1).axd"><link class="Telerik_stylesheet" type="text/css" rel="stylesheet" href="/Content/GSC_Template/Complete_files/WebResource(2).axd"><link class="Telerik_stylesheet" type="text/css" rel="stylesheet" href="/Content/GSC_Template/Complete_files/WebResource(3).axd">
+        <script src="/Content/GSC_Template/Complete_files/ScriptResource(1).axd" type="text/javascript"></script>
+        <script type="text/javascript">
+            //<![CDATA[
+            if (typeof (Sys) === 'undefined') throw new Error('ASP.NET Ajax client-side framework failed to load.');
+            //]]>
+        </script>
+        <script src="/Content/GSC_Template/Complete_files/ScriptResource(2).axd" type="text/javascript"></script>
+        <script src="/Content/GSC_Template/Complete_files/ScriptResource(3).axd" type="text/javascript"></script>
+        <script src="/Content/GSC_Template/Complete_files/ScriptResource(4).axd" type="text/javascript"></script>
+        <script src="/Content/GSC_Template/Complete_files/ScriptResource(5).axd" type="text/javascript"></script>
+        <script src="/Content/GSC_Template/Complete_files/ScriptResource(6).axd" type="text/javascript"></script>
+        <script src="/Content/GSC_Template/Complete_files/ScriptResource(7).axd" type="text/javascript"></script>
+        <script src="/Content/GSC_Template/Complete_files/ScriptResource(8).axd" type="text/javascript"></script>
+        <script src="/Content/GSC_Template/Complete_files/ScriptResource(9).axd" type="text/javascript"></script>
+        <script src="/Content/GSC_Template/Complete_files/ScriptResource(10).axd" type="text/javascript"></script>
+        <script type="text/javascript">
+            //<![CDATA[
+            function WebForm_OnSubmit() {
+                if (typeof (ValidatorOnSubmit) == "function" && ValidatorOnSubmit() == false) return false;
+                return true;
+            }
+            //]]>
+        </script>
+        <div>
+            <input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="D132BF3D">
+        </div>
+        <script type="text/javascript">
+            //<![CDATA[
+            Sys.WebForms.PageRequestManager._initialize('ScriptManager', document.getElementById('fm'));
+            Sys.WebForms.PageRequestManager.getInstance()._updateControls(['tUpDDLType', 'tUpDDLFilter', 'tupItems', 'tpnl1'], [], [], 90);
+            //]]>
+        </script>
+
+        <!-- HEADER SECTION -->
+        <header id="HeaderSec" class="noselect">
+            <div class="container" style="">
+
+                <!-- MOBILE TOP PANEL -->
+                <!-- MOBILE TOP PANEL -->
+                <div class="MobileTopPanelWrap" style="display: block;">
+                    <div id="Tabs" class="ui-tabs ui-widget ui-widget-content ui-corner-all ui-tabs-collapsible">
+
+                        <div id="getHeader_ctrl_getHeaderMobile_ctrl_loginupdate">
+
+                            <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all" role="tablist">
+                                <li class="ui-state-default ui-corner-top" role="tab" tabindex="0" aria-controls="BuyTicketsTopPanel" aria-labelledby="ui-id-1" aria-selected="false" aria-expanded="false"><a href="https://www.gsc.com.my/html/movieNowShowing.aspx?ID=9&amp;PID=49#BuyTicketsTopPanel" class="BuyTickets ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-1">BUY TICKETS</a></li>
+                                <li class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="LoginTopPanel" aria-labelledby="ui-id-2" aria-selected="false" aria-expanded="false"><a href="https://www.gsc.com.my/html/movieNowShowing.aspx?ID=9&amp;PID=49#LoginTopPanel" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-2">LOGIN</a></li>
+                                <li class="normalLink ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="ui-id-4" aria-labelledby="ui-id-3" aria-selected="false" aria-expanded="false"><a href="https://www.gsc.com.my/html/member_registration.aspx" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-3">SIGN-UP</a></li>
+                                <li class="SearchTab hide ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="SearchTopPanel" aria-labelledby="ui-id-5" aria-selected="false" aria-expanded="false"><a href="https://www.gsc.com.my/html/movieNowShowing.aspx?ID=9&amp;PID=49#SearchTopPanel" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-5">SEARCH</a></li>
+                                <li class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="ui-id-6" aria-labelledby="inboxMobileNotification2" aria-selected="false" aria-expanded="false"><a href="https://www.gsc.com.my/html/inbox_announcement.aspx" class="BellIcon ui-tabs-anchor" id="inboxMobileNotification2" role="presentation" tabindex="-1"><i class="fa fa-bell fa-2"></i></a></li>
+                            </ul>
+                            <div id="BuyTicketsTopPanel" class="PanelWrap ui-tabs-panel ui-widget-content ui-corner-bottom" aria-labelledby="ui-id-1" role="tabpanel" aria-hidden="true" style="display: none;">
+                                <!-- BuyTicketsTopPanel -->
+                                <iframe id="getHeader_ctrl_getHeaderMobile_ctrl_buyticketPanel_ifrBox" width="100%" marginwidth="0" frameborder="0" height="350" marginheight="0" name="ifrBox" scrolling="no" allowtransparency="true" src="/Content/GSC_Template/Complete_files/ddl_quickfilter_mobile.html"></iframe>
+                                <a href="https://www.gsc.com.my/html/movieNowShowing.aspx?ID=9&amp;PID=49#" class="ToggleClose"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span></a>
+                            </div>
+
+                            <div id="LoginTopPanel" class="PanelWrap ui-tabs-panel ui-widget-content ui-corner-bottom" aria-labelledby="ui-id-2" role="tabpanel" aria-hidden="true" style="display: none;">
+                                <!-- LoginTopPanel -->
+                                <div class="col-xs-12 col-sm-5">
+                                    <input name="getHeader_ctrl$getHeaderMobile_ctrl$UserName" type="text" id="getHeader_ctrl_getHeaderMobile_ctrl_UserName" placeholder="Email" class="form-control" value="Email " onfocus="if (this.value==this.defaultValue) this.value = &#39;&#39;" onblur="if (this.value==&#39;&#39;) this.value = this.defaultValue">
+                                    <span id="getHeader_ctrl_getHeaderMobile_ctrl_UserNameRequired" title="User Name is required." style="color:Red;display:none;">*</span>
+                                    <span id="getHeader_ctrl_getHeaderMobile_ctrl_regex_email" title="Please use EMAIL for Login" style="color:Red;display:none;">Please use EMAIL for Login</span>
+                                    <span id="getHeader_ctrl_getHeaderMobile_ctrl_EmailValidator" title="Invalid Email Format" style="color:Red;display:none;">Invalid Email Format</span>
+                                </div>
+                                <div class="col-xs-12 col-sm-5">
+                                    <input name="getHeader_ctrl$getHeaderMobile_ctrl$Password" type="text" id="getHeader_ctrl_getHeaderMobile_ctrl_Password" placeholder="Password" class="form-control" value="Password " onfocus="if (this.value==this.defaultValue) this.value = &#39;&#39;; this.type=&#39;password&#39;" onblur="if (this.value==&#39;&#39;) this.value = this.defaultValue, this.type=&#39;text&#39;">
+                                    <span id="getHeader_ctrl_getHeaderMobile_ctrl_PasswordRequired" title="Password is required." style="color:Red;display:none;">
+                                        *
+                                    </span>
+                                </div>
+                                <div class="col-xs-12 col-sm-2">
+                                    <input type="submit" name="getHeader_ctrl$getHeaderMobile_ctrl$LoginButton" value="LOGIN" onclick="javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions(&quot;getHeader_ctrl$getHeaderMobile_ctrl$LoginButton&quot;, &quot;&quot;, true, &quot;LoginViewMobile&quot;, &quot;&quot;, false, false))" id="getHeader_ctrl_getHeaderMobile_ctrl_LoginButton" class="BtnSubmit">
+
+                                </div>
+                                <a id="getHeader_ctrl_getHeaderMobile_ctrl_hlForgotPassword" class="ForgotPass btn-block" href="https://www.gsc.com.my/html/forget_password.aspx">Forgot your Password?</a>
+                                <div class="col-xs-12 col-sm-2">
+
+                                </div>
+                                <a href="https://www.gsc.com.my/html/movieNowShowing.aspx?ID=9&amp;PID=49#" class="ToggleClose">
+                                    <span class="glyphicon glyphicon-remove-circle" aria-hidden="true">
+                                    </span>
+                                </a>
+                            </div><div id="ui-id-4" class="ui-tabs-panel ui-widget-content ui-corner-bottom" aria-live="polite" aria-labelledby="ui-id-3" role="tabpanel" aria-hidden="true" style="display: none;"></div>
+
+                            <!-- // LoginTopPanel -->
+
+
+                            <div id="SearchTopPanel" class="PanelWrap ui-tabs-panel ui-widget-content ui-corner-bottom" aria-labelledby="ui-id-5" role="tabpanel" aria-hidden="true" style="display: none;">
+                                <!-- SearchTopPanel -->
+                                <div class="col-xs-12 col-sm-5">
+                                    <!-- input type="email" class="form-control" placeholder="TYPE TO SEARCH" -->
+                                    <div id="___gcse_0"><div class="gsc-control-searchbox-only gsc-control-searchbox-only-en" dir="ltr"><form class="gsc-search-box gsc-search-box-tools" accept-charset="utf-8"><table cellspacing="0" cellpadding="0" class="gsc-search-box"><tbody><tr><td class="gsc-input" placeholder="TYPE TO SEARCH"><div class="gsc-input-box" id="gsc-iw-id1"><table cellspacing="0" cellpadding="0" id="gs_id50" class="gstl_50 gsc-input" style="width: 100%; padding: 0px;" placeholder="TYPE TO SEARCH"><tbody><tr><td id="gs_tti50" class="gsib_a"><input autocomplete="off" type="text" size="10" class="gsc-input" name="search" title="search" id="gsc-i-id1" placeholder="TYPE TO SEARCH" dir="ltr" spellcheck="false" style="width: 100%; padding: 0px; border: none; margin: 0px; height: auto; background: url(&quot;https://www.google.com/cse/static/images/1x/googlelogo_lightgrey_46x16dp.png&quot;) left center no-repeat rgb(255, 255, 255); text-indent: 48px; outline: none;"></td><td class="gsib_b"><div class="gsst_b" id="gs_st50" dir="ltr"><a class="gsst_a" href="javascript:void(0)" title="Clear search box" role="button" style="display: none;"><span class="gscb_a" id="gs_cb50" aria-hidden="true">×</span></a></div></td></tr></tbody></table></div></td><td class="gsc-search-button"><button class="gsc-search-button gsc-search-button-v2"><svg width="13" height="13" viewBox="0 0 13 13"><title>search</title><path d="m4.8495 7.8226c0.82666 0 1.5262-0.29146 2.0985-0.87438 0.57232-0.58292 0.86378-1.2877 0.87438-2.1144 0.010599-0.82666-0.28086-1.5262-0.87438-2.0985-0.59352-0.57232-1.293-0.86378-2.0985-0.87438-0.8055-0.010599-1.5103 0.28086-2.1144 0.87438-0.60414 0.59352-0.8956 1.293-0.87438 2.0985 0.021197 0.8055 0.31266 1.5103 0.87438 2.1144 0.56172 0.60414 1.2665 0.8956 2.1144 0.87438zm4.4695 0.2115 3.681 3.6819-1.259 1.284-3.6817-3.7 0.0019784-0.69479-0.090043-0.098846c-0.87973 0.76087-1.92 1.1413-3.1207 1.1413-1.3553 0-2.5025-0.46363-3.4417-1.3909s-1.4088-2.0686-1.4088-3.4239c0-1.3553 0.4696-2.4966 1.4088-3.4239 0.9392-0.92727 2.0864-1.3969 3.4417-1.4088 1.3553-0.011889 2.4906 0.45771 3.406 1.4088 0.9154 0.95107 1.379 2.0924 1.3909 3.4239 0 1.2126-0.38043 2.2588-1.1413 3.1385l0.098834 0.090049z"></path></svg></button></td><td class="gsc-clear-button"><div class="gsc-clear-button" title="clear results">&nbsp;</div></td></tr></tbody></table></form></div></div>
+                                </div>
+                                <!-- div class="col-xs-12 col-sm-2">
+                                    <a href="#" class="BtnSubmit btn-block">SEARCH</a>
+                                </div -->
+                                <a href="https://www.gsc.com.my/html/movieNowShowing.aspx?ID=9&amp;PID=49#" class="ToggleClose"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span></a>
+                            </div><div id="ui-id-6" class="ui-tabs-panel ui-widget-content ui-corner-bottom" aria-live="polite" aria-labelledby="inboxMobileNotification2" role="tabpanel" aria-hidden="true" style="display: none;"></div><!-- // SearchTopPanel -->
+
+
+                        </div>
+
+                    </div>
+                </div>
+                <script>
+                    $('#inboxMobileNotification, #inboxMobileNotification2').click(function () {
+                        window.location('/html/inbox_announcement.aspx');
+                    })
+                </script>
+                <!-- MOBILE TOP PANEL -->
+                <!-- TopBar -->
+                <div class="TopBar">
+                    <div class="SearchWrap Transition02">
+                        <!-- input type="text" id="TopSearch" placeholder="TYPE TO SEARCH" -->
+                        <div id="___gcse_1"><div class="gsc-control-searchbox-only gsc-control-searchbox-only-en" dir="ltr"><form class="gsc-search-box gsc-search-box-tools" accept-charset="utf-8"><table cellspacing="0" cellpadding="0" class="gsc-search-box"><tbody><tr><td class="gsc-input" placeholder="TYPE TO SEARCH"><div class="gsc-input-box" id="gsc-iw-id2"><table cellspacing="0" cellpadding="0" id="gs_id51" class="gstl_51 gsc-input" style="width: 100%; padding: 0px;" placeholder="TYPE TO SEARCH"><tbody><tr><td id="gs_tti51" class="gsib_a"><input autocomplete="off" type="text" size="10" class="gsc-input" name="search" title="search" id="gsc-i-id2" placeholder="TYPE TO SEARCH" dir="ltr" spellcheck="false" style="width: 100%; padding: 0px; border: none; margin: 0px; height: auto; background: url(&quot;https://www.google.com/cse/static/images/1x/googlelogo_lightgrey_46x16dp.png&quot;) left center no-repeat rgb(255, 255, 255); text-indent: 48px; outline: none;"></td><td class="gsib_b"><div class="gsst_b" id="gs_st51" dir="ltr"><a class="gsst_a" href="javascript:void(0)" title="Clear search box" role="button" style="display: none;"><span class="gscb_a" id="gs_cb51" aria-hidden="true">×</span></a></div></td></tr></tbody></table></div></td><td class="gsc-search-button"><button class="gsc-search-button gsc-search-button-v2"><svg width="13" height="13" viewBox="0 0 13 13"><title>search</title><path d="m4.8495 7.8226c0.82666 0 1.5262-0.29146 2.0985-0.87438 0.57232-0.58292 0.86378-1.2877 0.87438-2.1144 0.010599-0.82666-0.28086-1.5262-0.87438-2.0985-0.59352-0.57232-1.293-0.86378-2.0985-0.87438-0.8055-0.010599-1.5103 0.28086-2.1144 0.87438-0.60414 0.59352-0.8956 1.293-0.87438 2.0985 0.021197 0.8055 0.31266 1.5103 0.87438 2.1144 0.56172 0.60414 1.2665 0.8956 2.1144 0.87438zm4.4695 0.2115 3.681 3.6819-1.259 1.284-3.6817-3.7 0.0019784-0.69479-0.090043-0.098846c-0.87973 0.76087-1.92 1.1413-3.1207 1.1413-1.3553 0-2.5025-0.46363-3.4417-1.3909s-1.4088-2.0686-1.4088-3.4239c0-1.3553 0.4696-2.4966 1.4088-3.4239 0.9392-0.92727 2.0864-1.3969 3.4417-1.4088 1.3553-0.011889 2.4906 0.45771 3.406 1.4088 0.9154 0.95107 1.379 2.0924 1.3909 3.4239 0 1.2126-0.38043 2.2588-1.1413 3.1385l0.098834 0.090049z"></path></svg></button></td><td class="gsc-clear-button"><div class="gsc-clear-button" title="clear results">&nbsp;</div></td></tr></tbody></table></form></div></div>
+                        <a class="SearchBtnIcon">
+                            <div class="CloseBtn">X</div>
+                            <svg viewBox="0 0 30 30" width="30px" height="30px">
+                                <g id="Layer%201">
+                                    <path d="M 5 13 C 5 9.134 8.1339 6 12 6 C 15.8661 6 19 9.134 19 13 C 19 16.866 15.8661 20 12 20 C 8.1339 20 5 16.866 5 13 ZM 17.85 23.48 L 26 30 L 30 26 L 22.235 19.27 C 23.356 17.4449 24 15.2991 24 13 C 24 6.3725 18.6276 1 12 1 C 5.3724 1 0 6.3725 0 13 C 0 19.6275 5.3724 25 12 25 C 14.1238 25 16.1194 24.4479 17.85 23.48 Z" fill="#464646"></path>
+                                </g>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <!-- // TopBar -->
+                <!-- HeaderWrap -->
+
+                <script type="text/javascript">
+                    var googletag = googletag || {};
+                    googletag.cmd = googletag.cmd || [];
+                    (function () {
+                        var gads = document.createElement('script');
+                        gads.async = true;
+                        gads.type = 'text/javascript';
+                        var useSSL = 'https:' == document.location.protocol;
+                        gads.src = (useSSL ? 'https:' : 'http:') +
+                            '//www.googletagservices.com/tag/js/gpt.js';
+                        var node = document.getElementsByTagName('script')[0];
+                        node.parentNode.insertBefore(gads, node);
+                    })();
+                </script>
+                <script type="text/javascript">
+                    if ('/28335045/Movies_Superbanner' != '' && '/28335045/Movies_Superbanner' != null) {
+                        googletag.cmd.push(function () {
+                            googletag.defineSlot('/28335045/Movies_Superbanner', [[320, 40], [728, 90], [320, 100], [300, 70], [320, 50]], 'div-gpt-ad-1420174348483-0').addService(googletag.pubads());
+                            googletag.pubads().enableSingleRequest();
+                            googletag.enableServices();
+                        });
+                    }
+                </script>
+                <div class="HeaderWrap">
+                    <div class="Logo">
+                        <a href="https://www.gsc.com.my/"><img src="/Content/GSC_Template/Complete_files/logo_gsc.png" class="img-responsive"></a>
+                    </div>
+
+                    <div class="Ads Leaderboard">
+                        <!-- No longer used -->
+                        <!-- div id='div-gpt-ad-1420174348483-0' class="Leaderboard_desktop">
+                            <script type='text/javascript'>
+                                setTimeout(function() {
+                                    googletag.cmd.push(function () { googletag.display('div-gpt-ad-1420174348483-0'); });
+                                }, 100);
+                            </script>
+                        </div -->
+                        <!-- a href="#"><img src="/assets/images/ads_leaderboard.jpg" class="img-responsive"></a -->
+                    </div>
+
+                    <div class="RightBoxWrap noselect">
+                        <div class="Group">
+                            <div class="BuyNowBtn">
+                                <a href="https://www.gsc.com.my/html/epayment.aspx?utmsource=BuyNow&amp;Value=BuyNow">BUY NOW</a>
+                            </div>
+                            <div class="SocialIcons">
+                                <ul>
+                                    <li><a href="https://www.facebook.com/GSCinemas" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                                    <li><a href="https://twitter.com/gscinemas" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                                    <li><a href="https://instagram.com/gscinemas" target="_blank"><i class="fa fa-instagram"></i></a></li>
+                                    <li><a href="https://www.gsc.com.my/html/rss_feed.aspx" target="_blank"><i class="fa fa-rss"></i></a></li>
+                                    <li><a href="http://itunes.apple.com/my/app/golden-screen-cinemas/id413024972" target="_blank"><i class="fa fa-apple"></i></a></li>
+                                    <li><a href="https://play.google.com/store/apps/details?id=com.gscandroid.yk" target="_blank"><i class="fa fa-android"></i></a></li>
+                                </ul>
+                            </div>
+
+
+                            <div id="getHeader_ctrl_getHeaderDesktop_loginupdate">
+
+                                <div class="LoginWrap">
+                                    <div class="LoginToggleBtn"><a role="button" id="LoginProfileToggle" data-toggle="collapse" href="https://www.gsc.com.my/html/movieNowShowing.aspx?ID=9&amp;PID=49#collapseLoginPanel" aria-expanded="false" aria-controls="collapseExample">LOGIN</a></div>
+                                    <!-- LoginPanel -->
+                                    <div class="collapse LoginPanelCollapse" id="collapseLoginPanel">
+                                        <div class="LoginPanel">
+                                            <div class="form-group">
+                                                <input name="getHeader_ctrl$getHeaderDesktop$UserName" type="text" id="getHeader_ctrl_getHeaderDesktop_UserName" placeholder="Email" class="form-control" value="Email " onfocus="if (this.value==this.defaultValue) this.value = &#39;&#39;" onblur="if (this.value==&#39;&#39;) this.value = this.defaultValue">
+                                                <span id="getHeader_ctrl_getHeaderDesktop_UserNameRequired" title="User Name is required." style="color:Red;display:none;">*</span>
+                                                <span id="getHeader_ctrl_getHeaderDesktop_regex_email" title="Please use EMAIL for Login" style="color:Red;display:none;">Please use EMAIL for Login</span>
+                                                <span id="getHeader_ctrl_getHeaderDesktop_EmailValidator" title="Invalid Email Format" style="color:Red;display:none;">Invalid Email Format</span>
+                                            </div>
+                                            <div class="form-group">
+                                                <input name="getHeader_ctrl$getHeaderDesktop$Password" type="text" id="getHeader_ctrl_getHeaderDesktop_Password" placeholder="Password" class="form-control" value="Password " onfocus="if (this.value==this.defaultValue) this.value = &#39;&#39;; this.type=&#39;password&#39;" onblur="if (this.value==&#39;&#39;) this.value = this.defaultValue, this.type=&#39;text&#39;">
+                                                <span id="getHeader_ctrl_getHeaderDesktop_PasswordRequired" title="Password is required." style="color:Red;display:none;">
+                                                    *
+                                                </span>
+                                            </div>
+                                            <div class="form-group">
+                                                <a id="getHeader_ctrl_getHeaderDesktop_hlForgotPassword" class="ForgotPass btn-block" validationgroup="logindesktop" href="https://www.gsc.com.my/html/forget_password.aspx">Forgot your Password?</a>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="submit" name="getHeader_ctrl$getHeaderDesktop$LoginButton" value="LOGIN" onclick="javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions(&quot;getHeader_ctrl$getHeaderDesktop$LoginButton&quot;, &quot;&quot;, true, &quot;logindesktop&quot;, &quot;&quot;, false, false))" id="getHeader_ctrl_getHeaderDesktop_LoginButton" class="LoginBtn btn btn-default btn-block">
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- // LoginPanel -->
+
+                                    <div class="SignUpBtn"><a href="https://www.gsc.com.my/html/member_registration.aspx">SIGN UP</a></div>
+
+                                    <div class="BellWrap BeforeLogin"><a href="https://www.gsc.com.my/html/inbox_announcement.aspx" id="inboxNotification" class="BellIcon"><i class="fa fa-bell fa-2"></i></a></div>
+                                </div>
+
+                            </div>
+                            <!-- After Login -->
+                            <!-- // After Login -->
+                        </div>
+
+                        <div class="BtnMenu">
+                            <a class="BtnMenuToggle collapsed" data-toggle="collapse" data-target="#navbar" aria-controls="collapseBtnMenu" data-collapse-group="myDivs"><span></span><em>MENU</em></a>
+                        </div>
+
+                        <div class="MenuWrap">
+                            <div class="collapse MainMenuNav" id="navbar">
+                                <div id="getHeader_ctrl_getHeaderDesktop_getNav_RadMenu" class="navbar-collapse collapse" style="z-index: 7000;">
+                                    <!-- 2013.1.403.35 --><ul class="MainNav nav navbar-nav">
+                                        <li class="dropdown">
+                                            <a href="javascript:void(0);" class="dropdown-toggle" target="_self" data-toggle="dropdown"><span class="rmText">Movies</span><b class="caret"></b></a><div class="handsome">
+                                                <ul class="dropdown-menu">
+                                                    <li class="pro3"><a href="https://www.gsc.com.my/html/movieNowShowing.aspx?ID=9&amp;PID=49" class="swt" target="_self"><span class="rmText">Now Showing</span></a></li>
+                                                    <li class="pro3"><a href="https://www.gsc.com.my/html/movieNextChange.aspx?ID=9&amp;PID=145" class="swt" target="_self"><span class="rmText">Next Change</span></a></li>
+                                                    <li class="pro3"><a href="https://www.gsc.com.my/html/movieComingSoon.aspx?ID=9&amp;PID=50" class="swt" target="_self"><span class="rmText">Coming Soon</span></a></li>
+                                                    <li class="pro3"><a href="https://www.gsc.com.my/html/IntScreen_NS.aspx?ID=9&amp;PID=54" class="swt" target="_self"><span class="rmText">International Screens</span></a></li>
+                                                    <li class="pro3"><a href="https://www.gsc.com.my/html/FilmFestival_Adhoc.aspx?ID=9&amp;PID=4554&amp;CatID=4549" class="swt" target="_self"><span class="rmText">French Film Festival 2019</span></a></li>
+                                                    <li class="pro3"><a href="https://www.gsc.com.my/html/movieArchive.aspx?ID=9&amp;PID=53&amp;Year=1" class="swt" target="_self"><span class="rmText">Movies Archives</span></a></li>
+                                                </ul>
+                                            </div>
+                                        </li>
+                                        <li class="dropdown">
+                                            <a href="javascript:void(0);" class="dropdown-toggle" target="_self" data-toggle="dropdown"><span class="rmText">Ticketing &amp; Showtimes</span><b class="caret"></b></a><div class="handsome">
+                                                <ul class="dropdown-menu">
+                                                    <li class="pro3"><a href="https://www.gsc.com.my/html/ticket_showtimes.aspx?ID=38&amp;PID=57" class="swt" target="_self"><span class="rmText">Showtimes</span></a></li>
+                                                    <li class="dropdown-submenu">
+                                                        <a href="javascript:void(0);" class="swt" target="_self" data-toggle="dropdown"><span class="rmText">Ticketing</span></a><div class="handsome">
+                                                            <ul class="dropdown-menu">
+                                                                <li class="pro3"><a href="https://www.gsc.com.my/html/epayment.aspx?ID1=38&amp;ID=58&amp;PID=65" class="swt" target="_self"><span class="rmText">E-Payment Ticketing</span></a></li>
+                                                                <li class="pro3"><a href="https://www.gsc.com.my/html/default.aspx?ID1=38&amp;ID=58&amp;PID=67" class="swt" target="_self"><span class="rmText">SelfPrint Tickets</span></a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </li>
+                                                    <li class="dropdown-submenu">
+                                                        <a href="javascript:void(0);" class="swt" target="_self" data-toggle="dropdown"><span class="rmText">Ticketing Guide</span></a><div class="handsome">
+                                                            <ul class="dropdown-menu">
+                                                                <li class="pro3"><a href="https://www.gsc.com.my/html/default.aspx?ID=60&amp;PID=68" class="swt" target="_self"><span class="rmText">How to Use E-Payment</span></a></li>
+                                                                <li class="pro3"><a href="https://www.gsc.com.my/html/default.aspx?ID=60&amp;PID=69" class="swt" target="_self"><span class="rmText">GSC MOBILE APP</span></a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </li>
+                                                    <li class="dropdown-submenu">
+                                                        <a href="javascript:void(0);" class="swt" target="_self" data-toggle="dropdown"><span class="rmText">Movie Guide</span></a><div class="handsome">
+                                                            <ul class="dropdown-menu">
+                                                                <li class="pro3"><a href="https://www.gsc.com.my/html/movie_guide.aspx?ID=61&amp;PID=71" class="swt" target="_self"><span class="rmText">Classification</span></a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </li>
+                                        <li class="dropdown">
+                                            <a href="javascript:void(0);" class="dropdown-toggle" target="_self" data-toggle="dropdown"><span class="rmText">Promotions</span><b class="caret"></b></a><div class="handsome">
+                                                <ul class="dropdown-menu">
+                                                    <li class="pro3"><a href="https://www.gsc.com.my/html/promotions.aspx?ID=39&amp;PID=74" class="swt" target="_self"><span class="rmText">PROMOTION LIST</span></a></li>
+                                                </ul>
+                                            </div>
+                                        </li>
+                                        <li class="dropdown">
+                                            <a href="javascript:void(0);" class="dropdown-toggle" target="_self" data-toggle="dropdown"><span class="rmText">GSC HLB Credit Card</span><b class="caret"></b></a><div class="handsome">
+                                                <ul class="dropdown-menu">
+                                                    <li class="pro3"><a href="https://www.hlb.com.my/en/personal-banking/credit-cards/rewards-points/gsc-gold-and-platinum-cards.html?utm_source=MenuBar" class="swt" target="_self"><span class="rmText">Enjoy RM6 Off Movies</span></a></li>
+                                                    <li class="pro3"><a href="https://www.gsc.com.my/html/GSCHLBCreditCardFAQ.aspx?ID=4001&amp;PID=4137&amp;utm_source=GSCHLBFAQ" class="swt" target="_self"><span class="rmText">FAQ</span></a></li>
+                                                </ul>
+                                            </div>
+                                        </li>
+                                        <li class="dropdown">
+                                            <a href="javascript:void(0);" class="dropdown-toggle" target="_self" data-toggle="dropdown"><span class="rmText">GSC Membership</span><b class="caret"></b></a><div class="handsome">
+                                                <ul class="dropdown-menu">
+                                                    <li class="pro3"><a href="http://www.gsc.com.my/html/membership.aspx" class="swt" target="_self"><span class="rmText">GSC Rewards</span></a></li>
+                                                </ul>
+                                            </div>
+                                        </li>
+                                        <li class="dropdown">
+                                            <a href="javascript:void(0);" class="dropdown-toggle" target="_self" data-toggle="dropdown"><span class="rmText">Contests</span><b class="caret"></b></a><div class="handsome">
+                                                <ul class="dropdown-menu">
+                                                    <li class="pro3"><a href="https://www.gsc.com.my/html/contests.aspx?ID=40&amp;PID=75" class="swt" target="_self"><span class="rmText">Main Contest</span></a></li>
+                                                    <li class="pro3"><a href="https://www.gsc.com.my/html/contest_results.aspx?ID=40&amp;PID=76" class="swt" target="_self"><span class="rmText">Contest Results</span></a></li>
+                                                </ul>
+                                            </div>
+                                        </li>
+                                        <li class="dropdown">
+                                            <a href="javascript:void(0);" class="dropdown-toggle" target="_self" data-toggle="dropdown"><span class="rmText">Cinemas Experiences</span><b class="caret"></b></a><div class="handsome">
+                                                <ul class="dropdown-menu">
+                                                    <li class="pro3"><a href="https://www.gsc.com.my/html/cinema_experience.aspx?ID=41&amp;PID=77" class="swt" target="_self"><span class="rmText">Features</span></a></li>
+                                                </ul>
+                                            </div>
+                                        </li>
+                                        <li class="dropdown">
+                                            <a href="javascript:void(0);" class="dropdown-toggle" target="_self" data-toggle="dropdown"><span class="rmText">Support</span><b class="caret"></b></a><div class="handsome">
+                                                <ul class="dropdown-menu">
+                                                    <li class="pro3"><a href="https://www.gsc.com.my/corporate" class="swt" target="_self"><span class="rmText">GSC Corporate</span></a></li>
+                                                    <li class="pro3"><a href="https://www.gsc.com.my/html/Feedback.aspx" class="swt" target="_self"><span class="rmText">Feedback Form</span></a></li>
+                                                    <li class="pro3"><a href="https://www.gsc.com.my/html/announcements.aspx?ID=42&amp;PID=82" class="swt" target="_self"><span class="rmText">Announcements</span></a></li>
+                                                    <li class="pro3"><a href="https://www.gsc.com.my/html/location.aspx?ID=204&amp;PID=234" class="swt" target="_self"><span class="rmText">Location</span></a></li>
+                                                    <li class="pro3"><a href="https://www.gsc.com.my/html/default.aspx?ID=42&amp;PID=84" class="swt" target="_self"><span class="rmText">Contact Us</span></a></li>
+                                                    <li class="pro3"><a href="https://www.gsc.com.my/html/faqs.aspx?ID=42&amp;PID=85" class="swt" target="_self"><span class="rmText">FAQ</span></a></li>
+                                                </ul>
+                                            </div>
+                                        </li>
+                                    </ul><input id="getHeader_ctrl_getHeaderDesktop_getNav_RadMenu_ClientState" name="getHeader_ctrl_getHeaderDesktop_getNav_RadMenu_ClientState" type="hidden" autocomplete="off">
+                                </div>
+                                <!-- TELERIK STARTS HERE -->
+                                <!-- TELERIK ENDS HERE -->
+
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <script>
+                    $('#inboxNotification').click(function () {
+                        window.location = '/html/inbox_announcement.aspx';
+                    })
+                </script>
+
+
+                <!-- // HeaderWrap -->
+                <!-- Google Tag Manager (noscript) -->
+                <noscript>
+                    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TVZDQ3X"
+                            height="0" width="0" style="display:none;visibility:hidden"></iframe>
+                </noscript>
+                <!-- End Google Tag Manager (noscript) -->
+
+
+
+
+            </div>
+            <!-- // container -->
+        </header>
+        <!-- // HEADER SECTION -->
+        <!-- QuickFilter -->
+
+        <section id="QuickFilterSec" style="display:block;">
+            <iframe id="getQuickFilter_ctrl_ifrBox" width="100%" marginwidth="0" frameborder="0" class="QuickFilterIframe" height="100%" marginheight="0" name="ifrBox" scrolling="no" allowtransparency="true" src="/Content/GSC_Template/Complete_files/ddl_quickfilter.html"></iframe>
+        </section>
+
+        <!-- QuickFilter -->
+        <!-- MovieListing Catg -->
+        <section id="MovieListingCatg">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-md-12">
+                        <div class="DP_Wrap">
+                            <a href="https://www.gsc.com.my/html/movieNowShowing.aspx?ID=9&amp;PID=49#" class="DP_ListingCatgBtn">MOVIES</a>
+                            <div class="DP_ListingCatgWrap">
+                                <ul class="DP_ListingCatg">
+
+                                    <li id="130" class="tab Active"><a href="https://www.gsc.com.my/html/movieNowShowing.aspx?ID=9&amp;PID=49">MOVIES</a></li>
+
+                                    <li id="132" class="tab"><a href="https://www.gsc.com.my/html/IntScreen_NS.aspx?ID=9&amp;PID=54">INTERNATIONAL SCREENS</a></li>
+
+                                    <li id="4549" class="tab"><a href="https://www.gsc.com.my/html/FilmFestival_Adhoc.aspx?ID=9&amp;PID=4554&amp;CatID=4549">FRENCH FILM FESTIVAL 2019</a></li>
+
+                                    <li id="134" class="tab"><a href="https://www.gsc.com.my/html/movieArchive.aspx?ID=9&amp;PID=53&amp;Year=1">MOVIES ARCHIVE</a></li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="Tap_Wrap">
+                            <ul class="Tap">
+
+                                <li class="tab Active"><a href="https://www.gsc.com.my/html/movieNowShowing.aspx?ID=9&amp;PID=49">Now Showing</a></li>
+
+                                <li class="tab"><a href="https://www.gsc.com.my/html/movieNextChange.aspx?ID=9&amp;PID=145">Next Change</a></li>
+
+                                <li class="tab"><a href="https://www.gsc.com.my/html/movieComingSoon.aspx?ID=9&amp;PID=50">Coming Soon</a></li>
+
+                            </ul>
+                            <span class="MovieResultText"><span id="LblTotal">24&nbsp;movies now showing</span></span>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        <!-- // MovieListing Catg -->
+        <!-- MovieListFilterSec -->
+        <section id="MovieListFilterSec">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="MovieListFilterWrap">
+                            <div class="ToggleBar noselect">PLEASE SELECT FROM THE MENU <span>Narrow Your Search</span></div>
+                            <div class="DropdownWrap">
+                                <!-- DropdownWrap -->
+
+                                <div id="UpDDLType">
+
+                                    <ul class="NavTabs" role="tablist">
+                                        <li>
+                                            <a class="tab">
+                                                <table id="rdList" border="0">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td><input id="rdList_0" type="radio" name="rdList" value="1" checked="checked"><label for="rdList_0">Language</label></td>
+                                                            <td><input id="rdList_1" type="radio" name="rdList" value="2" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;rdList$1\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="rdList_1">Genre</label></td>
+                                                            <td><input id="rdList_2" type="radio" name="rdList" value="3" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;rdList$2\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="rdList_2">Film Type</label></td>
+                                                            <td><input id="rdList_3" type="radio" name="rdList" value="4" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;rdList$3\&#39;,\&#39;\&#39;)&#39;, 0)"><label for="rdList_3">Hall Type</label></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </a>
+                                        </li>
+                                    </ul>
+
+                                </div>
+                                <div id="UpDDLFilter">
+
+                                    <ul>
+                                        <li class="checkbox">
+                                            <div>
+                                                <label>
+                                                    <table id="DDLFilter" border="0">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td><input id="DDLFilter_0" type="checkbox" name="DDLFilter$0"><label for="DDLFilter_0">ARABIC</label></td>
+                                                                <td><input id="DDLFilter_1" type="checkbox" name="DDLFilter$1"><label for="DDLFilter_1">ASLI</label></td>
+                                                                <td><input id="DDLFilter_2" type="checkbox" name="DDLFilter$2"><label for="DDLFilter_2">AUSTRIAN</label></td>
+                                                                <td><input id="DDLFilter_3" type="checkbox" name="DDLFilter$3"><label for="DDLFilter_3">BAIQUEO</label></td>
+                                                                <td><input id="DDLFilter_4" type="checkbox" name="DDLFilter$4"><label for="DDLFilter_4">BANGLA</label></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><input id="DDLFilter_5" type="checkbox" name="DDLFilter$5"><label for="DDLFilter_5">BELGIAN</label></td>
+                                                                <td><input id="DDLFilter_6" type="checkbox" name="DDLFilter$6"><label for="DDLFilter_6">BENGALI</label></td>
+                                                                <td><input id="DDLFilter_7" type="checkbox" name="DDLFilter$7"><label for="DDLFilter_7">BULGARIAN</label></td>
+                                                                <td><input id="DDLFilter_8" type="checkbox" name="DDLFilter$8"><label for="DDLFilter_8">BURMESE</label></td>
+                                                                <td><input id="DDLFilter_9" type="checkbox" name="DDLFilter$9"><label for="DDLFilter_9">CANTONESE</label></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><input id="DDLFilter_10" type="checkbox" name="DDLFilter$10"><label for="DDLFilter_10">CHINESE</label></td>
+                                                                <td><input id="DDLFilter_11" type="checkbox" name="DDLFilter$11"><label for="DDLFilter_11">CROATIAN</label></td>
+                                                                <td><input id="DDLFilter_12" type="checkbox" name="DDLFilter$12"><label for="DDLFilter_12">CZECH</label></td>
+                                                                <td><input id="DDLFilter_13" type="checkbox" name="DDLFilter$13"><label for="DDLFilter_13">DANISH</label></td>
+                                                                <td><input id="DDLFilter_14" type="checkbox" name="DDLFilter$14"><label for="DDLFilter_14">DUTCH</label></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><input id="DDLFilter_15" type="checkbox" name="DDLFilter$15"><label for="DDLFilter_15">DZONGKHA</label></td>
+                                                                <td><input id="DDLFilter_16" type="checkbox" name="DDLFilter$16"><label for="DDLFilter_16">EGYPT</label></td>
+                                                                <td><input id="DDLFilter_17" type="checkbox" name="DDLFilter$17"><label for="DDLFilter_17">ENGLISH</label></td>
+                                                                <td><input id="DDLFilter_18" type="checkbox" name="DDLFilter$18"><label for="DDLFilter_18">FILIPINO</label></td>
+                                                                <td><input id="DDLFilter_19" type="checkbox" name="DDLFilter$19"><label for="DDLFilter_19">FINNISH</label></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><input id="DDLFilter_20" type="checkbox" name="DDLFilter$20"><label for="DDLFilter_20">FRENCH</label></td>
+                                                                <td><input id="DDLFilter_21" type="checkbox" name="DDLFilter$21"><label for="DDLFilter_21">GERMAN</label></td>
+                                                                <td><input id="DDLFilter_22" type="checkbox" name="DDLFilter$22"><label for="DDLFilter_22">GREEK</label></td>
+                                                                <td><input id="DDLFilter_23" type="checkbox" name="DDLFilter$23"><label for="DDLFilter_23">HEBREW</label></td>
+                                                                <td><input id="DDLFilter_24" type="checkbox" name="DDLFilter$24"><label for="DDLFilter_24">HINDI</label></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><input id="DDLFilter_25" type="checkbox" name="DDLFilter$25"><label for="DDLFilter_25">HOKKIEN</label></td>
+                                                                <td><input id="DDLFilter_26" type="checkbox" name="DDLFilter$26"><label for="DDLFilter_26">HUNGARIAN</label></td>
+                                                                <td><input id="DDLFilter_27" type="checkbox" name="DDLFilter$27"><label for="DDLFilter_27">IBAN</label></td>
+                                                                <td><input id="DDLFilter_28" type="checkbox" name="DDLFilter$28"><label for="DDLFilter_28">INDONESIAN</label></td>
+                                                                <td><input id="DDLFilter_29" type="checkbox" name="DDLFilter$29"><label for="DDLFilter_29">IRANIAN</label></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><input id="DDLFilter_30" type="checkbox" name="DDLFilter$30"><label for="DDLFilter_30">IRISH</label></td>
+                                                                <td><input id="DDLFilter_31" type="checkbox" name="DDLFilter$31"><label for="DDLFilter_31">ITALIAN</label></td>
+                                                                <td><input id="DDLFilter_32" type="checkbox" name="DDLFilter$32"><label for="DDLFilter_32">JAPANESE</label></td>
+                                                                <td><input id="DDLFilter_33" type="checkbox" name="DDLFilter$33"><label for="DDLFilter_33">KANNADA</label></td>
+                                                                <td><input id="DDLFilter_34" type="checkbox" name="DDLFilter$34"><label for="DDLFilter_34">Khmer</label></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><input id="DDLFilter_35" type="checkbox" name="DDLFilter$35"><label for="DDLFilter_35">KOREAN</label></td>
+                                                                <td><input id="DDLFilter_36" type="checkbox" name="DDLFilter$36"><label for="DDLFilter_36">KURDISH</label></td>
+                                                                <td><input id="DDLFilter_37" type="checkbox" name="DDLFilter$37"><label for="DDLFilter_37">LAOS</label></td>
+                                                                <td><input id="DDLFilter_38" type="checkbox" name="DDLFilter$38"><label for="DDLFilter_38">LAOTIAN</label></td>
+                                                                <td><input id="DDLFilter_39" type="checkbox" name="DDLFilter$39"><label for="DDLFilter_39">LUXEMBOURGISH</label></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><input id="DDLFilter_40" type="checkbox" name="DDLFilter$40"><label for="DDLFilter_40">MALAY</label></td>
+                                                                <td><input id="DDLFilter_41" type="checkbox" name="DDLFilter$41"><label for="DDLFilter_41">MALAYALAM</label></td>
+                                                                <td><input id="DDLFilter_42" type="checkbox" name="DDLFilter$42"><label for="DDLFilter_42">MANDARIN</label></td>
+                                                                <td><input id="DDLFilter_43" type="checkbox" name="DDLFilter$43"><label for="DDLFilter_43">MARATHI</label></td>
+                                                                <td><input id="DDLFilter_44" type="checkbox" name="DDLFilter$44"><label for="DDLFilter_44">MEXICAN</label></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><input id="DDLFilter_45" type="checkbox" name="DDLFilter$45"><label for="DDLFilter_45">MONGOLIAN</label></td>
+                                                                <td><input id="DDLFilter_46" type="checkbox" name="DDLFilter$46"><label for="DDLFilter_46">MYANMAR</label></td>
+                                                                <td><input id="DDLFilter_47" type="checkbox" name="DDLFilter$47"><label for="DDLFilter_47">NA</label></td>
+                                                                <td><input id="DDLFilter_48" type="checkbox" name="DDLFilter$48"><label for="DDLFilter_48">NORWEGIAN</label></td>
+                                                                <td><input id="DDLFilter_49" type="checkbox" name="DDLFilter$49"><label for="DDLFilter_49">PERSIAN</label></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><input id="DDLFilter_50" type="checkbox" name="DDLFilter$50"><label for="DDLFilter_50">POLISH</label></td>
+                                                                <td><input id="DDLFilter_51" type="checkbox" name="DDLFilter$51"><label for="DDLFilter_51">PORTUGESE</label></td>
+                                                                <td><input id="DDLFilter_52" type="checkbox" name="DDLFilter$52"><label for="DDLFilter_52">PUNJABI</label></td>
+                                                                <td><input id="DDLFilter_53" type="checkbox" name="DDLFilter$53"><label for="DDLFilter_53">ROMANIAN</label></td>
+                                                                <td><input id="DDLFilter_54" type="checkbox" name="DDLFilter$54"><label for="DDLFilter_54">RUSSIAN</label></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><input id="DDLFilter_55" type="checkbox" name="DDLFilter$55"><label for="DDLFilter_55">SEMAI</label></td>
+                                                                <td><input id="DDLFilter_56" type="checkbox" name="DDLFilter$56"><label for="DDLFilter_56">SLOVAKIAN</label></td>
+                                                                <td><input id="DDLFilter_57" type="checkbox" name="DDLFilter$57"><label for="DDLFilter_57">SPANISH</label></td>
+                                                                <td><input id="DDLFilter_58" type="checkbox" name="DDLFilter$58"><label for="DDLFilter_58">SWEDISH</label></td>
+                                                                <td><input id="DDLFilter_59" type="checkbox" name="DDLFilter$59"><label for="DDLFilter_59">SWISS GERMAN</label></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><input id="DDLFilter_60" type="checkbox" name="DDLFilter$60"><label for="DDLFilter_60">SYRIA</label></td>
+                                                                <td><input id="DDLFilter_61" type="checkbox" name="DDLFilter$61"><label for="DDLFilter_61">TAGALOG</label></td>
+                                                                <td><input id="DDLFilter_62" type="checkbox" name="DDLFilter$62"><label for="DDLFilter_62">TAJIK</label></td>
+                                                                <td><input id="DDLFilter_63" type="checkbox" name="DDLFilter$63"><label for="DDLFilter_63">TAMIL</label></td>
+                                                                <td><input id="DDLFilter_64" type="checkbox" name="DDLFilter$64"><label for="DDLFilter_64">TELUGU</label></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><input id="DDLFilter_65" type="checkbox" name="DDLFilter$65"><label for="DDLFilter_65">THAI</label></td>
+                                                                <td><input id="DDLFilter_66" type="checkbox" name="DDLFilter$66"><label for="DDLFilter_66">TIBET</label></td>
+                                                                <td><input id="DDLFilter_67" type="checkbox" name="DDLFilter$67"><label for="DDLFilter_67">URDU</label></td>
+                                                                <td><input id="DDLFilter_68" type="checkbox" name="DDLFilter$68"><label for="DDLFilter_68">UZBEK</label></td>
+                                                                <td><input id="DDLFilter_69" type="checkbox" name="DDLFilter$69"><label for="DDLFilter_69">VIETNAMESE</label></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><input id="DDLFilter_70" type="checkbox" name="DDLFilter$70"><label for="DDLFilter_70">XHOSA</label></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </label>
+                                            </div>
+                                        </li>
+                                    </ul>
+
+                                </div>
+                                <input type="submit" name="demo" value="SEARCH" id="demo" class="BtnSearch" autopostback="true">
+                            </div>
+                            <!-- // DropdownWrap -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- // MovieListFilterSec  -->
+        <!-- MovieListingSec -->
+        <div id="upItems">
+
+            <div id="PnlGrid">
+
+                <section id="MovieListingSec">
+                    <div class="container">
+                        <div class="row">
+
+
+                            <div class="Set even">
+                                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+                                    <a href="https://www.gsc.com.my/html/movie_page.aspx?M_MovieID=3290" title="Viral">
+                                        <img src="/Content/GSC_Template/Complete_files/Viral_V2_Keyart_500.jpg" class="img-responsive">
+                                        <img src="/Content/GSC_Template/Complete_files/noimage_328x494_500.jpg" class="img-responsive NoImageImg">
+                                        <div class="OverlayPanel Transition02">
+                                            <div class="Txt01 Transition02b">04 Apr 2019</div>
+                                            <div class="Title Transition02a">Viral</div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="Set odd">
+                                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+                                    <a href="https://www.gsc.com.my/html/movie_page.aspx?M_MovieID=3415" title="Becassine!">
+                                        <img src="/Content/GSC_Template/Complete_files/Becassine_Keyart_500.jpg" class="img-responsive">
+                                        <img src="/Content/GSC_Template/Complete_files/noimage_328x494_500.jpg" class="img-responsive NoImageImg">
+                                        <div class="OverlayPanel Transition02">
+                                            <div class="Txt01 Transition02b">04 Apr 2019</div>
+                                            <div class="Title Transition02a">Becassine!</div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="Set even">
+                                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+                                    <a href="https://www.gsc.com.my/html/movie_page.aspx?M_MovieID=3413" title="Bloody Milk">
+                                        <img src="/Content/GSC_Template/Complete_files/Petit_paysan_Keyart_500.jpg" class="img-responsive">
+                                        <img src="/Content/GSC_Template/Complete_files/noimage_328x494_500.jpg" class="img-responsive NoImageImg">
+                                        <div class="OverlayPanel Transition02">
+                                            <div class="Txt01 Transition02b">04 Apr 2019</div>
+                                            <div class="Title Transition02a">Bloody Milk</div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="Set odd">
+                                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+                                    <a href="https://www.gsc.com.my/html/movie_page.aspx?M_MovieID=3419" title="Custody">
+                                        <img src="/Content/GSC_Template/Complete_files/Custody_Keyart_500.jpg" class="img-responsive">
+                                        <img src="/Content/GSC_Template/Complete_files/noimage_328x494_500.jpg" class="img-responsive NoImageImg">
+                                        <div class="OverlayPanel Transition02">
+                                            <div class="Txt01 Transition02b">04 Apr 2019</div>
+                                            <div class="Title Transition02a">Custody</div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="Set even">
+                                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+                                    <a href="https://www.gsc.com.my/html/movie_page.aspx?M_MovieID=3416" title="Just A Breath Away">
+                                        <img src="/Content/GSC_Template/Complete_files/Just_a_Breath_Away_Keyart_500.jpg" class="img-responsive">
+                                        <img src="/Content/GSC_Template/Complete_files/noimage_328x494_500.jpg" class="img-responsive NoImageImg">
+                                        <div class="OverlayPanel Transition02">
+                                            <div class="Txt01 Transition02b">04 Apr 2019</div>
+                                            <div class="Title Transition02a">Just A Breath Away</div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="Set odd">
+                                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+                                    <a href="https://www.gsc.com.my/html/movie_page.aspx?M_MovieID=3434" title="P Storm">
+                                        <img src="/Content/GSC_Template/Complete_files/PStorm_Keyart_500.jpg" class="img-responsive">
+                                        <img src="/Content/GSC_Template/Complete_files/noimage_328x494_500.jpg" class="img-responsive NoImageImg">
+                                        <div class="OverlayPanel Transition02">
+                                            <div class="Txt01 Transition02b">04 Apr 2019</div>
+                                            <div class="Title Transition02a">P Storm</div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="Set even">
+                                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+                                    <a href="https://www.gsc.com.my/html/movie_page.aspx?M_MovieID=3208" title="Pet Sematary">
+                                        <img src="/Content/GSC_Template/Complete_files/Pet_Sematary_Keyart_v2_500.jpg" class="img-responsive">
+                                        <img src="/Content/GSC_Template/Complete_files/noimage_328x494_500.jpg" class="img-responsive NoImageImg">
+                                        <div class="OverlayPanel Transition02">
+                                            <div class="Txt01 Transition02b">04 Apr 2019</div>
+                                            <div class="Title Transition02a">Pet Sematary</div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="Set odd">
+                                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+                                    <a href="https://www.gsc.com.my/html/movie_page.aspx?M_MovieID=3424" title="The Red Collar">
+                                        <img src="/Content/GSC_Template/Complete_files/Le_Colleir_Rouge_Keyart_500.jpg" class="img-responsive">
+                                        <img src="/Content/GSC_Template/Complete_files/noimage_328x494_500.jpg" class="img-responsive NoImageImg">
+                                        <div class="OverlayPanel Transition02">
+                                            <div class="Txt01 Transition02b">04 Apr 2019</div>
+                                            <div class="Title Transition02a">The Red Collar</div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="Set even">
+                                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+                                    <a href="https://www.gsc.com.my/html/movie_page.aspx?M_MovieID=3449" title="Tiada Tajuk">
+                                        <img src="/Content/GSC_Template/Complete_files/Tiada_tajuk_keyart_500.jpg" class="img-responsive">
+                                        <img src="/Content/GSC_Template/Complete_files/noimage_328x494_500.jpg" class="img-responsive NoImageImg">
+                                        <div class="OverlayPanel Transition02">
+                                            <div class="Txt01 Transition02b">04 Apr 2019</div>
+                                            <div class="Title Transition02a">Tiada Tajuk</div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="Set odd">
+                                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+                                    <a href="https://www.gsc.com.my/html/movie_page.aspx?M_MovieID=2886" title="Shazam!">
+                                        <img src="/Content/GSC_Template/Complete_files/Shazam_new_keyart_500.jpg" class="img-responsive">
+                                        <img src="/Content/GSC_Template/Complete_files/noimage_328x494_500.jpg" class="img-responsive NoImageImg">
+                                        <div class="OverlayPanel Transition02">
+                                            <div class="Txt01 Transition02b">01 Apr 2019</div>
+                                            <div class="Title Transition02a">Shazam!</div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="Set even">
+                                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+                                    <a href="https://www.gsc.com.my/html/movie_page.aspx?M_MovieID=3461" title="Junglee">
+                                        <img src="/Content/GSC_Template/Complete_files/junglee_keyart_500.jpg" class="img-responsive">
+                                        <img src="/Content/GSC_Template/Complete_files/noimage_328x494_500.jpg" class="img-responsive NoImageImg">
+                                        <div class="OverlayPanel Transition02">
+                                            <div class="Txt01 Transition02b">29 Mar 2019</div>
+                                            <div class="Title Transition02a">Junglee</div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="Set odd">
+                                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+                                    <a href="https://www.gsc.com.my/html/movie_page.aspx?M_MovieID=3367" title="LoveLive! School Idol Project Sunshine!! The School Idol Movie Over The Rainbow">
+                                        <img src="/Content/GSC_Template/Complete_files/Love_live_Sunshine_keyart_500.jpg" class="img-responsive">
+                                        <img src="/Content/GSC_Template/Complete_files/noimage_328x494_500.jpg" class="img-responsive NoImageImg">
+                                        <div class="OverlayPanel Transition02">
+                                            <div class="Txt01 Transition02b">28 Mar 2019</div>
+                                            <div class="Title Transition02a">LoveLive! School Idol Project Sunshine!! The School Idol Movie Over The Rainbow</div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="Set even">
+                                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+                                    <a href="https://www.gsc.com.my/html/movie_page.aspx?M_MovieID=3438" title="The Quake">
+                                        <img src="/Content/GSC_Template/Complete_files/The_Quake_Keyart_500.jpg" class="img-responsive">
+                                        <img src="/Content/GSC_Template/Complete_files/noimage_328x494_500.jpg" class="img-responsive NoImageImg">
+                                        <div class="OverlayPanel Transition02">
+                                            <div class="Txt01 Transition02b">28 Mar 2019</div>
+                                            <div class="Title Transition02a">The Quake</div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="Set odd">
+                                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+                                    <a href="https://www.gsc.com.my/html/movie_page.aspx?M_MovieID=3454" title="Airaa">
+                                        <img src="/Content/GSC_Template/Complete_files/Airaa_Keyart_500.jpg" class="img-responsive">
+                                        <img src="/Content/GSC_Template/Complete_files/noimage_328x494_500.jpg" class="img-responsive NoImageImg">
+                                        <div class="OverlayPanel Transition02">
+                                            <div class="Txt01 Transition02b">28 Mar 2019</div>
+                                            <div class="Title Transition02a">Airaa</div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="Set even">
+                                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+                                    <a href="https://www.gsc.com.my/html/movie_page.aspx?M_MovieID=3346" title="Dumbo">
+                                        <img src="/Content/GSC_Template/Complete_files/DUMBO_003B_G_ENG-MY_1080x1920_500.jpg" class="img-responsive">
+                                        <img src="/Content/GSC_Template/Complete_files/noimage_328x494_500.jpg" class="img-responsive NoImageImg">
+                                        <div class="OverlayPanel Transition02">
+                                            <div class="Txt01 Transition02b">28 Mar 2019</div>
+                                            <div class="Title Transition02a">Dumbo</div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="Set odd">
+                                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+                                    <a href="https://www.gsc.com.my/html/movie_page.aspx?M_MovieID=3393" title="Red Storm">
+                                        <img src="/Content/GSC_Template/Complete_files/Red_Storm_Keyart_500.jpg" class="img-responsive">
+                                        <img src="/Content/GSC_Template/Complete_files/noimage_328x494_500.jpg" class="img-responsive NoImageImg">
+                                        <div class="OverlayPanel Transition02">
+                                            <div class="Txt01 Transition02b">28 Mar 2019</div>
+                                            <div class="Title Transition02a">Red Storm</div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="Set even">
+                                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+                                    <a href="https://www.gsc.com.my/html/movie_page.aspx?M_MovieID=3431" title="Tabu">
+                                        <img src="/Content/GSC_Template/Complete_files/Tabu_Keyart_500.jpg" class="img-responsive">
+                                        <img src="/Content/GSC_Template/Complete_files/noimage_328x494_500.jpg" class="img-responsive NoImageImg">
+                                        <div class="OverlayPanel Transition02">
+                                            <div class="Txt01 Transition02b">28 Mar 2019</div>
+                                            <div class="Title Transition02a">Tabu</div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="Set odd">
+                                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+                                    <a href="https://www.gsc.com.my/html/movie_page.aspx?M_MovieID=3349" title="Upin &amp; Ipin: Keris Siamang Tunggal">
+                                        <img src="/Content/GSC_Template/Complete_files/Upin_dan_Ipin_Keris_Siamang_Tunggal_Keyart_v2_500.jpg" class="img-responsive">
+                                        <img src="/Content/GSC_Template/Complete_files/noimage_328x494_500.jpg" class="img-responsive NoImageImg">
+                                        <div class="OverlayPanel Transition02">
+                                            <div class="Txt01 Transition02b">21 Mar 2019</div>
+                                            <div class="Title Transition02a">Upin &amp; Ipin: Keris Siamang Tunggal</div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="Set even">
+                                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+                                    <a href="https://www.gsc.com.my/html/movie_page.aspx?M_MovieID=3404" title="Five Feet Apart">
+                                        <img src="/Content/GSC_Template/Complete_files/Five_Feet_Apart_Keyart_500.jpg" class="img-responsive">
+                                        <img src="/Content/GSC_Template/Complete_files/noimage_328x494_500.jpg" class="img-responsive NoImageImg">
+                                        <div class="OverlayPanel Transition02">
+                                            <div class="Txt01 Transition02b">21 Mar 2019</div>
+                                            <div class="Title Transition02a">Five Feet Apart</div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="Set odd">
+                                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+                                    <a href="https://www.gsc.com.my/html/movie_page.aspx?M_MovieID=3401" title="The Aftermath">
+                                        <img src="/Content/GSC_Template/Complete_files/The_Aftermath_Keyart_500.jpg" class="img-responsive">
+                                        <img src="/Content/GSC_Template/Complete_files/noimage_328x494_500.jpg" class="img-responsive NoImageImg">
+                                        <div class="OverlayPanel Transition02">
+                                            <div class="Txt01 Transition02b">21 Mar 2019</div>
+                                            <div class="Title Transition02a">The Aftermath</div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="Set even">
+                                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+                                    <a href="https://www.gsc.com.my/html/movie_page.aspx?M_MovieID=3337" title="Us">
+                                        <img src="/Content/GSC_Template/Complete_files/US_March21_Keyart_500.jpg" class="img-responsive">
+                                        <img src="/Content/GSC_Template/Complete_files/noimage_328x494_500.jpg" class="img-responsive NoImageImg">
+                                        <div class="OverlayPanel Transition02">
+                                            <div class="Txt01 Transition02b">21 Mar 2019</div>
+                                            <div class="Title Transition02a">Us</div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="Set odd">
+                                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+                                    <a href="https://www.gsc.com.my/html/movie_page.aspx?M_MovieID=3400" title="Wonder Park">
+                                        <img src="/Content/GSC_Template/Complete_files/WONDER PARK_SMILE_keyart_500.jpg" class="img-responsive">
+                                        <img src="/Content/GSC_Template/Complete_files/noimage_328x494_500.jpg" class="img-responsive NoImageImg">
+                                        <div class="OverlayPanel Transition02">
+                                            <div class="Txt01 Transition02b">21 Mar 2019</div>
+                                            <div class="Title Transition02a">Wonder Park</div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="Set even">
+                                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+                                    <a href="https://www.gsc.com.my/html/movie_page.aspx?M_MovieID=3383" title="Bikers Kental 2">
+                                        <img src="/Content/GSC_Template/Complete_files/Bikers_kental2_keyart_500.jpg" class="img-responsive">
+                                        <img src="/Content/GSC_Template/Complete_files/noimage_328x494_500.jpg" class="img-responsive NoImageImg">
+                                        <div class="OverlayPanel Transition02">
+                                            <div class="Txt01 Transition02b">14 Mar 2019</div>
+                                            <div class="Title Transition02a">Bikers Kental 2</div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="Set odd">
+                                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+                                    <a href="https://www.gsc.com.my/html/movie_page.aspx?M_MovieID=2657" title="Captain Marvel">
+                                        <img src="/Content/GSC_Template/Complete_files/Captain_marvel_keyart_500.jpg" class="img-responsive">
+                                        <img src="/Content/GSC_Template/Complete_files/noimage_328x494_500.jpg" class="img-responsive NoImageImg">
+                                        <div class="OverlayPanel Transition02">
+                                            <div class="Txt01 Transition02b">06 Mar 2019</div>
+                                            <div class="Title Transition02a">Captain Marvel</div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <input id="NSGrid_ClientState" name="NSGrid_ClientState" type="hidden" autocomplete="off"><span id="NSGrid" style="display:none;"></span>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+            <div class="col-prev hide">
+                <div id="PnlFirstPage">
+                </div>
+
+                <div id="PnlPrevInactive">
+                </div>
+            </div>
+            <div class="col-dropList hide">
+
+
+
+
+
+                <a id="RpPages_ctl00_A1" title="1" tabindex="1" class="pagingactive" href="javascript:__doPostBack(&#39;RpPages$ctl00$A1&#39;,&#39;&#39;)">1</a>
+                &nbsp;
+            </div>
+            <div class="MovieLoaderBG">
+                <div id="PnlNextInactive">
+
+
+                    <label id="nomoreitem" style="color:#FF0000;">No more available Items.</label>
+
+                </div>
+            </div>
+            <div id="PnlNextActive" class="NoMore">
+
+                <input type="submit" name="btnProNext" value="Load More" id="btnProNext" class="LoadMore">
+                <a id="LastPage" class="arrow2next" href="javascript:__doPostBack(&#39;LastPage&#39;,&#39;&#39;)">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+
+            </div>
+            <div class="col-next hide">
+                <div id="PnlLastPage">
+                </div>
+            </div>
+            <div class="hide" style="margin-left:20px; visibility:hidden;">
+                <u><a onclick="return checkpage();" id="btnPage" class="btn-input" href="javascript:__doPostBack(&#39;btnPage&#39;,&#39;&#39;)">Jump to Page</a></u><input name="txtPage" type="text" maxlength="2" id="txtPage" style="width:30px;">
+            </div>
+            <div>
+
+            </div>
+
+
+
+
+
+
+        </div>
+        <script>
+            $('.Set').show();
+        </script>
+
+        <script>
+            $(document).ready(function () {
+                $("ul.DP_ListingCatg li:nth-child(1)").addClass("Active");
+                $("ul.Tap li:nth-child(1)").addClass("Active");
+            });
+        </script>
+
+        <!-- // MovieListingSec -->
+        <!-- ADS BANNER FOR MOBILE -->
+
+        <div id="CineAdSec">
+            <div id="CineAdMobile" class="_hidden-lg _hidden-md _hidden-sm">
+                <div id="div-gpt-ad-1420174348483-0" style="">
+                    <script type="text/javascript">
+                        setTimeout(function () {
+                            googletag.cmd.push(function () { googletag.display('div-gpt-ad-1420174348483-0'); });
+                        }, 10);
+                    </script>
+                    <div id="google_ads_iframe_/28335045/Movies_Superbanner_0__container__" style="border: 0pt none; width: 320px; height: 40px;"></div>
+                </div>
+            </div>
+        </div>
+        <!-- // ADS BANNER FOR MOBILE -->
+        <!-- Top10Movies -->
+        <div id="pnl1">
+
+
+            <section class="Top10Movies">
+                <div class="container">
+                    <div class="TableWrap">
+                        <div class="Lpanel">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="BoxRow">
+                                        <h2>TOP 10 MOVIES @@ GSC</h2><!--<span class="Date">03 Apr 2019 - 03 Apr 2019</span>--><span class="Date">Updated as of 03 Apr 2019</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <ul>
+
+                                        <li class="col-md-6 col-sm-12">
+                                            <div class="Item">
+                                                <a href="https://www.gsc.com.my/html/movie_page.aspx?M_MovieID=2886" target="_self" "=" " class="BlackGradientVertical" title="Shazam!">
+                                                    <span class="Number" style="background-image:url(https://cdn4.gsc.com.my/WebLITE/Applications/MovieManagement/uploaded/pics/2019/Shazam/Shazam_new_keyart_100.jpg);">1</span>
+                                                    <span class="MovieTitle truncate">SHAZAM!</span>
+                                                    <span class="GetInfo">Get Info</span>
+                                                </a>
+
+                                                <input type="submit" name="getTop10Movies_ctrl$DLTop10Mov$ctl00$btnbuy" value="Buy Now" id="getTop10Movies_ctrl_DLTop10Mov_ctl00_btnbuy" class="BuyBtn">
+                                            </div>
+                                        </li>
+
+                                        <li class="col-md-6 col-sm-12">
+                                            <div class="Item">
+                                                <a href="https://www.gsc.com.my/html/movie_page.aspx?M_MovieID=3349" target="_self" "=" " class="BlackGradientVertical" title="Upin &amp; Ipin: Keris Siamang Tunggal">
+                                                    <span class="Number" style="background-image:url(https://cdn4.gsc.com.my/WebLITE/Applications/MovieManagement/uploaded/pics/2019/Upin_dan_Ipin/Upin_dan_Ipin_Keris_Siamang_Tunggal_Keyart_v2_100.jpg);">2</span>
+                                                    <span class="MovieTitle truncate">UPIN &amp; IPIN: KERIS SIAMANG TUNGGAL</span>
+                                                    <span class="GetInfo">Get Info</span>
+                                                </a>
+
+                                                <input type="submit" name="getTop10Movies_ctrl$DLTop10Mov$ctl01$btnbuy" value="Buy Now" id="getTop10Movies_ctrl_DLTop10Mov_ctl01_btnbuy" class="BuyBtn">
+                                            </div>
+                                        </li>
+
+                                        <li class="col-md-6 col-sm-12">
+                                            <div class="Item">
+                                                <a href="https://www.gsc.com.my/html/movie_page.aspx?M_MovieID=3346" target="_self" "=" " class="BlackGradientVertical" title="Dumbo">
+                                                    <span class="Number" style="background-image:url(https://cdn4.gsc.com.my/WebLITE/Applications/MovieManagement/uploaded/pics/2019/Dumbo/DUMBO_003B_G_ENG-MY_1080x1920_100.jpg);">3</span>
+                                                    <span class="MovieTitle truncate">DUMBO</span>
+                                                    <span class="GetInfo">Get Info</span>
+                                                </a>
+
+                                                <input type="submit" name="getTop10Movies_ctrl$DLTop10Mov$ctl02$btnbuy" value="Buy Now" id="getTop10Movies_ctrl_DLTop10Mov_ctl02_btnbuy" class="BuyBtn">
+                                            </div>
+                                        </li>
+
+                                        <li class="col-md-6 col-sm-12">
+                                            <div class="Item">
+                                                <a href="https://www.gsc.com.my/html/movie_page.aspx?M_MovieID=2657" target="_self" "=" " class="BlackGradientVertical" title="Captain Marvel">
+                                                    <span class="Number" style="background-image:url(https://cdn4.gsc.com.my/WebLITE/Applications/MovieManagement/uploaded/pics/2019/Captain_Marvel/Captain_marvel_keyart_100.jpg);">4</span>
+                                                    <span class="MovieTitle truncate">CAPTAIN MARVEL</span>
+                                                    <span class="GetInfo">Get Info</span>
+                                                </a>
+
+                                                <input type="submit" name="getTop10Movies_ctrl$DLTop10Mov$ctl03$btnbuy" value="Buy Now" id="getTop10Movies_ctrl_DLTop10Mov_ctl03_btnbuy" class="BuyBtn">
+                                            </div>
+                                        </li>
+
+                                        <li class="col-md-6 col-sm-12">
+                                            <div class="Item">
+                                                <a href="https://www.gsc.com.my/html/movie_page.aspx?M_MovieID=3337" target="_self" "=" " class="BlackGradientVertical" title="Us">
+                                                    <span class="Number" style="background-image:url(https://cdn4.gsc.com.my/WebLITE/Applications/MovieManagement/uploaded/pics/2019/Us/US_March21_Keyart_100.jpg);">5</span>
+                                                    <span class="MovieTitle truncate">US</span>
+                                                    <span class="GetInfo">Get Info</span>
+                                                </a>
+
+                                                <input type="submit" name="getTop10Movies_ctrl$DLTop10Mov$ctl04$btnbuy" value="Buy Now" id="getTop10Movies_ctrl_DLTop10Mov_ctl04_btnbuy" class="BuyBtn">
+                                            </div>
+                                        </li>
+
+                                        <li class="col-md-6 col-sm-12">
+                                            <div class="Item">
+                                                <a href="https://www.gsc.com.my/html/movie_page.aspx?M_MovieID=3383" target="_self" "=" " class="BlackGradientVertical" title="Bikers Kental 2">
+                                                    <span class="Number" style="background-image:url(https://cdn4.gsc.com.my/WebLITE/Applications/MovieManagement/uploaded/pics/2019/Bikers_Kental_2/Bikers_kental2_keyart_100.jpg);">6</span>
+                                                    <span class="MovieTitle truncate">BIKERS KENTAL 2</span>
+                                                    <span class="GetInfo">Get Info</span>
+                                                </a>
+
+                                                <input type="submit" name="getTop10Movies_ctrl$DLTop10Mov$ctl05$btnbuy" value="Buy Now" id="getTop10Movies_ctrl_DLTop10Mov_ctl05_btnbuy" class="BuyBtn">
+                                            </div>
+                                        </li>
+
+                                        <li class="col-md-6 col-sm-12">
+                                            <div class="Item">
+                                                <a href="https://www.gsc.com.my/html/movie_page.aspx?M_MovieID=3438" target="_self" "=" " class="BlackGradientVertical" title="The Quake">
+                                                    <span class="Number" style="background-image:url(https://cdn4.gsc.com.my/WebLITE/Applications/MovieManagement/uploaded/pics/2019/The_Quake/The_Quake_Keyart_100.jpg);">7</span>
+                                                    <span class="MovieTitle truncate">THE QUAKE</span>
+                                                    <span class="GetInfo">Get Info</span>
+                                                </a>
+
+                                                <input type="submit" name="getTop10Movies_ctrl$DLTop10Mov$ctl06$btnbuy" value="Buy Now" id="getTop10Movies_ctrl_DLTop10Mov_ctl06_btnbuy" class="BuyBtn">
+                                            </div>
+                                        </li>
+
+                                        <li class="col-md-6 col-sm-12">
+                                            <div class="Item">
+                                                <a href="https://www.gsc.com.my/html/movie_page.aspx?M_MovieID=3404" target="_self" "=" " class="BlackGradientVertical" title="Five Feet Apart">
+                                                    <span class="Number" style="background-image:url(https://cdn4.gsc.com.my/WebLITE/Applications/MovieManagement/uploaded/pics/2019/Five_Feet_Apart/Five_Feet_Apart_Keyart_100.jpg);">8</span>
+                                                    <span class="MovieTitle truncate">FIVE FEET APART</span>
+                                                    <span class="GetInfo">Get Info</span>
+                                                </a>
+
+                                                <input type="submit" name="getTop10Movies_ctrl$DLTop10Mov$ctl07$btnbuy" value="Buy Now" id="getTop10Movies_ctrl_DLTop10Mov_ctl07_btnbuy" class="BuyBtn">
+                                            </div>
+                                        </li>
+
+                                        <li class="col-md-6 col-sm-12">
+                                            <div class="Item">
+                                                <a href="https://www.gsc.com.my/html/movie_page.aspx?M_MovieID=3454" target="_self" "=" " class="BlackGradientVertical" title="Airaa">
+                                                    <span class="Number" style="background-image:url(https://cdn4.gsc.com.my/WebLITE/Applications/MovieManagement/uploaded/pics/2019/Airaa/Airaa_Keyart_100.jpg);">9</span>
+                                                    <span class="MovieTitle truncate">AIRAA</span>
+                                                    <span class="GetInfo">Get Info</span>
+                                                </a>
+
+                                                <input type="submit" name="getTop10Movies_ctrl$DLTop10Mov$ctl08$btnbuy" value="Buy Now" id="getTop10Movies_ctrl_DLTop10Mov_ctl08_btnbuy" class="BuyBtn">
+                                            </div>
+                                        </li>
+
+                                        <li class="col-md-6 col-sm-12">
+                                            <div class="Item">
+                                                <a href="https://www.gsc.com.my/html/movie_page.aspx?M_MovieID=3400" target="_self" "=" " class="BlackGradientVertical" title="Wonder Park">
+                                                    <span class="Number" style="background-image:url(https://cdn4.gsc.com.my/WebLITE/Applications/MovieManagement/uploaded/pics/2019/Wonder_Park/WONDER PARK_SMILE_keyart_100.jpg);">10</span>
+                                                    <span class="MovieTitle truncate">WONDER PARK</span>
+                                                    <span class="GetInfo">Get Info</span>
+                                                </a>
+
+                                                <input type="submit" name="getTop10Movies_ctrl$DLTop10Mov$ctl09$btnbuy" value="Buy Now" id="getTop10Movies_ctrl_DLTop10Mov_ctl09_btnbuy" class="BuyBtn">
+                                            </div>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="RPanel">
+                            <div class="Ads">
+                                <small>Advertisement</small>
+                                <script type="text/javascript">
+                                    if ('/28335045/Movies_Rectangular' != '' && '/28335045/Movies_Rectangular' != null) {
+                                        googletag.cmd.push(function () {
+                                            googletag.defineSlot('/28335045/Movies_Rectangular', [300, 250], 'div-gpt-ad-1420174399280-0').addService(googletag.pubads());
+                                            googletag.pubads().enableSingleRequest();
+                                            googletag.enableServices();
+                                        });
+                                    }
+
+                                </script>
+                                <div id="div-gpt-ad-1420174399280-0" style="width: 300px; height: 250px;">
+                                    <script type="text/javascript">
+                                        googletag.cmd.push(function () { googletag.display('div-gpt-ad-1420174399280-0'); });
+                                    </script>
+                                    <div id="google_ads_iframe_/28335045/Movies_Rectangular_0__container__" style="border: 0pt none; width: 300px; height: 250px;"></div>
+                                </div>
+                                <a href="https://www.gsc.com.my/html/default.aspx?ID=42&amp;PID=84" class="Link">Advertise With Us</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <div id="ModalLoginTop10" class="modal fade" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-md" role="document">
+                    <div class="modal-content">
+                        <!-- Login Panel Starts -->
+                        <div class="ModalLoginWrap">
+                            <span class="CloseBtn" data-dismiss="modal"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span></span>
+                            <div class="LoginPanel">
+                                <h2>LOGIN</h2>
+                                <div class="form-group">
+                                    <input name="getTop10Movies_ctrl$ModalLoginTop10$UserNameTop10" type="text" id="getTop10Movies_ctrl_ModalLoginTop10_UserNameTop10" placeholder="Email" class="form-control" value="Email " onfocus="if (this.value==this.defaultValue) this.value = &#39;&#39;" onblur="if (this.value==&#39;&#39;) this.value = this.defaultValue">
+                                    <span id="getTop10Movies_ctrl_ModalLoginTop10_UserNameRequired" title="User Name is required." style="color:Red;display:none;">*</span>
+                                    <span id="getTop10Movies_ctrl_ModalLoginTop10_regex_email" title="Please use EMAIL for Login" style="color:Red;display:none;">Please use EMAIL for Login</span>
+                                    <span id="getTop10Movies_ctrl_ModalLoginTop10_EmailValidator" title="Invalid Email Format" style="color:Red;display:none;">Invalid Email Format</span>
+                                </div>
+                                <div class="form-group">
+                                    <input name="getTop10Movies_ctrl$ModalLoginTop10$PasswordTop10" type="text" id="getTop10Movies_ctrl_ModalLoginTop10_PasswordTop10" placeholder="Password" class="form-control" value="Password " onfocus="if (this.value==this.defaultValue) this.value = &#39;&#39;; this.type=&#39;password&#39;" onblur="if (this.value==&#39;&#39;) this.value = this.defaultValue, this.type=&#39;text&#39;">
+                                    <span id="getTop10Movies_ctrl_ModalLoginTop10_PasswordRequired" title="Password is required." style="color:Red;display:none;">
+                                        *
+                                    </span>
+
+                                </div>
+                                <div class="form-group">
+                                    <a id="getTop10Movies_ctrl_ModalLoginTop10_hlForgotPasswordTop10" class="ForgotPass btn-block" validationgroup="loginpopupTop10" href="https://www.gsc.com.my/html/forget_password.aspx">Forgot your Password?</a>
+                                </div>
+                                <div class="form-group">
+                                    <a id="getTop10Movies_ctrl_ModalLoginTop10_hlSignupTop10" class="ForgotPass btn-block" validationgroup="loginpopupTop10" href="https://www.gsc.com.my/html/member_registration.aspx">Sign Up</a>
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" name="getTop10Movies_ctrl$ModalLoginTop10$LoginButtonTop10" value="LOGIN" onclick="javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions(&quot;getTop10Movies_ctrl$ModalLoginTop10$LoginButtonTop10&quot;, &quot;&quot;, true, &quot;loginpopupTop10&quot;, &quot;&quot;, false, false))" id="getTop10Movies_ctrl_ModalLoginTop10_LoginButtonTop10" class="LoginBtn btn btn-default btn-block">
+
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- // Login Panel Ends -->
+
+                    </div>
+                </div>
+            </div>
+
+            <script>
+                function openModalTop10() {
+                    $('#ModalLoginTop10').modal('toggle');
+                }
+                function HideModalPopupTop10() {
+                    $find("#ModalLoginTop10").hide();
+                    return false;
+                }
+            </script>
+            <script>
+                function openModalTop10() {
+                    $('#ModalLoginTop10').modal('toggle');
+                }
+                function HideModalPopupTop10() {
+                    $find("#ModalLoginTop10").hide();
+                    return false;
+                }
+
+
+            </script>
+
+
+        </div>
+        <!-- Top10Movies -->
+        <!-- AnnouncementsSec -->
+
+        <section class="AnnouncementsSec">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2>ANNOUNCEMENTS</h2>
+                        <div class="row">
+
+                            <div class="col-md-4">
+                                <div class="Box">
+                                    <p>9 December 2018</p>
+                                    <p>
+                                        GOOD NEWS!<br>
+                                        <br>
+                                        GSC CityONE Kuching is NOW OPEN! Come watch movies with ...
+                                    </p>
+                                    <a href="https://www.gsc.com.my/html/announcement_details.aspx?ID=42&amp;PID=82&amp;DetID=4481">Read More</a>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="Box">
+                                    <p>31 August 2018</p>
+                                    <p>Please be informed that effective 1st September 2018 (Saturday), all food and be...</p>
+                                    <a href="https://www.gsc.com.my/html/announcement_details.aspx?ID=42&amp;PID=82&amp;DetID=4198">Read More</a>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="Box">
+                                    <p>8 February 2017</p>
+                                    <p>We have received numerous feedback on our birthday voucher (sent through email)....</p>
+                                    <a href="https://www.gsc.com.my/html/announcement_details.aspx?ID=42&amp;PID=82&amp;DetID=2078">Read More</a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- // AnnouncementsSec -->
+        <!-- Footer -->
+
+        <footer class="FooterWrap">
+            <!-- FOOTER STARTS HERE -->
+            <div class="BtmPanel">
+                <div class="container">
+                    <div class="row">
+                        <div class=" col-md-12 hidden-lg hidden-md">
+                            <div class="SocialIcons">
+                                <ul>
+                                    <li><a href="https://www.facebook.com/GSCinemas" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                                    <li><a href="https://twitter.com/gscinemas" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                                    <li><a href="https://instagram.com/gscinemas" target="_blank"><i class="fa fa-instagram"></i></a></li>
+                                    <li><a href="https://www.gsc.com.my/html/rss_feed.aspx?ID=8&amp;PID=840" target="_blank"><i class="fa fa-rss"></i></a></li>
+                                    <li><a href="http://itunes.apple.com/my/app/golden-screen-cinemas/id413024972" target="_blank"><i class="fa fa-apple"></i></a></li>
+                                    <li><a href="https://play.google.com/store/apps/details?id=com.gscandroid.yk" target="_blank"><i class="fa fa-android"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-5 col-sm-12 col-xs-12">
+                            <div class="Links"><a href="https://www.gsc.com.my/corporate">About Us</a> | <a href="https://www.gsc.com.my/html/default.aspx?ID=43&amp;PID=88">Terms of Use</a> | <a href="https://www.gsc.com.my/html/default.aspx?ID=43&amp;PID=89">Privacy Policy</a> | <a href="https://www.gsc.com.my/corporate/html/careers.aspx?ID=13&amp;PID=26">Careers</a></div>
+                        </div>
+                        <div class="col-md-7 col-sm-12 col-xs-12">
+                            <p class="CopyText">All Content Copyright © of Golden Screen Cinemas Sdn Bhd (3609-M) 2019. All Rights Reserved <span id="getFooter_ctrl_lblservername"></span><span id="getFooter_ctrl_lblbremoteadd"></span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer><!-- FOOTER ENDS HERE -->
+        <!-- Google Custom Search -->
+        <script>
+            (function () {
+                var cx = '008149419197168510933:lpvf-84uwju';
+                var gcse = document.createElement('script');
+                gcse.type = 'text/javascript';
+                gcse.async = true;
+                gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(gcse, s);
+            })();
+        </script>
+
+
+        <script>
+            (function (i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                    m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+            })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+            ga('create', 'UA-17126802-1', 'auto');
+            ga('send', 'pageview');
+        </script>
+
+
+
+
+        <!-- DYNAMIC STYLING -->
+        <style>
+
+            /* CUSTOM CURSOR */
+            body, html {
+                cursor: url(), auto;
+            }
+        </style>
+        <!-- RTB IMG Responsice -->
+        <style>
+
+            .center-block-img-responsive {
+                display: block;
+                max-width: 100%;
+                height: auto;
+                margin: 0 auto;
+            }
+        </style>
+
+        <!-- CustomScroll Bar -->
+        <link href="/Content/GSC_Template/Complete_files/jquery.scrollbar.css" rel="stylesheet" type="text/css">
+        <script src="/Content/GSC_Template/Complete_files/jquery.scrollbar.js.download"></script>
+
+
+        <!-- Owl Carousel Assets -->
+        <link href="/Content/GSC_Template/Complete_files/owl.carousel.css" rel="stylesheet">
+        <link href="/Content/GSC_Template/Complete_files/owl.theme.css" rel="stylesheet">
+        <link href="/Content/GSC_Template/Complete_files/owl.theme2.css" rel="stylesheet">
+        <script src="/Content/GSC_Template/Complete_files/owl.carousel.js.download"></script>
+
+        <!--[if lt IE 9]><script src="/assets/js/vendor/ie8-responsive-file-warning.js"></script><![endif]-->
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+          <script src="/assets/js/vendor/html5shiv.min.js"></script>
+          <script src="/assets/js/vendor/respond.min.js"></script>
+        <![endif]-->
+        <!--[if !IE 7]>
+            <style type="text/css">
+                #wrap {display:table;height:100%}
+            </style>
+        <![endif]-->
+
+
+        <script src="/Content/GSC_Template/Complete_files/lity.js.download"></script>
+        <script src="/Content/GSC_Template/Complete_files/jquery.nicescroll.min.js.download"></script>
+        <script src="/Content/GSC_Template/Complete_files/breakpoints.js.download" type="text/javascript"></script>
+
+        <!-- Main Script For GSC -->
+        <script src="/Content/GSC_Template/Complete_files/gsc_script_v4_2.js.download" type="text/javascript"></script>
+
+
+
+
+
+
+        <!--
+        **********************************
+        *** GSC 30 					******
+        **********************************
+        -->
+        <!-- CSS -->
+        <link href="/Content/GSC_Template/Complete_files/gsc_30_v4.css" rel="stylesheet">
+
+        <!-- JS -->
+        <script src="/Content/GSC_Template/Complete_files/gsc_30.js.download" type="text/javascript"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <!-- // Footer -->
+
+        <script type="text/javascript">
+            //<![CDATA[
+            var Page_Validators = new Array(document.getElementById("getHeader_ctrl_getHeaderMobile_ctrl_UserNameRequired"), document.getElementById("getHeader_ctrl_getHeaderMobile_ctrl_regex_email"), document.getElementById("getHeader_ctrl_getHeaderMobile_ctrl_EmailValidator"), document.getElementById("getHeader_ctrl_getHeaderMobile_ctrl_PasswordRequired"), document.getElementById("getHeader_ctrl_getHeaderDesktop_UserNameRequired"), document.getElementById("getHeader_ctrl_getHeaderDesktop_regex_email"), document.getElementById("getHeader_ctrl_getHeaderDesktop_EmailValidator"), document.getElementById("getHeader_ctrl_getHeaderDesktop_PasswordRequired"), document.getElementById("getTop10Movies_ctrl_ModalLoginTop10_UserNameRequired"), document.getElementById("getTop10Movies_ctrl_ModalLoginTop10_regex_email"), document.getElementById("getTop10Movies_ctrl_ModalLoginTop10_EmailValidator"), document.getElementById("getTop10Movies_ctrl_ModalLoginTop10_PasswordRequired"));
+            //]]>
+        </script>
+        <script type="text/javascript">
+            //<![CDATA[
+            var getHeader_ctrl_getHeaderMobile_ctrl_UserNameRequired = document.all ? document.all["getHeader_ctrl_getHeaderMobile_ctrl_UserNameRequired"] : document.getElementById("getHeader_ctrl_getHeaderMobile_ctrl_UserNameRequired");
+            getHeader_ctrl_getHeaderMobile_ctrl_UserNameRequired.controltovalidate = "getHeader_ctrl_getHeaderMobile_ctrl_UserName";
+            getHeader_ctrl_getHeaderMobile_ctrl_UserNameRequired.errormessage = "User Name is required.";
+            getHeader_ctrl_getHeaderMobile_ctrl_UserNameRequired.display = "Dynamic";
+            getHeader_ctrl_getHeaderMobile_ctrl_UserNameRequired.validationGroup = "LoginViewMobile";
+            getHeader_ctrl_getHeaderMobile_ctrl_UserNameRequired.evaluationfunction = "RequiredFieldValidatorEvaluateIsValid";
+            getHeader_ctrl_getHeaderMobile_ctrl_UserNameRequired.initialvalue = "";
+            var getHeader_ctrl_getHeaderMobile_ctrl_regex_email = document.all ? document.all["getHeader_ctrl_getHeaderMobile_ctrl_regex_email"] : document.getElementById("getHeader_ctrl_getHeaderMobile_ctrl_regex_email");
+            getHeader_ctrl_getHeaderMobile_ctrl_regex_email.controltovalidate = "getHeader_ctrl_getHeaderMobile_ctrl_UserName";
+            getHeader_ctrl_getHeaderMobile_ctrl_regex_email.errormessage = "Please use EMAIL for Login";
+            getHeader_ctrl_getHeaderMobile_ctrl_regex_email.display = "Dynamic";
+            getHeader_ctrl_getHeaderMobile_ctrl_regex_email.validationGroup = "LoginViewMobile";
+            getHeader_ctrl_getHeaderMobile_ctrl_regex_email.evaluationfunction = "RegularExpressionValidatorEvaluateIsValid";
+            getHeader_ctrl_getHeaderMobile_ctrl_regex_email.validationexpression = "^[\\w-]+(?:\\.[\\w-]+)*@@(?:[\\w-]+\\.)+[a-zA-Z]{2,7}$";
+            var getHeader_ctrl_getHeaderMobile_ctrl_EmailValidator = document.all ? document.all["getHeader_ctrl_getHeaderMobile_ctrl_EmailValidator"] : document.getElementById("getHeader_ctrl_getHeaderMobile_ctrl_EmailValidator");
+            getHeader_ctrl_getHeaderMobile_ctrl_EmailValidator.controltovalidate = "getHeader_ctrl_getHeaderMobile_ctrl_UserName";
+            getHeader_ctrl_getHeaderMobile_ctrl_EmailValidator.focusOnError = "t";
+            getHeader_ctrl_getHeaderMobile_ctrl_EmailValidator.errormessage = "Invalid Email Format";
+            getHeader_ctrl_getHeaderMobile_ctrl_EmailValidator.display = "Dynamic";
+            getHeader_ctrl_getHeaderMobile_ctrl_EmailValidator.validationGroup = "LoginViewMobile";
+            getHeader_ctrl_getHeaderMobile_ctrl_EmailValidator.evaluationfunction = "CustomValidatorEvaluateIsValid";
+            var getHeader_ctrl_getHeaderMobile_ctrl_PasswordRequired = document.all ? document.all["getHeader_ctrl_getHeaderMobile_ctrl_PasswordRequired"] : document.getElementById("getHeader_ctrl_getHeaderMobile_ctrl_PasswordRequired");
+            getHeader_ctrl_getHeaderMobile_ctrl_PasswordRequired.controltovalidate = "getHeader_ctrl_getHeaderMobile_ctrl_Password";
+            getHeader_ctrl_getHeaderMobile_ctrl_PasswordRequired.errormessage = "Password is required.";
+            getHeader_ctrl_getHeaderMobile_ctrl_PasswordRequired.display = "Dynamic";
+            getHeader_ctrl_getHeaderMobile_ctrl_PasswordRequired.validationGroup = "LoginViewMobile";
+            getHeader_ctrl_getHeaderMobile_ctrl_PasswordRequired.evaluationfunction = "RequiredFieldValidatorEvaluateIsValid";
+            getHeader_ctrl_getHeaderMobile_ctrl_PasswordRequired.initialvalue = "";
+            var getHeader_ctrl_getHeaderDesktop_UserNameRequired = document.all ? document.all["getHeader_ctrl_getHeaderDesktop_UserNameRequired"] : document.getElementById("getHeader_ctrl_getHeaderDesktop_UserNameRequired");
+            getHeader_ctrl_getHeaderDesktop_UserNameRequired.controltovalidate = "getHeader_ctrl_getHeaderDesktop_UserName";
+            getHeader_ctrl_getHeaderDesktop_UserNameRequired.errormessage = "User Name is required.";
+            getHeader_ctrl_getHeaderDesktop_UserNameRequired.display = "Dynamic";
+            getHeader_ctrl_getHeaderDesktop_UserNameRequired.validationGroup = "logindesktop";
+            getHeader_ctrl_getHeaderDesktop_UserNameRequired.evaluationfunction = "RequiredFieldValidatorEvaluateIsValid";
+            getHeader_ctrl_getHeaderDesktop_UserNameRequired.initialvalue = "";
+            var getHeader_ctrl_getHeaderDesktop_regex_email = document.all ? document.all["getHeader_ctrl_getHeaderDesktop_regex_email"] : document.getElementById("getHeader_ctrl_getHeaderDesktop_regex_email");
+            getHeader_ctrl_getHeaderDesktop_regex_email.controltovalidate = "getHeader_ctrl_getHeaderDesktop_UserName";
+            getHeader_ctrl_getHeaderDesktop_regex_email.errormessage = "Please use EMAIL for Login";
+            getHeader_ctrl_getHeaderDesktop_regex_email.display = "Dynamic";
+            getHeader_ctrl_getHeaderDesktop_regex_email.validationGroup = "logindesktop";
+            getHeader_ctrl_getHeaderDesktop_regex_email.evaluationfunction = "RegularExpressionValidatorEvaluateIsValid";
+            getHeader_ctrl_getHeaderDesktop_regex_email.validationexpression = "^[\\w-]+(?:\\.[\\w-]+)*@@(?:[\\w-]+\\.)+[a-zA-Z]{2,7}$";
+            var getHeader_ctrl_getHeaderDesktop_EmailValidator = document.all ? document.all["getHeader_ctrl_getHeaderDesktop_EmailValidator"] : document.getElementById("getHeader_ctrl_getHeaderDesktop_EmailValidator");
+            getHeader_ctrl_getHeaderDesktop_EmailValidator.controltovalidate = "getHeader_ctrl_getHeaderDesktop_UserName";
+            getHeader_ctrl_getHeaderDesktop_EmailValidator.focusOnError = "t";
+            getHeader_ctrl_getHeaderDesktop_EmailValidator.errormessage = "Invalid Email Format";
+            getHeader_ctrl_getHeaderDesktop_EmailValidator.display = "Dynamic";
+            getHeader_ctrl_getHeaderDesktop_EmailValidator.validationGroup = "logindesktop";
+            getHeader_ctrl_getHeaderDesktop_EmailValidator.evaluationfunction = "CustomValidatorEvaluateIsValid";
+            var getHeader_ctrl_getHeaderDesktop_PasswordRequired = document.all ? document.all["getHeader_ctrl_getHeaderDesktop_PasswordRequired"] : document.getElementById("getHeader_ctrl_getHeaderDesktop_PasswordRequired");
+            getHeader_ctrl_getHeaderDesktop_PasswordRequired.controltovalidate = "getHeader_ctrl_getHeaderDesktop_Password";
+            getHeader_ctrl_getHeaderDesktop_PasswordRequired.errormessage = "Password is required.";
+            getHeader_ctrl_getHeaderDesktop_PasswordRequired.display = "Dynamic";
+            getHeader_ctrl_getHeaderDesktop_PasswordRequired.validationGroup = "logindesktop";
+            getHeader_ctrl_getHeaderDesktop_PasswordRequired.evaluationfunction = "RequiredFieldValidatorEvaluateIsValid";
+            getHeader_ctrl_getHeaderDesktop_PasswordRequired.initialvalue = "";
+            var getTop10Movies_ctrl_ModalLoginTop10_UserNameRequired = document.all ? document.all["getTop10Movies_ctrl_ModalLoginTop10_UserNameRequired"] : document.getElementById("getTop10Movies_ctrl_ModalLoginTop10_UserNameRequired");
+            getTop10Movies_ctrl_ModalLoginTop10_UserNameRequired.controltovalidate = "getTop10Movies_ctrl_ModalLoginTop10_UserNameTop10";
+            getTop10Movies_ctrl_ModalLoginTop10_UserNameRequired.errormessage = "User Name is required.";
+            getTop10Movies_ctrl_ModalLoginTop10_UserNameRequired.display = "Dynamic";
+            getTop10Movies_ctrl_ModalLoginTop10_UserNameRequired.validationGroup = "loginpopupTop10";
+            getTop10Movies_ctrl_ModalLoginTop10_UserNameRequired.evaluationfunction = "RequiredFieldValidatorEvaluateIsValid";
+            getTop10Movies_ctrl_ModalLoginTop10_UserNameRequired.initialvalue = "";
+            var getTop10Movies_ctrl_ModalLoginTop10_regex_email = document.all ? document.all["getTop10Movies_ctrl_ModalLoginTop10_regex_email"] : document.getElementById("getTop10Movies_ctrl_ModalLoginTop10_regex_email");
+            getTop10Movies_ctrl_ModalLoginTop10_regex_email.controltovalidate = "getTop10Movies_ctrl_ModalLoginTop10_UserNameTop10";
+            getTop10Movies_ctrl_ModalLoginTop10_regex_email.errormessage = "Please use EMAIL for Login";
+            getTop10Movies_ctrl_ModalLoginTop10_regex_email.display = "Dynamic";
+            getTop10Movies_ctrl_ModalLoginTop10_regex_email.validationGroup = "loginpopupTop10";
+            getTop10Movies_ctrl_ModalLoginTop10_regex_email.evaluationfunction = "RegularExpressionValidatorEvaluateIsValid";
+            getTop10Movies_ctrl_ModalLoginTop10_regex_email.validationexpression = "^[\\w-]+(?:\\.[\\w-]+)*@@(?:[\\w-]+\\.)+[a-zA-Z]{2,7}$";
+            var getTop10Movies_ctrl_ModalLoginTop10_EmailValidator = document.all ? document.all["getTop10Movies_ctrl_ModalLoginTop10_EmailValidator"] : document.getElementById("getTop10Movies_ctrl_ModalLoginTop10_EmailValidator");
+            getTop10Movies_ctrl_ModalLoginTop10_EmailValidator.controltovalidate = "getTop10Movies_ctrl_ModalLoginTop10_UserNameTop10";
+            getTop10Movies_ctrl_ModalLoginTop10_EmailValidator.focusOnError = "t";
+            getTop10Movies_ctrl_ModalLoginTop10_EmailValidator.errormessage = "Invalid Email Format";
+            getTop10Movies_ctrl_ModalLoginTop10_EmailValidator.display = "Dynamic";
+            getTop10Movies_ctrl_ModalLoginTop10_EmailValidator.validationGroup = "loginpopupTop10";
+            getTop10Movies_ctrl_ModalLoginTop10_EmailValidator.evaluationfunction = "CustomValidatorEvaluateIsValid";
+            var getTop10Movies_ctrl_ModalLoginTop10_PasswordRequired = document.all ? document.all["getTop10Movies_ctrl_ModalLoginTop10_PasswordRequired"] : document.getElementById("getTop10Movies_ctrl_ModalLoginTop10_PasswordRequired");
+            getTop10Movies_ctrl_ModalLoginTop10_PasswordRequired.controltovalidate = "getTop10Movies_ctrl_ModalLoginTop10_PasswordTop10";
+            getTop10Movies_ctrl_ModalLoginTop10_PasswordRequired.errormessage = "Password is required.";
+            getTop10Movies_ctrl_ModalLoginTop10_PasswordRequired.display = "Dynamic";
+            getTop10Movies_ctrl_ModalLoginTop10_PasswordRequired.validationGroup = "loginpopupTop10";
+            getTop10Movies_ctrl_ModalLoginTop10_PasswordRequired.evaluationfunction = "RequiredFieldValidatorEvaluateIsValid";
+            getTop10Movies_ctrl_ModalLoginTop10_PasswordRequired.initialvalue = "";
+            //]]>
+        </script>
+
+        <script type="text/javascript">
+            //<![CDATA[
+
+            var Page_ValidationActive = false;
+            if (typeof (ValidatorOnLoad) == "function") {
+                ValidatorOnLoad();
+            }
+
+            function ValidatorOnSubmit() {
+                if (Page_ValidationActive) {
+                    return ValidatorCommonOnSubmit();
+                }
+                else {
+                    return true;
+                }
+            }
+            Sys.Application.initialize();
+
+            document.getElementById('getHeader_ctrl_getHeaderMobile_ctrl_UserNameRequired').dispose = function () {
+                Array.remove(Page_Validators, document.getElementById('getHeader_ctrl_getHeaderMobile_ctrl_UserNameRequired'));
+            }
+
+            document.getElementById('getHeader_ctrl_getHeaderMobile_ctrl_regex_email').dispose = function () {
+                Array.remove(Page_Validators, document.getElementById('getHeader_ctrl_getHeaderMobile_ctrl_regex_email'));
+            }
+
+            document.getElementById('getHeader_ctrl_getHeaderMobile_ctrl_EmailValidator').dispose = function () {
+                Array.remove(Page_Validators, document.getElementById('getHeader_ctrl_getHeaderMobile_ctrl_EmailValidator'));
+            }
+
+            document.getElementById('getHeader_ctrl_getHeaderMobile_ctrl_PasswordRequired').dispose = function () {
+                Array.remove(Page_Validators, document.getElementById('getHeader_ctrl_getHeaderMobile_ctrl_PasswordRequired'));
+            }
+
+            document.getElementById('getHeader_ctrl_getHeaderDesktop_UserNameRequired').dispose = function () {
+                Array.remove(Page_Validators, document.getElementById('getHeader_ctrl_getHeaderDesktop_UserNameRequired'));
+            }
+
+            document.getElementById('getHeader_ctrl_getHeaderDesktop_regex_email').dispose = function () {
+                Array.remove(Page_Validators, document.getElementById('getHeader_ctrl_getHeaderDesktop_regex_email'));
+            }
+
+            document.getElementById('getHeader_ctrl_getHeaderDesktop_EmailValidator').dispose = function () {
+                Array.remove(Page_Validators, document.getElementById('getHeader_ctrl_getHeaderDesktop_EmailValidator'));
+            }
+
+            document.getElementById('getHeader_ctrl_getHeaderDesktop_PasswordRequired').dispose = function () {
+                Array.remove(Page_Validators, document.getElementById('getHeader_ctrl_getHeaderDesktop_PasswordRequired'));
+            }
+            Sys.Application.add_init(function () {
+                $create(Telerik.Web.UI.RadMenu, { "_childListElementCssClass": null, "_skin": "Default", "clientStateFieldID": "getHeader_ctrl_getHeaderDesktop_getNav_RadMenu_ClientState", "collapseAnimation": "{\"duration\":450}", "expandAnimation": "{\"duration\":450}", "itemData": [{ "items": [{ "navigateUrl": "/html/movieNowShowing.aspx?ID=9&PID=49", "target": "_self" }, { "navigateUrl": "/html/movieNextChange.aspx?ID=9&PID=145", "target": "_self" }, { "navigateUrl": "/html/movieComingSoon.aspx?ID=9&PID=50", "target": "_self" }, { "navigateUrl": "/html/IntScreen_NS.aspx?ID=9&PID=54", "target": "_self" }, { "navigateUrl": "/html/FilmFestival_Adhoc.aspx?ID=9&PID=4554&CatID=4549", "target": "_self" }, { "navigateUrl": "/html/movieArchive.aspx?ID=9&PID=53&Year=1", "target": "_self" }], "navigateUrl": "javascript:void(0);", "target": "_self" }, { "items": [{ "navigateUrl": "/html/ticket_showtimes.aspx?ID=38&PID=57", "target": "_self" }, { "items": [{ "navigateUrl": "/html/epayment.aspx?ID1=38&ID=58&PID=65", "target": "_self" }, { "navigateUrl": "/html/default.aspx?ID1=38&ID=58&PID=67", "target": "_self" }], "navigateUrl": "javascript:void(0);", "target": "_self" }, { "items": [{ "navigateUrl": "/html/default.aspx?ID=60&PID=68", "target": "_self" }, { "navigateUrl": "/html/default.aspx?ID=60&PID=69", "target": "_self" }], "navigateUrl": "javascript:void(0);", "target": "_self" }, { "items": [{ "navigateUrl": "/html/movie_guide.aspx?ID=61&PID=71", "target": "_self" }], "navigateUrl": "javascript:void(0);", "target": "_self" }], "navigateUrl": "javascript:void(0);", "target": "_self" }, { "items": [{ "navigateUrl": "/html/promotions.aspx?ID=39&PID=74", "target": "_self" }], "navigateUrl": "javascript:void(0);", "target": "_self" }, { "items": [{ "navigateUrl": "https://www.hlb.com.my/en/personal-banking/credit-cards/rewards-points/gsc-gold-and-platinum-cards.html?utm_source=MenuBar", "target": "_self" }, { "navigateUrl": "https://www.gsc.com.my/html/GSCHLBCreditCardFAQ.aspx?ID=4001&PID=4137&utm_source=GSCHLBFAQ", "target": "_self" }], "navigateUrl": "javascript:void(0);", "target": "_self" }, { "items": [{ "navigateUrl": "http://www.gsc.com.my/html/membership.aspx", "target": "_self" }], "navigateUrl": "javascript:void(0);", "target": "_self" }, { "items": [{ "navigateUrl": "/html/contests.aspx?ID=40&PID=75", "target": "_self" }, { "navigateUrl": "/html/contest_results.aspx?ID=40&PID=76", "target": "_self" }], "navigateUrl": "javascript:void(0);", "target": "_self" }, { "items": [{ "navigateUrl": "/html/cinema_experience.aspx?ID=41&PID=77", "target": "_self" }], "navigateUrl": "javascript:void(0);", "target": "_self" }, { "items": [{ "navigateUrl": "https://www.gsc.com.my/corporate", "target": "_self" }, { "navigateUrl": "/html/Feedback.aspx", "target": "_self" }, { "navigateUrl": "/html/announcements.aspx?ID=42&PID=82", "target": "_self" }, { "navigateUrl": "/html/location.aspx?ID=204&PID=234", "target": "_self" }, { "navigateUrl": "/html/default.aspx?ID=42&PID=84", "target": "_self" }, { "navigateUrl": "/html/faqs.aspx?ID=42&PID=85", "target": "_self" }], "navigateUrl": "javascript:void(0);", "target": "_self" }] }, null, null, $get("getHeader_ctrl_getHeaderDesktop_getNav_RadMenu"));
+            });
+            Sys.Application.add_init(function () {
+                $create(Telerik.Web.UI.RadListView, { "UniqueID": "NSGrid", "_clientSettings": { "DataBinding": { "ItemPlaceHolderID": "NSGrid_ProductItem", "DataService": {} } }, "_virtualItemCount": 24, "clientStateFieldID": "NSGrid_ClientState" }, null, null, $get("NSGrid"));
+            });
+
+            document.getElementById('getTop10Movies_ctrl_ModalLoginTop10_UserNameRequired').dispose = function () {
+                Array.remove(Page_Validators, document.getElementById('getTop10Movies_ctrl_ModalLoginTop10_UserNameRequired'));
+            }
+
+            document.getElementById('getTop10Movies_ctrl_ModalLoginTop10_regex_email').dispose = function () {
+                Array.remove(Page_Validators, document.getElementById('getTop10Movies_ctrl_ModalLoginTop10_regex_email'));
+            }
+
+            document.getElementById('getTop10Movies_ctrl_ModalLoginTop10_EmailValidator').dispose = function () {
+                Array.remove(Page_Validators, document.getElementById('getTop10Movies_ctrl_ModalLoginTop10_EmailValidator'));
+            }
+
+            document.getElementById('getTop10Movies_ctrl_ModalLoginTop10_PasswordRequired').dispose = function () {
+                Array.remove(Page_Validators, document.getElementById('getTop10Movies_ctrl_ModalLoginTop10_PasswordRequired'));
+            }
+                    //]]>
+        </script>
+    </form>
+    <table cellspacing="0" cellpadding="0" class="gstl_50 gssb_c" style="width: 2px; display: none; top: 3px; position: absolute; left: -1px;"><tbody><tr><td class="gssb_f"></td><td class="gssb_e" style="width: 100%;"></td></tr></tbody></table><table cellspacing="0" cellpadding="0" class="gstl_51 gssb_c" style="width: 2px; display: none; top: 3px; position: absolute; left: -1px;"><tbody><tr><td class="gssb_f"></td><td class="gssb_e" style="width: 100%;"></td></tr></tbody></table>
+</body>
+</html>
+
+

@@ -1,0 +1,40 @@
+/* PROJECT : GSC 30			*/
+/* DATE : 10/01/2015		*/
+/* UPDATE : -				*/
+/* CREATOR : ALFRED TEOH	*/
+/* Added : 					*/
+
+
+
+
+  $("#GSC30_video").owlCarousel({ 
+		autoPlay: 4000, //Set AutoPlay to 4 seconds
+		pagination: true,
+		items : 4,
+		itemsDesktop : [992,5],
+		itemsDesktopSmall : [991,3],
+		itemsTablet: [768,3],
+		itemsMobile : [450,2],
+		theme : "owl-gsc-theme2",
+		navigation: false,
+		stopOnHover: true,
+  });
+
+
+
+
+
+
+  
+  $("#GSC30_gallery").owlCarousel({ 
+		autoPlay: 4000, //Set AutoPlay to 4 seconds
+		pagination: true,
+		items : 4,
+		itemsDesktop : [992,5],
+		itemsDesktopSmall : [991,3],
+		itemsTablet: [768,3],
+		itemsMobile : [450,2],
+		theme : "owl-gsc-theme2",
+		navigation: false,
+		stopOnHover: true,
+  });

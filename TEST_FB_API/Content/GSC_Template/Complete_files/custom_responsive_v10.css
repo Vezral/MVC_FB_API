@@ -1,0 +1,762 @@
+/* PROJECT : GSC V2 Rewamp	*/
+/* DATE : 21/10/2015		*/
+/* UPDATE : 05/12/2016		*/
+/* CREATOR : ALFRED TEOH	*/
+/* Added : Added White Quick filter */
+
+
+@media (min-width: 1200px){
+	#CineAdMobile {position: absolute; z-index:80; top:22px; width: 728px; left: 50%; margin-left: -394px;}
+}
+
+
+@media (min-width: 1200px){
+.MobileTopPanelWrap {height:0px; overflow:hidden;}
+#CineAdMobile {position: absolute; z-index:80; top:35px; width: 728px; left: 50%; margin-left: -394px;}
+}
+
+@media (max-width: 1200px){
+
+/* CINE ADS SETTINGS */
+#HeaderSec:after {content: ""; display: block; width: 100%; height: 100px;}
+/*#CineAdMobile { width:320px; left: 50%; margin-left: -160px;}*/
+/*
+#CineAdMobile {margin-left: -294px; overflow: hidden; 
+	-webkit-transform: scale(.71);
+    -webkit-transform-origin: 0 0;
+    -moz-transform: scale(.71);
+    -moz-transform-origin: 0 0;
+	transform: scale(.71);
+    transform-origin: 0 0;
+    width:729px; top: 52px;
+	}
+*/
+
+
+
+
+/* MAIN STRUCTURE */
+h1 { font-size:36px;}
+#HeaderSec .HeaderWrap .Leaderboard {width: 520px;}
+
+	.MobileTopPanelWrap {height:0px; overflow:hidden;}
+		
+	.HomeCarousel_01 .ImgCanvas,
+	.HomeCarousel_02 .ImgCanvas { background-size:cover;}
+	.HomeCarousel_01 .owl-controls { bottom:20px;}
+	.HomeCarousel_01 .owl-wrapper-outer { padding-bottom:30px;}
+	.HomeCarousel_01 .owl-carousel .owl-wrapper-outer { padding-bottom:30px;}
+	.HomeCarousel_01 .owl-item.active .ImgCanvas ul.QuickLink { bottom:20px;}
+	
+	/*
+	.HomeCarousel_01 {min-height:390px; }
+	.NowShowingCarousel {min-height:370px; }
+	*/
+	#HomeCarousel #owl-HomeCarousel_01.owl-carousel { min-height:410px}
+	#HomeCarousel #owl-NowShowing.owl-carousel { min-height:410px}
+	
+	
+	/* TOP 10 MOVIES */
+	.Top10Movies .Lpanel ul { width:610px;}
+	
+	
+	#PromotionSec .Set .PromotionItem.Desc {height:304px;}
+
+/*============================================================================================*/
+/* PARTNERSHIP DETAILS PAGE 	*/
+/*============================================================================================*/	
+#PartnershipBtmContact { padding:40px 0; }
+#PartnershipBtmContact h3 { font-size:23px; }
+#PartnershipBtmContact h4 { font-size:9px; }	
+
+
+
+/*============================================================================================*/
+/* LOCATION PAGE 	*/
+/*============================================================================================*/	
+#Location .MapHolder .LocationListWrap { margin-left:0px;}
+
+
+
+
+/*============================================================================================*/
+/* MOVIE PAGE 	*/
+/*============================================================================================*/
+#MoviePageSec .RightBoxWrap h1 {font-size:38px; height: 59px; padding-top: 10px;  }
+#MoviePageSec .RightBoxWrap #showtime .ShowMoviesTable .TimeSelect {width: 15.66666667%;}
+
+
+
+
+}
+
+
+
+
+
+@media (max-width: 992px) {	
+
+/* CINE ADS SETTINGS */
+
+/*
+#CineAdMobile {width: 300px; margin-left: -184px; overflow: hidden;
+	-webkit-transform: scale(.42);
+    -webkit-transform-origin: 0 0;
+    -moz-transform: scale(.42);
+    -moz-transform-origin: 0 0;
+	transform: scale(.42);
+    transform-origin: 0 0;
+    width: 729px; top: 58px;
+}
+*/
+ 	#HeaderSec .HeaderWrap .Logo { padding-top: 5%;}
+	
+	#HeaderSec .HeaderWrap { display:block;}
+	#HeaderSec .HeaderWrap .Logo { display:block; float:left;}
+	#HeaderSec .HeaderWrap .Leaderboard { display:none;}
+	#HeaderSec .HeaderWrap .RightBoxWrap { display:block; float:right;}
+	Footer .BtmPanel .Links { margin-bottom:10px;}
+	Footer .BtmPanel .Links,
+	Footer .BtmPanel .CopyText { text-align:center;}
+	
+	.HomeCarousel_01 .owl-wrapper-outer { padding-bottom:40px;}
+	.HomeCarousel_01 .owl-controls { bottom:30px;}
+	.HomeCarousel_01 .ImgCanvas ul.QuickLink li { margin-left: 8px;}
+	.HomeCarousel_01 .ImgCanvas ul.QuickLink li a { padding:6px; width:140px;}	
+	/*.HomeCarousel_01 {min-height:310px; }*/
+	/*.NowShowingCarousel {min-height:480px; }*/
+	#HomeCarousel #owl-HomeCarousel_01.owl-carousel { min-height:310px}
+	#HomeCarousel #owl-NowShowing.owl-carousel { min-height:480px}	
+	
+	
+	#HomeTabPanelSec .HomeTabPanelWrap ul.HomeTabPanel li a {padding:14px 0px; font-size:12px;}	
+	
+	.NowShowingCarousel .owl-wrapper:hover .owl-item .item img { opacity:1;}
+	
+	/* TOP 10 MOVIES */
+	.Top10Movies .Lpanel ul { list-style:none; padding:0px; margin:0px; /*-webkit-columns: 1; -moz-columns: 1; columns: 1;*/ width:auto; height: auto;}
+	.Top10Movies .Lpanel .BoxRow h2 { display:block;}
+	.Top10Movies .Lpanel .BoxRow span.Date { display:block; text-align:left;}
+
+.NowShowingSec { background:#252525; overflow: hidden;padding-top: 10px;}
+.NowShowingCarousel .owl-controls .owl-buttons { display:block; position: relative; bottom: 200px;}
+.NowShowingCarousel .owl-controls .owl-pagination { display:none;}
+.NowShowingCarousel .item .OverlayPanel {position: relative; z-index:1; bottom:0px; height: auto; width:100%; display:block; background: none; opacity:1; text-align:center;}
+.NowShowingCarousel .item .OverlayPanel .ButtonWrap { display:block; position:relative; top:0px; margin-top:0px; margin-left:0px; margin-right:0px; padding:0px;}
+.NowShowingCarousel .item .OverlayPanel .BuyTicks { position:relative; bottom:0px; display:inline-block; opacity:1; width:100%; margin-bottom:4px;}
+.NowShowingCarousel .item .OverlayPanel .WatchTrailer { position:relative; bottom:0px; display:inline-block; opacity:1; width:100%;}
+
+	#MovieListFilterSec { display:none;}	
+	
+	#PromotionSec .Set .PromotionItem.Desc {height:235px;}
+
+
+/*============================================================================================*/
+/* QuickFilter 	*/
+/*============================================================================================*/
+#QuickFilterShowTimes {padding: 24px 0px 20px 0px;}
+#QuickFilterShowTimes .OR { font-size: 16px; position:inherit; top:0px; right:0px; text-align:center; padding: 4px 0px 10px 0px;}
+#QuickFilterShowTimes a.BtnSubmit {margin-top: 10px;}
+iframe.QuickFilterIframe { height:276px; width:100%; margin:0px; padding:0px;}
+iframe.QuickFilterShowTimesIframe { height:316px; width:100%; margin:0px; padding:0px;}
+
+body.Home iframe.QuickFilterIframe { height:316px; width:100%; margin:0px; padding:0px;}
+	
+
+/*============================================================================================*/
+/* PARTNERSHIP DETAILS PAGE 	*/
+/*============================================================================================*/
+#PartnershipBtmContact .CinemasMoviesEnq { margin-bottom:20px; text-align:center; }
+#PartnershipBtmContact .HongLeongEnq { text-align:center; }
+
+
+/*============================================================================================*/
+/* MOVIE PAGE 	*/
+/*============================================================================================*/	
+#MoviePageSec .PosterKeyart { padding:0; display:block; }
+#MoviePageSec .PosterKeyart img { margin:auto; }
+
+#MoviePageSec .RightBoxWrap h1 { color:#040404; font-size:26px; font-family:'robotobold'; text-align:left; padding:0px; margin:3% 0 0 0; height:auto; position:relative; }
+#MoviePageSec .RightBoxWrap .truncate {white-space: normal;}
+#MoviePageSec .RightBoxWrap .MovieTitle { display:none;}
+#MoviePageSec .RightBoxWrap .TabPanelWrap ul.Tab { text-align: center; padding-bottom: 20px; }
+#MoviePageSec .RightBoxWrap .TabPanelWrap ul.Tab li a { color:#575757; font-size:20px; font-family:'robotobold'; padding:6px 0px; }
+#MoviePageSec .RightBoxWrap .TabPanelWrap ul.Tab li a:hover { color:#222; }
+#MoviePageSec .RightBoxWrap .TabPanelWrap ul.Tab li.active a { color:#222; }
+#MoviePageSec .RightBoxWrap .TabPanelWrap ul.Tab li.active a:after { content:""; display:block; border-bottom:3px solid #FDA711; } 
+
+#MoviePageSec .RightBoxWrap .SynopsisDescriptionWrap ul.Tab { text-align:left; padding-bottom: 10px; }
+	
+#MoviePageSec .RightBoxWrap #showtime .ShowMoviesTable .TimeSelect {width: 13.66666667%;}
+	
+/*============================================================================================*/
+/* MOVIE LISTING PAGE 	*/
+/*============================================================================================*/
+#MovieListingCatg > div { width:100%;} 
+#MovieListingCatg  div[class^="col-md-12"] { padding-left:0px; padding-right:0px;}
+#MovieListingCatg .DP_Wrap { background:#000; display:block; text-align:center; position: relative;}
+#MovieListingCatg .DP_Wrap a.DP_ListingCatgBtn { display:block; background:#181818; padding:10px 0px; color:#fff;}
+#MovieListingCatg .DP_Wrap .DP_ListingCatgWrap {display:none; overflow:hidden; height:0%; position:absolute; z-index:10; width: 100%;}
+#MovieListingCatg .DP_Wrap .DP_ListingCatgWrap ul {background:#252525; padding-bottom: 20px; padding-top:10px;}
+#MovieListingCatg .DP_Wrap .DP_ListingCatgWrap ul li { display: block; padding:10px 0px; margin:0px;}
+#MovieListingCatg .Tap_Wrap { text-align:center;}
+
+#MovieListingSec a img { height:auto;}
+#MovieListingSec a .OverlayPanel,
+#MovieListingSec a:hover .OverlayPanel {height: auto; position:relative; padding:0px; text-align: center;}
+#MovieListingSec a .OverlayPanel .Txt01,
+#MovieListingSec a .OverlayPanel .Title { opacity:1; bottom:0px;}
+#MovieListingSec a .OverlayPanel .Txt01 { padding: 4px 0px 0px 0px;font-size: 12px;}
+#MovieListingSec a .OverlayPanel .Title {padding-top: 4px; height: 50px;overflow: hidden;font-size: 15px;}
+
+
+/* ARCHIVE PAGE */
+#MovieListingCatg .SortAlphabetWrap ul.SortAlphabet { text-align:center;}
+#MovieListingCatg .SortAlphabetWrap ul.SortAlphabet li { margin: 0px; padding: 0px; display: inline-block; }
+#MovieListingCatg .SearchArchiveWrap .SearchBtnHolder a.SearchToggleArchive {float: none;margin: 0 auto; display: block; width: 30px; margin-top: 20px;}
+#MovieListingCatg .SearchArchiveWrap .SearchTextfieldWrap input { text-align:center;}
+
+
+
+/*============================================================================================*/
+/* MEMBER REGISTRATION PAGE 	*/
+/*============================================================================================*/
+.RegisterSec h2 { font-size:70px; }
+
+
+
+/*============================================================================================*/
+/* LOCATION PAGE 	*/
+/*============================================================================================*/
+#Location .MapHolder .GoogleMapCanvas {height:380px;}	
+#Location .MapHolder .LocationListWrap { margin-left:0px; position:relative; width:100%; height:380px;}
+#Location .MapHolder .LocationListWrap .boxscroll_Location { height:300px;}
+#Location .MapHolder .LocationCont { width:100%; padding:0px; }
+
+
+/*============================================================================================*/
+/* ANNOUNCEMENTS PAGE 	*/
+/*============================================================================================*/
+#AnnouncementsSec h2 { font-size:36px;}
+#AnnouncementDetailsSec h2 { font-size:60px; }
+
+
+
+/*============================================================================================*/
+/* TICKET PRICING PAGE 	- YY */
+/*============================================================================================*/
+#TicketPricingSec h1 {}
+#TicketPricingSec h2 { font-size:32px;}
+
+
+
+/*============================================================================================*/
+/* SHOW TIMES PAGE 	*/
+/*============================================================================================*/
+#ShowTimes .ListingWrap ul li .BuyTicketsWrap { float:left; display:block; margin-left: -15px; margin-bottom: 30px;}
+
+
+/*============================================================================================*/
+/* INBOX PAGE 	*/
+/*============================================================================================*/
+
+.InBoxPG .InboxBox { margin-top: 0px; margin-bottom: 50px; }	
+	
+.InBoxPG .InboxItemWrap ul.tablestyle li a .Item { padding: 20px 15px; }					
+.InBoxPG .InboxItemWrap ul.tablestyle li a .Item .ItemContent .Wrap .ImgBox { display: block; width: 100%; height: 100px;  }
+.InBoxPG .InboxItemWrap ul.tablestyle li a .Item .ItemContent .Wrap .TitleBox { display: inline-block; padding: 0px; padding-top: 10px; width: 100%; }	
+	  
+.InBoxPG .InboxContent .TextWrap  { padding: 20px; padding-bottom: 0px;   }
+.InBoxPG .InboxContent .TextWrap .Title {  display: block; width: 100%;  }
+.InBoxPG .InboxContent .TextWrap .Button { display: block; width: 100%; margin-top: 20px; padding-left: 0px; }
+.InBoxPG .InboxContent .RTB_Content { padding: 20px; padding-bottom: 50px; }
+	
+} /* max-width: 992px - END */
+
+
+
+
+
+
+
+@media (max-width: 768px) {
+	
+	
+/*============================================================================================*/
+/* SITE STRUCTURE */
+/*============================================================================================*/
+
+/* CINE ADS SETTINGS */
+/*#CineAdMobile { width:320px; left: 50%; margin-left: -160px;}*/
+/*
+#CineAdSec { background:#000; width:100%;}
+#CineAdMobile {top: 25px; position:relative; left: 50%; margin-left: -160px;
+	-webkit-transform: scale(.44);
+    -webkit-transform-origin: 0 0;
+    -moz-transform: scale(.44);
+    -moz-transform-origin: 0 0;
+    transform: scale(0.44);
+    transform-origin: 0 0;
+    width: 729px;
+}
+*/
+/*#CineAdMobile:after { content:""; background:#000; width:100%; position: absolute; height:90px;}*/
+
+/* MAIN STRUCTURE */
+h1 { font-size:30px;}
+.SameHeight { height:auto !important;}
+
+.PaddingLR_0px_768 { padding-left:0px; padding-right:0px;}
+	
+	#HeaderSec {border-top: 4px solid #FDA711; padding-bottom: 7px;}
+	#HeaderSec .container { padding-left:0px; padding-right:0px;}
+	.MobileTopPanelWrap {height:auto; overflow: visible;  margin-bottom: 20px; display:block; z-index:8000;}
+	#HeaderSec .TopBar { display:none;}
+	iframe.QuickFilterIframe { display:none;}
+	#QuickFilter {display:none;}
+	
+	#HeaderSec .HeaderWrap {margin-left:15px; margin-right:15px;}
+	
+	#HeaderSec .HeaderWrap .Logo {width: 140px;}
+	#HeaderSec .HeaderWrap .RightBoxWrap { position: absolute; width:100%; right:0px;}
+	#HeaderSec .HeaderWrap .RightBoxWrap .Group { display:none;}
+	#HeaderSec .HeaderWrap .RightBoxWrap .BtnMenu { top:0px; }
+	
+	/*.MobileTopPanelWrap { display:block;}*/
+	.MenuWrap,
+	.MenuWrap ul.MainNav {width: 100%; top:50px;}
+	.AnnouncementsSec > div { padding:0px;}
+	
+	#HeaderSec .HeaderWrap .Logo {padding:0px;}
+	#HeaderSec .HeaderWrap .RightBoxWrap .BtnMenu { top:0px; }
+	#HeaderSec .HeaderWrap .RightBoxWrap .MenuWrap {top: 50px;}
+
+	.HomeCarousel_01 .owl-wrapper-outer { padding-bottom:100px;}
+	.HomeCarousel_01 .ImgCanvas ul.QuickLink {bottom:0px; width:100%; text-align:center; }
+	.HomeCarousel_01 .ImgCanvas ul.QuickLink li { display:inline-block;}
+	.HomeCarousel_01 .owl-item.active .ImgCanvas ul.QuickLink { bottom:-38px;}
+	.HomeCarousel_01 .owl-controls {bottom: 40px;}
+	
+	#HomeTabPanelSec {padding-bottom: 20px; /*background: #252525;*/}
+	#HomeTabPanelSec .HomeTabPanelWrap { margin-left:-15px; margin-right:-15px; }
+	#HomeTabPanelSec .HomeTabPanelWrap ul.HomeTabPanel li { display:none; width: 50%!important;}
+	#HomeTabPanelSec .HomeTabPanelWrap ul.HomeTabPanel li:nth-child(-n+2) { display:block;}
+	#HomeTabPanelSec .HomeTabPanelWrap ul.HomeTabPanel li a {width:100%!important; display:block; height:auto; padding:14px 0px; font-size:12px;}
+	#HomeTabPanelSec .HomeTabPanelWrap ul.HomeTabPanel li.Active { border:none;}
+	
+	.NowShowingSec .BtnLinkWrap { height:40px;}
+	
+	#HomeCarousel #owl-HomeCarousel_01.owl-carousel { min-height:300px;}
+	#HomeCarousel #owl-NowShowing.owl-carousel { min-height:300px;}
+	
+	
+	
+	
+.Top10Movies .TableWrap,
+.Top10Movies .Lpanel,
+.Top10Movies .RPanel { display:block;}
+.Top10Movies .RPanel { padding-left:0px; min-width:270px; padding-top: 30px;}
+.Top10Movies .RPanel .Ads { text-align:center;}
+.Top10Movies .RPanel .Ads img { margin:0 auto;}
+.Top10Movies .RPanel .Ads small { display:block;}
+.Top10Movies .RPanel .Ads a.Link { display:block;text-align:center;}
+
+
+
+
+
+/*============================================================================================*/
+/* MOVIE LISTING PAGE 	*/
+/*============================================================================================*/
+#MovieListingCatg {padding-top:0px;}
+
+
+
+/*============================================================================================*/
+/* PROMOTION PAGE 	*/
+/*============================================================================================*/
+#PromotionSec .Set .PromotionItem.Image,
+#PromotionSec .Set .PromotionItem.Desc,
+#PromotionSec .Set.odd .PromotionItem.Image,
+#PromotionSec .Set.odd .PromotionItem.Desc{ float:none; display:block; width:100%;}
+
+#PromotionSec .Set .PromotionItem.Desc .Box { position: relative!important; top: auto!important;  margin-top: 0px!important;}
+
+/*============================================================================================*/
+/* PROMOTION PAGE 	*/
+/*============================================================================================*/
+#PromotionSec .RTBWrap h1 { font-size:36px; }
+#PromotionSec .RTBWrap h2 { font-size:24px; }
+
+#PageNavigate .PrevNextWrap a.btnPrevPage,
+#PageNavigate .PrevNextWrap a.btnNextPage { padding:30px 5%; width:100%; font-size:11px; }
+
+#PageNavigate .BackToListingWrap a.btnBackToListing { padding:25px 5%; }
+
+
+/*============================================================================================*/
+/* MOVIE PAGE 	*/
+/*============================================================================================*/
+#MoviePageSec .RightBoxWrap .SynopsisWrap .SynopsisDescriptionWrap .TableBox .dl-horizontal dd:before { display:none;}
+#MoviePageSec .RightBoxWrap #showtime .ShowMoviesTable .TimeSelect {width: 18.66666667%;}
+
+
+
+/*============================================================================================*/
+/* MEMBER REGISTRATION PAGE 	*/
+/*============================================================================================*/
+#MemberRegSec h1 { font-size:36px; }
+#MemberRegSec .row { margin-bottom:0; }
+#MemberRegSec .row > div { margin-bottom:15px; }
+
+.RegisterSec { padding:35px 0; }
+.RegisterSec h3 { font-size:30px; }
+.RegisterSec h2 { margin-bottom:30px; font-size:60px; }
+
+#CreateProfileSec { padding:35px 0; }
+#CreateProfileSec select.DOBddl,
+#MemberProfileSec select.DOBddl {width: 100%;}
+
+#GSCMemberRewardsSec { padding:35px 0; }
+
+#MemberRegSec .BtnUpdate-wrap { padding:35px 0; }
+
+
+/*============================================================================================*/
+/* PROFILE DETAILS PAGE 	*/
+/*============================================================================================*/
+#ProfileDetailsSec h1 { font-size:36px; }
+#ProfileDetailsSec .row { margin-bottom:0; }
+#ProfileDetailsSec .row > div { margin-bottom:15px; }
+
+#ChangePasswordSec { padding:35px 0; }
+#ChangePasswordSec h3 { font-size:30px; }
+#ChangePasswordSec h2 { margin-bottom:30px; font-size:60px; }
+
+#ChangePasswordSec .ButtonWrap { text-align:center; }
+#ChangePasswordSec .ButtonWrap input[type="button"] { margin:0 15px; }
+
+#LoginDetailsSec { padding:35px 0; }
+
+#GSCMemberRewardsSec { padding:35px 0; }
+
+#ProfileDetailsSec .BtnUpdate-wrap { padding:35px 0; }
+#ProfileDetailsSec .BtnUpdate-wrap input[type="submit"],
+#MemberRegSec input[type="submit"] {padding: 10px; font-size: 25px;}
+
+
+
+
+/*============================================================================================*/
+/* CHECK BONUS PAGE 	*/
+/*============================================================================================*/
+#CheckBonusSec h2 {font-size:32px;}
+#CheckBonusSec h3 {font-size:26px;}
+#CheckBonusSec .row { margin-bottom:0; }
+#CheckBonusSec .row > div { margin-bottom:15px; }
+#CheckBonusSec .ButtonWrap { text-align:center; }
+
+#CheckGSCHongLeongCCSec { padding:35px 0; }
+
+#ExistingGSCMemberLoginSec { padding:35px 0; }
+
+
+
+
+/*============================================================================================*/
+/* SHOW TIMES PAGE 	*/
+/*============================================================================================*/
+#ShowTimes .MovieName { display:none;}
+#ShowTimes .NotesWrap ul { margin: 0px;  padding: 20px 38px;}
+#ShowTimes .ListingWrap ul li a.toggle {padding: 8px 20px;}
+#ShowTimes .ListingWrap ul li ul.inner { padding: 0px 20px;}
+#ShowTimes .ListingWrap ul li .TimeTableWrap { margin-bottom:10px; padding-left:0px;}
+#ShowTimes .MovieNameGuideWrap { padding-right:0px;}
+#ShowTimes .NoticeWrap p { font-size:16px;}
+
+
+
+/*============================================================================================*/
+/* FAQ PAGE 	*/
+/*============================================================================================*/
+#FAQSec .RadPanelBar_Default > .rpRootGroup > .rpItem > .rpSlide { padding-left:0px;}
+
+
+
+
+
+/*============================================================================================*/
+/* ANNOUNCEMENTS PAGE 	*/
+/*============================================================================================*/
+#AnnouncementsSec h2 { font-size:30px;}
+#AnnouncementsSec p { font-size: 18px;}
+#AnnouncementDetailsSec h2 { margin:0 0 3% 0; font-family:'robotobold'; font-size:60px; text-transform:uppercase; }
+#AnnouncementDetailsSec { font-family:'robotoregular'; font-size:20px; line-height:32px; }	
+
+
+	
+	
+/*============================================================================================*/
+/* MEMBERSHIP PAGE 	*/
+/*============================================================================================*/
+#MemberShipSec .Masthead {  background: #fff;}
+#MemberShipSec .Masthead h1 { color: #000;}
+#MemberShipSec .Masthead .Content { position: relative; top:0px; margin-top:0px;}
+	
+	
+	
+	
+
+
+} /* max-width: 768px - END */
+
+@media (max-width: 740px) {	
+	/* CINE ADS SETTINGS 
+	#CineAdSec {position: relative; }
+	#CineAdMobile { width:320px; left: 50%; margin-left: -160px; top: -67px; }
+	#HeaderSec:after {content: ""; display: block; width: 100%; height: 65px;}*/
+	
+	/* CINE ADS SETTINGS OLD */
+	#CineAdMobile { width:320px; left: 50%; margin-left: -160px;}
+	#HeaderSec:after {content: ""; display: block; width: 100%; height: 65px;}
+}
+
+
+@media (max-width: 640px) {
+
+
+
+
+.mobile { display:inherit; }
+
+/*============================================================================================*/
+/* ERROR PAGE 	*/
+/*============================================================================================*/
+#ErrorPageSec { padding:6% 0; min-height:inherit; }
+.ErrorMaxWidth p { font-size:20px; line-height:30px;}
+
+
+
+/*============================================================================================*/
+/* MOVIE PAGE 	*/
+/*============================================================================================*/	
+#MoviePageSec .MastHeadBanner { display:none; }
+#MoviePageSec .container.Pushup { padding-top:7%; top:0; padding-bottom: 30px;}
+
+#MoviePageSec .RightBoxWrap .TabPanelWrap ul.Tab li { display:inline-block; width:auto; padding:4px 0; margin: 0 10px; }
+#MoviePageSec .RightBoxWrap .TabPanelWrap ul.Tab li:last-child { padding:4px 0; }
+#MoviePageSec .RightBoxWrap #showtime .ShowMoviesTable .TimeSelect {width: 23.66666667%;}
+#MoviePageSec .RightBoxWrap #showtime .SelectedAndBuy .SelectedAndBuyWrap { display:block;}
+#MoviePageSec .RightBoxWrap #showtime .SelectedAndBuy .SelectedSummary { display:block; }
+#MoviePageSec .RightBoxWrap #showtime .SelectedAndBuy .ButtonWrap { display: table; margin:20px auto; vertical-align: middle;}
+#MoviePageSec .RightBoxWrap #showtime .SelectedAndBuy .SelectedSummary .Details {padding-bottom: 8px;}
+
+
+/*============================================================================================*/
+/* MEMBER REGISTRATION PAGE 	*/
+/*============================================================================================*/
+#MemberRegSec h1 { font-size:30px; }
+
+.RegisterSec { padding:25px 0; }
+.RegisterSec h3 { font-size:24px; }
+.RegisterSec h2 { margin-bottom:20px; font-size:50px; }
+
+#MemberRegSec img.forTooltip,
+#ProfileDetailsSec img.forTooltip { display:none;}
+
+#CreateProfileSec { padding:25px 0; }
+
+#MemberProfileSec { padding:25px 0; }
+
+#MemberRegSec .BtnUpdate-wrap { padding:25px 0; }
+
+
+/*============================================================================================*/
+/* PROFILE DETAILS PAGE 	*/
+/*============================================================================================*/
+#ProfileDetailsSec h1 { font-size:30px; }
+
+#ChangePasswordSec { padding:25px 0; }
+#ChangePasswordSec h3 { font-size:24px; }
+#ChangePasswordSec h2 { margin-bottom:20px; font-size:50px; }
+
+#LoginDetailsSec { padding:25px 0; }
+
+#MemberProfileSec { padding:25px 0; }
+
+#ProfileDetailsSec .BtnUpdate-wrap { padding:25px 0; }
+
+
+/*============================================================================================*/
+/* CHECK BONUS PAGE 	*/
+/*============================================================================================*/
+#CheckGSCHongLeongCCSec { padding:25px 0; }
+#ExistingGSCMemberLoginSec { padding:25px 0; }
+
+
+/*============================================================================================*/
+/* LOCATION PAGE 	*/
+/*============================================================================================*/
+#Location .MapHolder .GoogleMapCanvas {height:300px;}	
+
+
+} /* max-width: 640px - END */
+
+
+
+@media (max-width: 500px) {	
+
+	.MobileTopPanelWrap ul li a { padding:10px 10px;font-size: 12px;}
+	.MobileTopPanelWrap ul li a.BellIcon { margin-top: -6px; }
+	.MobileTopPanelWrap ul li a.BellIcon .NotifNum { left: 20px; }
+	
+	.HomeCarousel_01 .ImgCanvas ul.QuickLink li a { padding:6px; width: 90px; font-size: 12px;}
+	.HomeCarousel_01 .owl-wrapper-outer { padding-bottom: 80px;}
+	
+	#HomeCarousel #owl-HomeCarousel_01.owl-carousel { min-height:220px;}
+	#HomeCarousel #owl-NowShowing.owl-carousel { min-height:220px;}
+	
+	
+	.NowShowingSec .container { padding-left:0px; padding-right:0px;}
+	.NowShowingCarousel .item {margin: 5px;}
+	.NowShowingCarousel .item .OverlayPanel .BuyTicks a,
+	.NowShowingCarousel .item .OverlayPanel .WatchTrailer a { font-size:12px; padding: 7px 0px;}
+	.NowShowingCarousel .owl-controls .owl-buttons {bottom: 130px;}
+	
+Footer .BtmPanel .Links a { font-size:12px;}
+Footer .BtmPanel .CopyText { font-size:10px;}
+	
+	
+	#MovieListingSec .container .row .col-xs-6 { padding-left:5px; padding-right:5px;}
+	#MovieListingSec a {margin-bottom: 20px;}
+
+
+/*============================================================================================*/
+/* ERROR PAGE 	*/
+/*============================================================================================*/
+.ErrorMaxWidth p { font-size:16px; line-height:22px;}
+
+
+
+/*============================================================================================*/
+/* PROMOTION PAGE 	*/
+/*============================================================================================*/
+#PromotionSec .RTBWrap h1 { font-size:24px; }	
+#PromotionSec .RTBWrap h2 { font-size:18px; }
+#PromotionSec .JumboTron { padding:10px;}
+
+/*============================================================================================*/
+/* MEMBER REGISTRATION PAGE 	*/
+/*============================================================================================*/
+#MemberRegSec h1 { font-size:20px; }
+
+.RegisterSec { padding:15px 0; }
+.RegisterSec h3 { font-size:18px; }
+.RegisterSec h2 { margin-bottom:15px; font-size:30px; }
+
+#CreateProfileSec { padding:15px 0; }
+
+#GSCMemberRewardsSec { padding:15px 0; }
+#GSCMemberRewardsSec h2 { font-size:18px; }
+
+#MemberRegSec .BtnUpdate-wrap { padding:30px 0 15px 0; }
+#MemberRegSec .BtnUpdate-wrap input[type="button"] { width:280px; padding:20px; font-size:25px; }
+
+
+
+
+/*============================================================================================*/
+/* PROFILE DETAILS PAGE 	*/
+/*============================================================================================*/
+#ProfileDetailsSec h1 { font-size:20px; }
+
+#ChangePasswordSec { padding:15px 0; }
+#ChangePasswordSec h3 { font-size:18px; }
+#ChangePasswordSec h2 { margin-bottom:15px; font-size:30px; }
+#ChangePasswordSec .ButtonWrap input[type="button"] { margin:0 0 15px; width:100%; }
+
+#LoginDetailsSec { padding:15px 0; }
+
+#MemberProfileSec { padding:15px 0; }
+#MemberProfileSec h2 { font-size:18px; }
+
+#ProfileDetailsSec .BtnUpdate-wrap { padding:30px 0 15px 0; }
+#ProfileDetailsSec .BtnUpdate-wrap input[type="button"] { width:280px; padding:20px; font-size:25px; }
+
+
+
+/*============================================================================================*/
+/* CHECK BONUS PAGE 	*/
+/*============================================================================================*/
+#CheckGSCHongLeongCCSec { padding:25px 0; }
+#CheckGSCHongLeongCCSec .ButtonWrap input[type="button"] { margin:0 0 15px; width:100%; }
+
+#ExistingGSCMemberLoginSec { padding:25px 0; }
+#ExistingGSCMemberLoginSec .ButtonWrap input[type="button"] { margin:0 0 15px; width:100%; }
+
+
+/*============================================================================================*/
+/* TICKET PRICING PAGE 	*/
+/*============================================================================================*/	
+#TicketPricingSec h1 {}
+#TicketPricingSec h2 { font-size:22px;}
+#TicketPricingSec .LinksWrap {  }
+#TicketPricingSec .LinksWrap li { margin-right:16px; }
+
+
+
+/*============================================================================================*/
+/* SHOW TIMES PAGE 	*/
+/*============================================================================================*/
+#ShowTimes .ListingWrap ul li ul li .MovieTitle span:first-child { color:#F8AC18;font-size:16px; }
+#ShowTimes .ListingWrap ul li ul li .MovieTitle span { font-size:12px;}
+#ShowTimes .ListingWrap ul li ul.inner {padding: 0px 15px;}
+#ShowTimes .ListingWrap ul li a.toggle {padding: 8px 15px;}
+
+#ShowTimes .ListingWrap ul li .TimeTableWrap .Time { width:49%;}
+#ShowTimes .ListingWrap ul li ul li .inner {padding: 0px 15px; }
+
+/*============================================================================================*/
+/* ANNOUNCEMENTS PAGE 	*/
+/*============================================================================================*/
+
+#AnnouncementsSec h2 { font-size:26px; }
+#AnnouncementsSec .row { margin-bottom:8%; }
+#AnnouncementsSec p { font-size:14px;}
+#AnnouncementDetailsSec h2 { margin:0 0 3% 0; font-family:'robotobold'; font-size:40px; text-transform:uppercase; }
+#AnnouncementDetailsSec { font-family:'robotoregular'; font-size:16px; line-height:28px; }
+
+
+/*============================================================================================*/
+/* MOVIE PAGE 	*/
+/*============================================================================================*/	
+#MoviePageSec .RightBoxWrap #showtime .ShowMoviesTable .TimeSelect { width:49%;}
+
+/*============================================================================================*/
+/* FAQ PAGE 	*/
+/*============================================================================================*/	
+#FAQSec .RadPanelBar_Default > .rpRootGroup > .rpItem > a.rpLi { font-size:18px;}
+
+
+
+/* RTB USED */
+.RTB_Content .RTB_btn_wrap { margin-bottom:7%; }
+.RTB_Content a.RTB_btn { display:block; margin:0 0 10px 0; width:100%; }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

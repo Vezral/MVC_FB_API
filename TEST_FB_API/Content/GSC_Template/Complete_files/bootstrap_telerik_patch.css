@@ -1,0 +1,76 @@
+/*
+// Bootstrap Telerik Menu Patch -  v1.2
+// Date 		: 20/04/2015
+// Last update  : 20/07/2015
+// Creator 		: Jerry / Alfred
+// Remarks 		: Addon dropdown right for last 3 childs "nth-last-child" 
+*/
+
+
+
+#mainNavi_ctrl_RadMenu,
+#getNav_ctrl_RadMenu { display: block;  margin: 0px; }
+
+.navbar-default { z-index:1000;}
+.caret { margin-left: 6px; /*border-top-color: #FFFFFF; border-bottom-color: #FFFFFD;*/ }
+.navbar-nav li a.dropdown-toggle {}
+.navbar-nav li ul.dropdown-menu li.dropdown-submenu a { padding: 10px 23px 10px 13px; padding-right: 23px; }
+.navbar-nav li ul.dropdown-menu li.dropdown-submenu a:after { color: #ccc; border-left-color: #ccc; }
+.navbar-nav li ul.dropdown-menu li.dropdown-submenu div ul.dropdown-menu { top: -40px; }
+
+
+/* add on Last child hack
+ul.navbar-nav li.dropdown:nth-last-child(2) ul.dropdown-menu,
+ul.navbar-nav li.dropdown:nth-last-child(3) ul.dropdown-menu { text-align:right; right: 0px; left: auto;}
+ul.navbar-nav li.dropdown:nth-last-child(2) ul.dropdown-menu li ul,
+ul.navbar-nav li.dropdown:nth-last-child(3) ul.dropdown-menu li ul { right:100%;}
+ul.navbar-nav li.dropdown:nth-last-child(2) ul.dropdown-menu li a:after,
+ul.navbar-nav li.dropdown:nth-last-child(3) ul.dropdown-menu li a:after{ float:left;border-width: 5px 5px 5px 0px; border-style: solid; border-right-color: #CCC;}
+ */
+
+
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus { background: none; }
+.navbar-nav li ul li div { position: relative; left: 0px; }
+.navbar-collapse.in { overflow-y: visible; }
+.collapse { visibility: visible; }
+
+.dropdown-menu>li>a {  padding: 10px 23px 10px 13px;}
+.open > div > .dropdown-menu,
+.open > .dropdown-menu {display: block; border-top-left-radius: 0; border-top-right-radius: 0;}
+.dropdown-submenu > div > .dropdown-menu,
+.dropdown-submenu > .dropdown-menu { top: 0; left: 100%; margin-top:0px; }
+.dropdown-submenu > div > a:after,
+.dropdown-submenu > a:after { display: block; content: " "; float: right; width: 0; height: 0; border-color: transparent; border-width: 5px 0 5px 5px; border-style: solid; border-left-color: #CCC; margin-top: 5px; margin-right: -10px; }
+
+
+
+/**/
+@media (max-width: 769px) {
+
+.navbar-nav .open .dropdown-menu .dropdown-header, .navbar-nav .open .dropdown-menu>li>a{ padding: 10px 23px 10px 13px;}
+.navbar-nav li ul.dropdown-menu li.dropdown-submenu a:after	{display: inline-block; width: 0; height: 0; margin-left: 5px; vertical-align: middle; border-top: 4px solid; border-right: 4px solid transparent; border-left: 4px solid transparent;}
+.navbar-nav .dropdown-submenu > a:after  {float: none;}
+.navbar-nav li ul.dropdown-menu li.dropdown-submenu div ul.dropdown-menu{padding: 0px;}
+.navbar-nav li ul.dropdown-menu {margin-left: 10px;} 
+
+
+}
+
+
+
+/*
+@media (max-width: 768px) {
+.navbar-nav .open .dropdown-menu { position: static; top: auto; left: auto; float: none; max-width: none; margin: 0 0px 0 15px; padding: 0; }
+.navbar-default .navbar-nav li a:hover,
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:hover,
+.navbar-default .navbar-nav > .open > a:focus { background: #428bca; color: #FFF; }
+.navbar-default .navbar-nav > .dropdown > a:hover .caret,
+.navbar-default .navbar-nav > .open > a .caret { border-top-color: #FFF; border-bottom-color: #FFF; }
+.dropdown-submenu > div > a:after,
+.dropdown-submenu > a:after { display: inline-block; float: none; border-top: 4px solid; border-right: 4px solid transparent; border-left: 4px solid transparent; border-left-color : transparent; margin-top: 5px; margin-right: 10px; position: relative; left: 7px; vertical-align: middle; }
+}
+*/
+
+
