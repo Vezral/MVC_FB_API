@@ -789,6 +789,7 @@
         $(document).ready(function () {
             var canvas;
             var interval = 100;  // 1000 = 1 second
+            var clickLogIndex = 1;
 
             // create configuration object
             var config = {
@@ -856,6 +857,7 @@
                     success: function (response) {
                         console.log(JSON.parse(response.DataPointListJSON));
                         console.log(response.SchemaListCount);
+                        console.log(response.SchemaList);
                         if (response.IsSuccess) {
                             var data = {
                                 max: 3,
@@ -869,6 +871,63 @@
                                 dataset.data = schemaCount;
                             });
                             chart.update();
+                            var $clickLog = $('#clickLog')
+                            $(response.SchemaList).each(function () {
+                                var jsonLD = JSON.parse(this);
+                                var movieName = jsonLD.name;
+                                var datePublished = jsonLD.datePublished;
+                                var directorList = "";
+                                $(jsonLD.director).each(function () {
+                                    directorList += this.name + ',<br />';
+                                });
+                                directorList = directorList.slice(0, directorList.length - 7);
+
+                                var actorList = "";
+                                $(jsonLD.actor).each(function () {
+                                    actorList += this.name + ',<br />';
+                                });
+                                actorList = actorList.slice(0, actorList.length - 7);
+                                
+                                var bgColor = clickLogIndex % 2 == 0 ? 'rgba(0, 0, 0, 0.3)' : '#FFF';
+                                $('<div>').append($('<p>')
+                                            .css('background-color', bgColor)
+                                            .append($('<span>')
+                                                .css('width', '100%')
+                                                .css('display', 'inline-block')
+                                                .css('border', '1px solid black')
+                                                .html('No. ' + clickLogIndex)
+                                            )
+                                            .append($('<br />'))
+                                            .append($('<span>')
+                                                .css('width', '100%')
+                                                .css('display', 'inline-block')
+                                                .css('border', '1px solid black')
+                                                .html('Title :<br />' + movieName)
+                                            )
+                                            .append($('<br />'))
+                                            .append($('<span>')
+                                                .css('width', '100%')
+                                                .css('display', 'inline-block')
+                                                .css('border', '1px solid black')
+                                                .html('Date Published :<br />' + datePublished)
+                                            )
+                                            .append($('<br />'))
+                                            .append($('<span>')
+                                                .css('width', '100%')
+                                                .css('display', 'inline-block')
+                                                .css('border', '1px solid black')
+                                                .html('Director(s) :<br />' + directorList + '<br />')
+                                            )
+                                            .append($('<br />'))
+                                            .append($('<span>')
+                                                .css('width', '100%')
+                                                .css('display', 'inline-block')
+                                                .css('border', '1px solid black')
+                                                .html('Actor(s) :<br />' + actorList)
+                                            )
+                                        ).prependTo($clickLog)
+                                clickLogIndex++;
+                            });
                         }
                         else {
                             alert(response.ErrorMsg);
@@ -879,7 +938,7 @@
                     }
                 });
             }
-
+            
             $.ajax({
                 type: 'POST',
                 url: '@Url.Action("RetrieveSchemaListLabel", "Home")',
@@ -891,7 +950,7 @@
                         $(label).each(function () {
                             data.push(0);
                         });
-
+                        
                         datasets.push({
                             label: "Count",
                             data: data,
@@ -899,7 +958,7 @@
                             borderColor: 'rgba(54, 162, 235, 1)',
                             borderWidth: 1
                         })
-
+                        
                         initializeChartJS(label, datasets);
                         setTimeout(retrieveData, interval);
                     }
@@ -2802,8 +2861,9 @@
         </form>
         <table cellspacing="0" cellpadding="0" class="gstl_50 gssb_c" style="width: 2px; display: none; top: 3px; position: absolute; left: -1px;"><tbody><tr><td class="gssb_f"></td><td class="gssb_e" style="width: 100%;"></td></tr></tbody></table><table cellspacing="0" cellpadding="0" class="gstl_51 gssb_c" style="width: 2px; display: none; top: 3px; position: absolute; left: -1px;"><tbody><tr><td class="gssb_f"></td><td class="gssb_e" style="width: 100%;"></td></tr></tbody></table>
     </div>
-    <div id="schemaCountDiv" style="position: sticky; bottom: 0; background-color: white; z-index: 1000">
-        <canvas id="schemaCountCanvas" style="width: 100%; height: 200px;"></canvas>
+    <div id="schemaCountDiv" style="display: flex; flex-direction: row; position: sticky; bottom: 0; background-color: white; z-index: 1000">
+        <canvas id="schemaCountCanvas" style="flex: 4 1 80%; height: 200px;"></canvas>
+        <div id="clickLog" style="flex: 1 1 20%; height: 200px; overflow-y: scroll;"></div>
     </div>
 </body>
 </html>

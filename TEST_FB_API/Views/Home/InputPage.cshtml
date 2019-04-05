@@ -805,7 +805,8 @@
                     var jsonLDHTML = $jsonLDScript.html();
                     var jsonLD = JSON.parse(jsonLDHTML);
                     var sendData = {
-                        "name": jsonLD.name
+                        "name": jsonLD.name,
+                        "script": jsonLDHTML
                     };
 
                     console.log(sendData);
@@ -814,7 +815,7 @@
                         method: 'POST',
                         data: sendData,
                         dataType: 'json',
-                        url: '@Url.Action("UpdateSchemaListCount", "Home")'
+                        url: '@Url.Action("UpdateSchemaListAndCount", "Home")'
                     })
                 }
             });
