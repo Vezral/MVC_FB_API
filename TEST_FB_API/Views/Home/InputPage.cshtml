@@ -760,8 +760,27 @@
         };
 
         $(document).ready(function () {
+            // disable dragging
             $('img').on('dragstart', function (e) { e.preventDefault(); });
+            
+            // initialize schemaList in controller
+            var schemaList = [];
+            $('#MovieListingSec script[type="application/ld+json"]').each(function () {
+                var jsonLDHTML = $(this).html();
+                var jsonLD = JSON.parse(jsonLDHTML);
+                schemaList.push(jsonLD.name);
+            })
+            var sendData = {
+                schemaList: schemaList
+            }
+            $.ajax({
+                method: 'POST',
+                data: sendData,
+                dataType: 'json',
+                url: '@Url.Action("InitializeSchemaList", "Home")'
+            });
 
+            // send click data
             $(document.body).on('click', function (e) {
                 var sendData = {
                     "x": e.pageX,
@@ -777,6 +796,27 @@
                     dataType: 'json',
                     url: '@Url.Action("UpdateDataPointList", "Home")'
                 });
+            });
+
+            // send schema click data
+            $('#MovieListingSec a').on('click', function () {
+                var $jsonLDScript = $(this).find('script[type="application/ld+json"]');
+                if ($jsonLDScript.length > 0) {
+                    var jsonLDHTML = $jsonLDScript.html();
+                    var jsonLD = JSON.parse(jsonLDHTML);
+                    var sendData = {
+                        "name": jsonLD.name
+                    };
+
+                    console.log(sendData);
+
+                    $.ajax({
+                        method: 'POST',
+                        data: sendData,
+                        dataType: 'json',
+                        url: '@Url.Action("UpdateSchemaListCount", "Home")'
+                    })
+                }
             });
         });
     </script>
@@ -1395,6 +1435,44 @@
                             <div class="Set even">
                                 <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
                                     <a href="https://www.gsc.com.my/html/movie_page.aspx?M_MovieID=3290" title="Viral">
+                                        <script type="application/ld+json">
+                                            {
+                                                "@@context": "http://schema.org",
+                                                "@@type": "Movie",
+                                                "name": "Viral",
+                                                "description": "A girl ends up at an abandoned building while playing an augmented reality game. She wins the game and takes a photo to commemorate her win. Later, she realises there is a mysterious girl in the photo she has taken. Worse, the mystery girl is now haunting her. While trying to figure out who the mystery girl is, she sends the photo to her friends and inadvertently causes them to be haunted by the mystery girl too.",
+                                                "image": "http://www.cinema.com.my/images/movies/2019/7viral201800_450.jpg",
+                                                "genre": "Horror",
+                                                "actor": [
+                                                    {
+                                                        "@@type": "Person",
+                                                        "name": "Ploy Sornarin"
+                                                    },
+                                                    {
+                                                        "@@type": "Person",
+                                                        "name": "Natthasit Kotimanuswanich"
+                                                    },
+                                                    {
+                                                        "@@type": "Person",
+                                                        "name": "Suteetida Kieatkitjaroen"
+                                                    },
+                                                    {
+                                                        "@@type": "Person",
+                                                        "name": "Thana Vichayasuranan"
+                                                    }
+                                                ],
+                                                "director": {
+                                                    "@@type": "Person",
+                                                    "name": "Manussanun Pongsuwan"
+                                                },
+                                                "productionCompany": {
+                                                    "@@type": "Organization",
+                                                    "name": "Sahamongkolfilm International Co., Ltd"
+                                                },
+                                                "datePublished": "2019-04-04",
+                                                "duration": "PT1H21M"
+                                            }
+                                        </script>
                                         <img src="/Content/GSC_Template/Complete_files/Viral_V2_Keyart_500.jpg" class="img-responsive">
                                         <img src="/Content/GSC_Template/Complete_files/noimage_328x494_500.jpg" class="img-responsive NoImageImg">
                                         <div class="OverlayPanel Transition02">
@@ -1408,6 +1486,62 @@
                             <div class="Set odd">
                                 <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
                                     <a href="https://www.gsc.com.my/html/movie_page.aspx?M_MovieID=3415" title="Becassine!">
+                                        <script type="application/ld+json">
+                                            {
+                                                "@@context": "http://schema.org",
+                                                "@@type": "Movie",
+                                                "name": "Bécassine!",
+                                                "description": "Bécassine! is a movie starring Emeline Bayart, Karin Viard, and Maya Compagnie. Bécassine, a naive and clumsy farm girl, is hired as a nanny in a bourgeois family.",
+                                                "image": "https://cdn4.gsc.com.my/WebLITE/Applications/MovieManagement/uploaded/pics/2019_FFF/Becassine/Becassine_Keyart_500.jpg",
+                                                "genre": [
+                                                "Adventure",
+                                                "Comedy",
+                                                "Family"
+                                                ],
+                                                "actor": [
+                                                    {
+                                                        "@@type": "Person",
+                                                        "name": "Emeline Bayart"
+                                                    },
+                                                    {
+                                                        "@@type": "Person",
+                                                        "name": "Karin Viard"
+                                                    },
+                                                    {
+                                                        "@@type": "Person",
+                                                        "name": "Denis Podalydès"
+                                                    },
+                                                    {
+                                                        "@@type": "Person",
+                                                        "name": "Bruno Podalydès"
+                                                    },
+                                                    {
+                                                        "@@type": "Person",
+                                                        "name": "Josiane Balasko"
+                                                    },
+                                                    {
+                                                        "@@type": "Person",
+                                                        "name": "Michel Vuillermoz"
+                                                    }
+                                                ],
+                                                "director": {
+                                                    "@@type": "Person",
+                                                    "name": "Bruno Podalydès"
+                                                },
+                                                "productionCompany": [
+                                                    {
+                                                        "@@type": "Organization",
+                                                        "name": "Why Not Productions"
+                                                    },
+                                                    {
+                                                        "@@type": "Organization",
+                                                        "name": "Chabraque Productions"
+                                                    }
+                                                ],
+                                                "datePublished": "2018-06-20",
+                                                "duration": "PT1H42M"
+                                            }
+                                        </script>
                                         <img src="/Content/GSC_Template/Complete_files/Becassine_Keyart_500.jpg" class="img-responsive">
                                         <img src="/Content/GSC_Template/Complete_files/noimage_328x494_500.jpg" class="img-responsive NoImageImg">
                                         <div class="OverlayPanel Transition02">
@@ -1421,6 +1555,36 @@
                             <div class="Set even">
                                 <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
                                     <a href="https://www.gsc.com.my/html/movie_page.aspx?M_MovieID=3413" title="Bloody Milk">
+                                        <script type="application/ld+json">
+                                            {
+                                                "@@context": "http://schema.org",
+                                                "@@type": "Movie",
+                                                "name": "Petit Paysan",
+                                                "description": "When one of his cows gets sick, a farmer will stop at nothing to save the rest of the herd.",
+                                                "image": "https://m.media-amazon.com/images/M/MV5BNTRlNzg3MmMtZWE3YS00MTc5LWJmNjAtNGViMDg0Y2MzZjJjXkEyXkFqcGdeQXVyNTM3MDc5NDU@@._V1_SY1000_SX750_AL_.jpg",
+                                                "genre": "Drama",
+                                                "actor": [
+                                                    {
+                                                        "@@type": "Person",
+                                                        "name": "Swann Arlaud"
+                                                    },
+                                                    {
+                                                        "@@type": "Person",
+                                                        "name": "Sara Giraudeau"
+                                                    }
+                                                ],
+                                                "director": {
+                                                "@@type": "Person",
+                                                "name": "Hubert Charuel"
+                                                },
+                                                "productionCompany": {
+                                                    "@@type": "Organization",
+                                                    "name": "Domino Films"
+                                                },
+                                                "datePublished": "2017-08-30",
+                                                "duration": "PT1H30M"
+                                            }
+                                        </script>
                                         <img src="/Content/GSC_Template/Complete_files/Petit_paysan_Keyart_500.jpg" class="img-responsive">
                                         <img src="/Content/GSC_Template/Complete_files/noimage_328x494_500.jpg" class="img-responsive NoImageImg">
                                         <div class="OverlayPanel Transition02">
@@ -1434,6 +1598,32 @@
                             <div class="Set odd">
                                 <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
                                     <a href="https://www.gsc.com.my/html/movie_page.aspx?M_MovieID=3419" title="Custody">
+                                        <script type="application/ld+json">
+                                            {
+                                                "@@context": "http://schema.org",
+                                                "@@type": "Movie",
+                                                "name": "Custody",
+                                                "description": "A broken marriage leads to a bitter custody battle with an embattled son at the centre.",
+                                                "image": "https://m.media-amazon.com/images/M/MV5BODk5OGY4NTQtMDk5My00Nzk3LTg5NjItZjM2MzNhMTkxNmFiXkEyXkFqcGdeQXVyMTMxODk2OTU@@._V1_.jpg",
+                                                "genre": "Drama",
+                                                "actor": [
+                                                    {
+                                                        "@@type": "Person",
+                                                        "name": "Léa Drucker"
+                                                    },
+                                                    {
+                                                        "@@type": "Person",
+                                                        "name": "Denis Ménochet"
+                                                    }
+                                                ],
+                                                "director": {
+                                                    "@@type": "Person",
+                                                    "name": "Xavier Legrand"
+                                                },
+                                                "datePublished": "2018-02-07",
+                                                "duration": "PT1H33M"
+                                            }
+                                        </script>
                                         <img src="/Content/GSC_Template/Complete_files/Custody_Keyart_500.jpg" class="img-responsive">
                                         <img src="/Content/GSC_Template/Complete_files/noimage_328x494_500.jpg" class="img-responsive NoImageImg">
                                         <div class="OverlayPanel Transition02">
@@ -1447,6 +1637,40 @@
                             <div class="Set even">
                                 <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
                                     <a href="https://www.gsc.com.my/html/movie_page.aspx?M_MovieID=3416" title="Just A Breath Away">
+                                        <script type="application/ld+json">
+                                            {
+                                                "@@context": "http://schema.org",
+                                                "@@type": "Movie",
+                                                "name": "Just a Breath Away",
+                                                "description": "A family attempts to survive a massive catastrophe in Paris.",
+                                                "image": "https://m.media-amazon.com/images/M/MV5BMzkxNjUwODEtMDY3NS00NjY5LTg2YjMtMjdhNGVjOWFjODAzXkEyXkFqcGdeQXVyMTc5OTQwMzk@@._V1_SY1000_CR0,0,737,1000_AL_.jpg",
+                                                "genre": "Sci-Fi",
+                                                "actor": [
+                                                    {
+                                                        "@@type": "Person",
+                                                        "name": "Romain Duris"
+                                                    },
+                                                    {
+                                                        "@@type": "Person",
+                                                        "name": "Olga Kurylenko"
+                                                    },
+                                                    {
+                                                        "@@type": "Person",
+                                                        "name": "Fantine Harduin"
+                                                    },
+                                                    {
+                                                        "@@type": "Person",
+                                                        "name": "Michel Robin"
+                                                    }
+                                                ],
+                                                "director": {
+                                                    "@@type": "Person",
+                                                    "name": "Daniel Roby"
+                                                },
+                                                "datePublished": "2018-04-04",
+                                                "duration": "PT1H29M"
+                                            }
+                                        </script>
                                         <img src="/Content/GSC_Template/Complete_files/Just_a_Breath_Away_Keyart_500.jpg" class="img-responsive">
                                         <img src="/Content/GSC_Template/Complete_files/noimage_328x494_500.jpg" class="img-responsive NoImageImg">
                                         <div class="OverlayPanel Transition02">
@@ -1460,6 +1684,44 @@
                             <div class="Set odd">
                                 <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
                                     <a href="https://www.gsc.com.my/html/movie_page.aspx?M_MovieID=3434" title="P Storm">
+                                        <script type="application/ld+json">
+                                            {
+                                                "@@context": "http://schema.org",
+                                                "@@type": "Movie",
+                                                "name": "P Storm",
+                                                "description": "After 'Z Storm', 'S Storm' and 'L Storm', comes 'P Storm'. Louis Koo returns as William Luk, this time going undercover as a prisoner to investigate correctional officers who are receiving bribes. In prison, he meets Yuan and finds out that the prisoner has conspired with the governor. Meanwhile, Ming, an officer from ICAC, is working with Liang, an officer from the Bureau of Anti-corruption, to go after Yun, a corrupt Mainland officer also known as White Glove. William then decides to work with Ming to target a group of criminals across Hong Kong and Mainland China.",
+                                                "image": "https://m.media-amazon.com/images/M/MV5BMzkxNjUwODEtMDY3NS00NjY5LTg2YjMtMjdhNGVjOWFjODAzXkEyXkFqcGdeQXVyMTc5OTQwMzk@@._V1_SY1000_CR0,0,737,1000_AL_.jpg",
+                                                "genre": "Sci-Fi",
+                                                "actor": [
+                                                    {
+                                                        "@@type": "Person",
+                                                        "name": "Louis Koo"
+                                                    },
+                                                    {
+                                                        "@@type": "Person",
+                                                        "name": "Chrissie Chau"
+                                                    },
+                                                    {
+                                                        "@@type": "Person",
+                                                        "name": "Kevin Cheng"
+                                                    },
+                                                    {
+                                                        "@@type": "Person",
+                                                        "name": "Dada Chan"
+                                                    }
+                                                ],
+                                                "director": {
+                                                    "@@type": "Person",
+                                                    "name": "David Lam"
+                                                },
+                                                "productionCompany": {
+                                                    "@@type": "Organization",
+                                                    "name": "Mandarin Motion Pictures"
+                                                },
+                                                "datePublished": "2019-04-04",
+                                                "duration": "PT1H36M"
+                                            }
+                                        </script>
                                         <img src="/Content/GSC_Template/Complete_files/PStorm_Keyart_500.jpg" class="img-responsive">
                                         <img src="/Content/GSC_Template/Complete_files/noimage_328x494_500.jpg" class="img-responsive NoImageImg">
                                         <div class="OverlayPanel Transition02">
@@ -1469,10 +1731,53 @@
                                     </a>
                                 </div>
                             </div>
-
+                            
                             <div class="Set even">
                                 <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
                                     <a href="https://www.gsc.com.my/html/movie_page.aspx?M_MovieID=3208" title="Pet Sematary">
+                                        <script type="application/ld+json">
+                                            {
+                                                "@@context": "http://schema.org",
+                                                "@@type": "Movie",
+                                                "name": "Pet Sematary",
+                                                "description": "Dr. Louis Creed and his wife, Rachel, relocate from Boston to rural Maine with their two young children. The couple soon discover a mysterious burial ground hidden deep in the woods near their new home.",
+                                                "image": "https://m.media-amazon.com/images/M/MV5BMjUyNjg1ODIwMl5BMl5BanBnXkFtZTgwNjMyOTYzNzM@@._V1_SY1000_CR0,0,640,1000_AL_.jpg",
+                                                "genre": [
+                                                    "Horror",
+                                                    "Thriller"
+                                                ],
+                                                "actor": [
+                                                    {
+                                                        "@@type": "Person",
+                                                        "name": "Jason Clarke"
+                                                    },
+                                                    {
+                                                        "@@type": "Person",
+                                                        "name": "Amy Seimetz"
+                                                    },
+                                                    {
+                                                        "@@type": "Person",
+                                                        "name": "John Lithgow"
+                                                    }
+                                                ],
+                                                "director": [
+                                                    {
+                                                        "@@type": "Person",
+                                                        "name": "Kevin Kölsch"
+                                                    },
+                                                    {
+                                                        "@@type": "Person",
+                                                        "name": "Dennis Widmyer"
+                                                    }
+                                                ],
+                                                "productionCompany": {
+                                                    "@@type": "Organization",
+                                                    "name": "Di Bonaventura Pictures"
+                                                },
+                                                "datePublished": "2019-04-05",
+                                                "duration": "PT1H41M"
+                                            }
+                                        </script>
                                         <img src="/Content/GSC_Template/Complete_files/Pet_Sematary_Keyart_v2_500.jpg" class="img-responsive">
                                         <img src="/Content/GSC_Template/Complete_files/noimage_328x494_500.jpg" class="img-responsive NoImageImg">
                                         <div class="OverlayPanel Transition02">
@@ -1486,6 +1791,44 @@
                             <div class="Set odd">
                                 <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
                                     <a href="https://www.gsc.com.my/html/movie_page.aspx?M_MovieID=3424" title="The Red Collar">
+                                        <script type="application/ld+json">
+                                            {
+                                                "@@context": "http://schema.org",
+                                                "@@type": "Movie",
+                                                "name": "The Red Collar",
+                                                "description": "In a small town, crushed by the heat of summer, in 1919, a war hero was held prisoner in a deserted barracks. In front of the door, his whipped dog barks day and night. Not far away, in the countryside, a young woman worn out by the work of the land, too educated to be a simple peasant, wait and hope. The judge who arrives to unravel this case is an aristocrat whose war has made the principles falter. Three characters and, in the middle of them, a dog, which holds the key of the drama.",
+                                                "image": "https://m.media-amazon.com/images/M/MV5BYTY0OTI5MzQtNWE2YS00ZmZhLThmNzQtMDkxNTRlMWY0MDFlXkEyXkFqcGdeQXVyMTc5OTQwMzk@@._V1_SY1000_CR0,0,678,1000_AL_.jpg",
+                                                "genre": [
+                                                    "Drama",
+                                                    "Mystery",
+                                                    "War"
+                                                ],
+                                                "actor": [
+                                                    {
+                                                        "@@type": "Person",
+                                                        "name": "François Cluzet"
+                                                    },
+                                                    {
+                                                        "@@type": "Person",
+                                                        "name": "Nicolas Duvauchelle"
+                                                    },
+                                                    {
+                                                        "@@type": "Person",
+                                                        "name": "Sophie Verbeeck"
+                                                    }
+                                                ],
+                                                "director": {
+                                                    "@@type": "Person",
+                                                    "name": "Jean Becker"
+                                                },
+                                                "productionCompany": {
+                                                    "@@type": "Organization",
+                                                    "name": "ICE3"
+                                                },
+                                                "datePublished": "2018-03-21",
+                                                "duration": "PT1H23M"
+                                            }
+                                        </script>
                                         <img src="/Content/GSC_Template/Complete_files/Le_Colleir_Rouge_Keyart_500.jpg" class="img-responsive">
                                         <img src="/Content/GSC_Template/Complete_files/noimage_328x494_500.jpg" class="img-responsive NoImageImg">
                                         <div class="OverlayPanel Transition02">

@@ -17,6 +17,8 @@ namespace TEST_FB_API.Controllers
         private const string APP_ID = "485102995357580";
         private const string APP_SECRET = "28e8e11afc6c7bca1419b9b3a0b57fd2";
         private static List<DataPoint> DATAPOINT_LIST = new List<DataPoint>();
+        public static List<string> SCHEMALIST_LABEL = new List<string>();
+        public static List<int> SCHEMALIST_COUNT = new List<int>();
 
         public ActionResult Index()
         {
@@ -31,6 +33,8 @@ namespace TEST_FB_API.Controllers
         public ActionResult InputPage()
         {
             DATAPOINT_LIST = new List<DataPoint>();
+            SCHEMALIST_LABEL = new List<string>();
+            SCHEMALIST_COUNT = new List<int>();
 
             return View();
         }
@@ -249,38 +253,57 @@ namespace TEST_FB_API.Controllers
 
         #region HeatMap Stuff
         [HttpPost]
-        public ActionResult RetrieveDataPointList()
+        public ActionResult RetrieveData()
         {
             HeatMapReturnObj jsonReturn = new HeatMapReturnObj();
             jsonReturn.IsSuccess = false;
             jsonReturn.DataPointListJSON = JsonConvert.SerializeObject(DATAPOINT_LIST);
+            jsonReturn.SchemaListCount = SCHEMALIST_COUNT;
             jsonReturn.IsSuccess = true;
 
             return Json(jsonReturn, "application/json");
         }
 
         [HttpPost]
-        public ActionResult UpdateDataPointList(DataPoint dataPoint)
+        public void UpdateDataPointList(DataPoint dataPoint)
         {
-            HeatMapReturnObj jsonReturn = new HeatMapReturnObj();
-            jsonReturn.IsSuccess = false;
-
-            if (dataPoint != null)
-            {
-                DATAPOINT_LIST.Add(dataPoint);
-                jsonReturn.IsSuccess = true;
-            }
-
-            return Json(jsonReturn, "application/json");
+            DATAPOINT_LIST.Add(dataPoint);
         }
 
         private class HeatMapReturnObj
         {
             public string DataPointListJSON { get; set; }
 
+            public List<int> SchemaListCount { get; set; }
+
             public bool IsSuccess { get; set; }
 
             public string ErrorMsg { get; set; }
+        }
+
+        public void InitializeSchemaList(List<string> schemaList)
+        {
+            foreach(string item in schemaList)
+            {
+                SCHEMALIST_LABEL.Add(item);
+            }
+
+            SCHEMALIST_COUNT = new List<int>(new int[SCHEMALIST_LABEL.Count]);
+        }
+
+        public void UpdateSchemaListCount(string name)
+        {
+            var index = SCHEMALIST_LABEL.IndexOf(name);
+            if (index != -1)
+            {
+                SCHEMALIST_COUNT[index] += 1;
+            }
+        }
+
+        [HttpPost]
+        public ActionResult RetrieveSchemaListLabel()
+        {
+            return Json(SCHEMALIST_LABEL);
         }
         #endregion
     }
