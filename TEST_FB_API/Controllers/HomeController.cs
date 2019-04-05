@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Threading;
 using System.Web.Mvc;
 using TEST_FB_API.Helper;
 using TEST_FB_API.Models.Charts;
@@ -16,9 +17,12 @@ namespace TEST_FB_API.Controllers
     {
         private const string APP_ID = "485102995357580";
         private const string APP_SECRET = "28e8e11afc6c7bca1419b9b3a0b57fd2";
-        private static List<DataPoint> DATAPOINT_LIST = new List<DataPoint>();
+        private static List<DataPoint> DATAPOINTLIST = new List<DataPoint>();
+        public static Queue<string> SCHEMALIST = new Queue<string>();
         public static List<string> SCHEMALIST_LABEL = new List<string>();
         public static List<int> SCHEMALIST_COUNT = new List<int>();
+        private static Mutex SCHEMALIST_MUTEX = new Mutex();
+        private static Mutex DATAPOINTLIST_MUTEX = new Mutex();
 
         public ActionResult Index()
         {
@@ -32,7 +36,7 @@ namespace TEST_FB_API.Controllers
 
         public ActionResult InputPage()
         {
-            DATAPOINT_LIST = new List<DataPoint>();
+            DATAPOINTLIST = new List<DataPoint>();
             SCHEMALIST_LABEL = new List<string>();
             SCHEMALIST_COUNT = new List<int>();
 
@@ -255,11 +259,22 @@ namespace TEST_FB_API.Controllers
         [HttpPost]
         public ActionResult RetrieveData()
         {
+            SCHEMALIST_MUTEX.WaitOne();
+            DATAPOINTLIST_MUTEX.WaitOne();
+
             HeatMapReturnObj jsonReturn = new HeatMapReturnObj();
             jsonReturn.IsSuccess = false;
-            jsonReturn.DataPointListJSON = JsonConvert.SerializeObject(DATAPOINT_LIST);
+            jsonReturn.DataPointListJSON = JsonConvert.SerializeObject(DATAPOINTLIST);
             jsonReturn.SchemaListCount = SCHEMALIST_COUNT;
+            jsonReturn.SchemaList = new List<string>();
+            for (int i = 0; i < SCHEMALIST.Count; i++)
+            {
+                jsonReturn.SchemaList.Add(SCHEMALIST.Dequeue());
+            }
             jsonReturn.IsSuccess = true;
+
+            DATAPOINTLIST_MUTEX.ReleaseMutex();
+            SCHEMALIST_MUTEX.ReleaseMutex();
 
             return Json(jsonReturn, "application/json");
         }
@@ -267,7 +282,11 @@ namespace TEST_FB_API.Controllers
         [HttpPost]
         public void UpdateDataPointList(DataPoint dataPoint)
         {
-            DATAPOINT_LIST.Add(dataPoint);
+            DATAPOINTLIST_MUTEX.WaitOne();
+
+            DATAPOINTLIST.Add(dataPoint);
+
+            DATAPOINTLIST_MUTEX.ReleaseMutex();
         }
 
         private class HeatMapReturnObj
@@ -275,6 +294,8 @@ namespace TEST_FB_API.Controllers
             public string DataPointListJSON { get; set; }
 
             public List<int> SchemaListCount { get; set; }
+
+            public List<string> SchemaList { get; set; }
 
             public bool IsSuccess { get; set; }
 
@@ -291,13 +312,18 @@ namespace TEST_FB_API.Controllers
             SCHEMALIST_COUNT = new List<int>(new int[SCHEMALIST_LABEL.Count]);
         }
 
-        public void UpdateSchemaListCount(string name)
+        public void UpdateSchemaListAndCount(string name, string script)
         {
+            SCHEMALIST_MUTEX.WaitOne();
+
             var index = SCHEMALIST_LABEL.IndexOf(name);
             if (index != -1)
             {
                 SCHEMALIST_COUNT[index] += 1;
             }
+            SCHEMALIST.Enqueue(script);
+
+            SCHEMALIST_MUTEX.ReleaseMutex();
         }
 
         [HttpPost]
