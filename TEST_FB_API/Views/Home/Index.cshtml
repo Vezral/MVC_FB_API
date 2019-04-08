@@ -4,6 +4,7 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
 
 <style>
     .modal-chart-table {
@@ -21,10 +22,10 @@
             border: 1px solid #000000;
         }
 
-        .modal-chart-table td span {
-            margin-left: 5px;
-            margin-right: 5px;
-        }
+            .modal-chart-table td span {
+                margin-left: 5px;
+                margin-right: 5px;
+            }
 
     .txtCenter {
         text-align: center;
@@ -322,7 +323,7 @@
                 }
             }
         });
-        
+
         // Set onclick
         $canvas.off("click");
         $canvas.click(function (event) {
@@ -374,7 +375,7 @@
 
         $canvas.show();
     }
-    
+
     function prepareBarModal(_index, _datasetIndex) {
         $headerText = $('#bar-modal-age-header-text');
         $barModalTable = $("#bar-modal-age-table");
@@ -440,7 +441,7 @@
             var name = this.Name;
             var gender = this.Gender;
             var birthday = this.BirthdayMYFormat;
-            
+
             var rowNumColumn = $('<td>')
                 .attr('class', 'txtRight')
                 .append($('<span>')
@@ -458,13 +459,13 @@
                 .append($('<span>')
                     .text(gender)
             );
-            
+
             var birthdayColumn = $('<td>')
                 .attr('class', 'txtCenter')
                 .append($('<span>')
                     .text(birthday)
             );
-            
+
             $radarModalTable.children('tbody').append($('<tr>')
                 .append(rowNumColumn)
                 .append(nameColumn)
@@ -562,7 +563,12 @@
 <div class="jumbotron">
     <h1>ASP.NET</h1>
     <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="@Url.Action("HeatmapPage", "Home")" class="btn btn-primary btn-lg">Heatmap Page &raquo;</a></p>
+    @using (Ajax.BeginForm("Upload", "TestUpload", null, new AjaxOptions { OnSuccess = "CallSuccess", OnFailure = "CallFailure", HttpMethod = "POST" }, new { id = "lform", enctype = "multipart/form-data" }))
+    {
+        <p><input type="file" id="uploadFile" name="uploadFile" accept="image/png, image/jpeg"></p>
+        <p><input type="submit" value="Upload" /></p>
+    }
+    <p id="imageParagraph"></p>
     <p><a href="#" onClick="logInWithFacebook();">Log In with JavaScript SDK</a></p>
     <p><fb:login-button scope="user_birthday,user_hometown" onlogin="checkLoginState();"></fb:login-button></p>
     <p><input type="button" class="btn btn-primary btn-sm" value="logout from facebook" onclick="logoutFB()" /></p>
@@ -572,3 +578,21 @@
     <p><canvas id="ageBarChart" style="width: 500px; height: 500px; display: none;"></canvas></p>
     <p><canvas id="hometownRadarChart" style="width: 500px; height: 500px; display: none;"></canvas></p>
 </div>
+
+<script>
+    function CallSuccess(response) {
+        if (response.isSuccess) {
+            var filePath = response.filePath;
+            var imageElement = '<img src = "___filePath___" />'
+            imageElement = imageElement.replace('___filePath___', filePath);
+            $('#imageParagraph').html(imageElement);
+        }
+        else {
+            alert("Upload Failed");
+        }
+    }
+
+    function CallFailure() {
+        alert("Upload Failed");
+    }
+</script>
